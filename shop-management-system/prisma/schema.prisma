@@ -17,3 +17,16 @@ model Product {
   category    String
   createdAt   String
 }
+
+model User {
+  id             String   @id @default(uuid()) @map("_id") @db.ObjectId
+  name           String
+  email          String   @unique
+  password String
+  role Roles @default(Employee)
+}
+
+enum Roles {
+  ADMIN
+  Employee
+}
