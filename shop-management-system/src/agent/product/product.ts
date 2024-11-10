@@ -1,5 +1,5 @@
 import { IProduct } from "@/type/product/product"
-import { updateProduct, deleteProduct, getProducts, createProduct } from "../../../prisma/product"
+import { updateProduct, deleteProduct, getProducts, createProduct, getProductsBySearchTerm } from "../../../prisma/product"
 
 export const updatedProduct = async (product: IProduct) => {
     debugger;
@@ -35,4 +35,8 @@ export const productList = async () => {
         return { message: "Product not found" };
     }
     return availableProducts;
+}
+
+export const searchProduct = async (searchTerm: string) : Promise<Array<IProduct>>=> {
+    return  await getProductsBySearchTerm(searchTerm);
 }

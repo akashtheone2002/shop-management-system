@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { ProductList } from '../../components/products';
+import { seed } from '../../../prisma/seed';
 
 export default function Home({ products }: { products: any }) {
     return (

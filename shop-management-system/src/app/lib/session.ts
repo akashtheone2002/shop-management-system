@@ -1,4 +1,3 @@
-import 'server'
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 import { cache } from 'react'

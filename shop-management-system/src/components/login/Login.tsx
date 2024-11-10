@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+"use client"
+import { redirect } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 const login = () => {
@@ -18,7 +19,7 @@ const login = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const emailError = validateEmail(email);
@@ -29,18 +30,18 @@ const login = () => {
     } else {
       setErrors({ email: '', password: '' });
       // Handle successful login here, e.g., API call
-
+      const response = await fetch(`/api/user/login?username=${email}&password=${password}`)
+      if (response.ok) {
+        console.log("Successfully logged in");
+        console.log(response);
+        redirect('/home');
+      }else{
+        console.log(response);
+        console.log('An error occured');
+      }
       console.log('Form submitted:', { email, password });
     }
   };
-
-  const login = async (email: string, password: string) => {
-       const res = await fetch(`api/user/login?username=` + email + `&password=` + password);
-        const user: any = await res.json();
-        if (user) {
-          return NextResponse.redirect(new URL('/Home'))
-        }
-  }
 
   return (
     <>
@@ -57,7 +58,7 @@ const login = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
@@ -112,13 +113,6 @@ const login = () => {
               </button>
             </div>
           </form>
-
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
-            </a>
-          </p>
         </div>
       </div>
     </>
