@@ -1,6 +1,6 @@
 import { IOrder, IProduct } from "@/type";
 
-export default function getReccomendations(products: IOrder[]): IProduct[]{
+export default async function getReccomendations(products: IOrder[]): Promise<IProduct[]>{
     const data: IProduct[] = [{
         id: "567",
         name: "Bag",

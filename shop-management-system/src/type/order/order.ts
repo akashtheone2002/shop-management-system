@@ -1,7 +1,19 @@
+import { Base } from "../Base";
+import { ICustomer } from "../user/user";
+
 export interface IOrder{
-    id: string;
+    orderId?: string;
+    productId: string;
     name: string;
     quantity: number;
     price: number;
-    image:string;
+    image?:string;
+}
+
+export interface ITransaction extends Base{
+    transactionId?: string;
+    customer: ICustomer;
+    boughtOn?: Date;
+    totalPrice?: number;
+    orders: IOrder[];
 }

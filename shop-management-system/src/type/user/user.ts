@@ -10,3 +10,11 @@ export enum Role{
     ADMIN,
     EMPLOYEE
 }
+
+export interface ICustomer{
+    customerId?: string;
+    name?: string;
+    email?: string;
+    address?: string;
+    phone?: string;
+}

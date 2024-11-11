@@ -2,7 +2,7 @@ import getReccomendations from '@/agent/recomendation/recomendation';
 import { IOrder, IProduct } from '@/type';
 import { NextResponse } from 'next/server';
 
-export async function Post(request: Request) {
+export async function POST(request: Request) {
     try {
         const products: IOrder[] = await request.json();
         let list: Array<IProduct> = await getReccomendations(products);

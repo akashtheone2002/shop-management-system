@@ -86,3 +86,9 @@ export const role = cache(async () => {
     }
     return session.role;
 });
+
+export async function getSession() {
+  const cookie = (await cookies()).get('session')?.value;
+  const session = await decrypt(cookie);
+  return session;
+}

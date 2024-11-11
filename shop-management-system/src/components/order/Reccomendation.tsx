@@ -1,3 +1,4 @@
+"use client"
 import { IOrder, IProduct } from "@/type";
 import React, { useEffect, useState } from "react";
 
@@ -6,13 +7,22 @@ interface ReccomendationsProp {
   CartProducts: IOrder[];
 }
 
-const Reccomendations: React.FC<ReccomendationsProp> = async ({ OnSelectReccomendedProduct, CartProducts,}) => {
-  const [reccomendedProducts, setReccomendedProducts] = useState<IProduct[]>([]);
-  
+const Reccomendations: React.FC<ReccomendationsProp> = ({
+  OnSelectReccomendedProduct,
+  CartProducts,
+}) => {
+  const [reccomendedProducts, setReccomendedProducts] = useState<IProduct[]>(
+    []
+  );
+
   useEffect(() => {
     const fetchProducts = async (products: IOrder[]) => {
       try {
-        const response = await fetch("api/reccomendation");
+        const response = await fetch("api/recommendation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(products),
+        });
         const result = await response.json();
         setReccomendedProducts(result);
       } catch (error) {
@@ -25,7 +35,7 @@ const Reccomendations: React.FC<ReccomendationsProp> = async ({ OnSelectReccomen
   return (
     <>
       <div>Reccomendations</div>
-      <div>
+      <div className="relative">
         {reccomendedProducts.length > 0 && (
           <div className="absolute bg-white border rounded-lg shadow-md w-full mt-2 z-10">
             {reccomendedProducts.map((product) => (
@@ -40,7 +50,7 @@ const Reccomendations: React.FC<ReccomendationsProp> = async ({ OnSelectReccomen
                   className="h-8 w-8 mr-2 inline-block"
                 />
                 <span>
-                  {product.name} - ${product.price.toFixed(2)}
+                  {product.name} - ${product.price.toFixed(2)} - Stock: {product.stock}
                 </span>
               </div>
             ))}
@@ -49,6 +59,7 @@ const Reccomendations: React.FC<ReccomendationsProp> = async ({ OnSelectReccomen
       </div>
     </>
   );
+  
 };
 
 export default Reccomendations;
