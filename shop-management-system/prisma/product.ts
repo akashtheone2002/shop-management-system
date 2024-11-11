@@ -66,12 +66,13 @@ export async function getProductsBySearchTerm(searchTerm: string):Promise<Array<
     const listOfProducts = await prisma.product.findMany({
       where: {
         name: { contains: searchTerm, mode: "insensitive" },
+        stock:{gt:0}
       },
       take: 10,
     });
     return listOfProducts;
   } catch (error) {
-    console.error("Error updating product:", error); // Log the specific error
-    throw new Error("Failed to update product"); // Rethrow or handle as needed
+    console.error("Error getting:", error); 
+    throw new Error("Failed to get products"); 
   }
 }

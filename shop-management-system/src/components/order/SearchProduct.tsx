@@ -11,12 +11,26 @@ const SearchBar: React.FC<SearchBarProps> = ({ onAddProduct }) => {
 
   const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
-
+    setTimeout(() => {
+      
+    }, 500);
     if (event.target.value.length > 2) {
       const response= await fetch(
         `api/product/search?searchterm=${event.target.value}`
       );
-      const data: Array<IProduct> = await response.json();
+      // const data: Array<IProduct> = await response.json();
+      const data: IProduct[] = [{
+        id: "567",
+        name: "Bag",
+        price: 100,
+        stock: 8
+      },
+      {
+        id: "569",
+        name: "Bottle",
+        price: 50,
+        stock: 90
+      }];
       setResults(data);
     } else {
       setResults([]);

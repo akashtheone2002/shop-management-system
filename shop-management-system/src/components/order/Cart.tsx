@@ -2,19 +2,20 @@
 import React, { useState } from "react";
 import CartProductList from "./CartProductList";
 import SearchProduct from "./SearchProduct";
-import { IProduct } from "@/type/product/product";
-import { IOrder } from "@/type/order/order";
-
+import { IOrder, IProduct } from "@/type";
+import Reccomendations from "./Reccomendation";
+import { productList } from "@/agent/product/product";
+const demoOrders : IOrder[] = [
+  {
+    id:"2",
+    name: "Product name",
+    price: 19.99,
+    quantity: 1,
+    image: "https://via.placeholder.com/150",
+  },
+];
 const Cart = () => {
-  const [orders, setOrders] = useState<Array<IOrder>>([
-    {
-      id:"2",
-      name: "Product name",
-      price: 19.99,
-      quantity: 1,
-      image: "https://via.placeholder.com/150",
-    },
-  ]);
+  const [orders, setOrders] = useState<Array<IOrder>>(demoOrders);
 
   const handleIncrease = (index: number) => {
     const newProducts = [...orders];
@@ -42,7 +43,7 @@ const Cart = () => {
       newProducts[existingProductIndex].quantity += 1;
       setOrders(newProducts);
     } else {
-      setOrders([...orders, { id: product.id, name: product.name, price: parseFloat(product.price), quantity: 1, image: product.image, }]);
+      setOrders([...orders, { id: product.id, name: product.name, price: product.price, quantity: 1, image: product.image ||"", }]);
     }
   };
 
@@ -50,6 +51,7 @@ const Cart = () => {
     (acc, product) => acc + product.price * product.quantity,
     0
   );
+
   const taxes = subtotal * 0.1; // Assuming 10% tax rate
   const total = subtotal + taxes;
 
@@ -58,7 +60,8 @@ const Cart = () => {
       <div className="container mx-auto px-4">
         <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
         <div className="flex flex-col md:flex-row gap-4">
-        <SearchProduct onAddProduct={handleAddProduct} />
+        <SearchProduct onAddProduct={handleAddProduct}/>
+        <Reccomendations OnSelectReccomendedProduct={handleAddProduct} CartProducts={orders}/>
           <div className="md:w-3/4">
             <CartProductList
               orders={orders}

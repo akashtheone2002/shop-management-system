@@ -1,20 +1,14 @@
 "use client";
-import React from 'react';
-interface Product {
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
+import { IOrder } from '@/type/order/order';
 
 interface CartProductListProps {
-  products: Product[];
+  orders: IOrder[];
   onIncrease: (index: number) => void;
   onDecrease: (index: number) => void;
   onRemove: (index: number) => void;
 }
 
-const CartProductList:React.FC<CartProductListProps> = ({ products, onIncrease, onDecrease, onRemove }) => {
+const CartProductList:React.FC<CartProductListProps> = ({ orders, onIncrease, onDecrease, onRemove }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-4">
       <table className="w-full">
@@ -28,7 +22,7 @@ const CartProductList:React.FC<CartProductListProps> = ({ products, onIncrease, 
           </tr>
         </thead>
         <tbody>
-          {products && products.map((product, index) => (
+          {orders && orders.map((product, index) => (
             <tr key={index}>
               <td className="py-4">
                 <div className="flex items-center">
