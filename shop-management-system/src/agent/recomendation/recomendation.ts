@@ -1,6 +1,6 @@
-import { IProduct } from "@/type";
+import { IOrder, IProduct } from "@/type";
 
-export default function getReccomendations(): IProduct[]{
+export default function getReccomendations(products: IOrder[]): IProduct[]{
     const data: IProduct[] = [{
         id: "567",
         name: "Bag",
