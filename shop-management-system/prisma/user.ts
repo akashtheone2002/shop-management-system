@@ -12,5 +12,5 @@ export async function verifyUsernamePassword(username: string, password: string)
     if (!user) {
         return { error: 'User not found.', hasError: true };
     }
-    return {username: user.email, role: user.role.toString(), name: user.name, hasError: false};
+    return {id: user.id, username: user.email ||"", role: user.role.toString(), name: user.name, hasError: false};
 }

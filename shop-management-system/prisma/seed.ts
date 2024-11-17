@@ -1,48 +1,147 @@
-import { PrismaClient, Roles } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+
 const prisma = new PrismaClient();
 
-export async function seed() {
-  // Seed Products
+async function main() {
+  // Create Users
+  const user1 = await prisma.user.create({
+    data: {
+      name: 'Alice Johnson',
+      email: 'alice.johnson@example.com',
+      password: 'password123',
+      role: 'ADMIN',
+    },
+  });
+
+  const user2 = await prisma.user.create({
+    data: {
+      name: 'Bob Smith',
+      email: 'bob.smith@example.com',
+      password: 'password123',
+      role: 'Employee',
+    },
+  });
+
+  const user3 = await prisma.user.create({
+    data: {
+      name: 'Charlie Brown',
+      email: 'charlie.brown@example.com',
+      password: 'password123',
+      role: 'Employee',
+    },
+  });
+
+  // Create Customers
+  const customer1 = await prisma.customer.create({
+    data: {
+      name: 'David Williams',
+      email: 'david.williams@example.com',
+      number: '1234567890',
+    },
+  });
+
+  const customer2 = await prisma.customer.create({
+    data: {
+      name: 'Emily Davis',
+      email: 'emily.davis@example.com',
+      number: '2345678901',
+    },
+  });
+
+  const customer3 = await prisma.customer.create({
+    data: {
+      name: 'Frank Miller',
+      email: 'frank.miller@example.com',
+      number: '3456789012',
+    },
+  });
+
+  const customer4 = await prisma.customer.create({
+    data: {
+      name: 'Grace Lee',
+      email: 'grace.lee@example.com',
+      number: '4567890123',
+    },
+  });
+
+  // Create Products with real names
   const products = [
-    { name: 'Product 1', image: 'image1.jpg', price: 10.0, stock: 100, description: 'Description 1', category: 'Category 1', createdAt: new Date().toISOString() },
-    { name: 'Product 2', image: 'image2.jpg', price: 20.0, stock: 50, description: 'Description 2', category: 'Category 2', createdAt: new Date().toISOString() },
-    { name: 'Product 3', image: 'image3.jpg', price: 30.0, stock: 200, description: 'Description 3', category: 'Category 3', createdAt: new Date().toISOString() },
-    { name: 'Product 4', image: 'image4.jpg', price: 40.0, stock: 150, description: 'Description 4', category: 'Category 4', createdAt: new Date().toISOString() },
-    { name: 'Product 5', image: 'image5.jpg', price: 50.0, stock: 80, description: 'Description 5', category: 'Category 5', createdAt: new Date().toISOString() },
-    { name: 'Product 6', image: 'image6.jpg', price: 60.0, stock: 120, description: 'Description 6', category: 'Category 6', createdAt: new Date().toISOString() },
-    { name: 'Product 7', image: 'image7.jpg', price: 70.0, stock: 60, description: 'Description 7', category: 'Category 7', createdAt: new Date().toISOString() },
-    { name: 'Product 8', image: 'image8.jpg', price: 80.0, stock: 40, description: 'Description 8', category: 'Category 8', createdAt: new Date().toISOString() },
-    { name: 'Product 9', image: 'image9.jpg', price: 90.0, stock: 30, description: 'Description 9', category: 'Category 9', createdAt: new Date().toISOString() },
-    { name: 'Product 10', image: 'image10.jpg', price: 100.0, stock: 20, description: 'Description 10', category: 'Category 10', createdAt: new Date().toISOString() },
+    {  name: 'Apple iPhone 13', price: 799, stock: 50, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Samsung Galaxy S21', price: 699, stock: 40, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Sony WH-1000XM4', price: 349, stock: 30, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Dell XPS 13', price: 999, stock: 20, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Apple MacBook Pro', price: 1299, stock: 15, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Bose QuietComfort 35', price: 299, stock: 25, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Amazon Echo Dot', price: 49, stock: 100, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Google Nest Hub', price: 89, stock: 50, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Fitbit Charge 5', price: 149, stock: 60, category: 'Electronics', image: 'https://via.placeholder.com/150' },
+    { name: 'Nintendo Switch', price: 299, stock: 30, category: 'Electronics', image: 'https://via.placeholder.com/150' },
   ];
 
-  for (const product of products) {
-    await prisma.product.create({
-      data: product,
+  const createdProducts = [];
+  for (const productData of products) {
+    const product = await prisma.product.create({
+      data: {
+        ...productData,
+        description: `Description for ${productData.name}`,
+        modifiedBy: user1.id,
+      },
     });
+    createdProducts.push(product);
   }
 
-  // Seed Users
-  const users = [
-    { name: 'User 1', email: 'user1@example.com', password: 'password1', role: Roles.ADMIN },
-    { name: 'User 2', email: 'user2@example.com', password: 'password2', role: Roles.Employee },
-    { name: 'User 3', email: 'user3@example.com', password: 'password3', role: Roles.Employee },
+  // Create Orders and Transactions
+  const orders = [];
+  for (let i = 1; i <= 20; i++) {
+    const product = createdProducts[i % createdProducts.length];
+    const order = await prisma.order.create({
+      data: {
+        productId: product.id,
+        quantity: Math.floor(Math.random() * 10) + 1,
+        price: product.price,
+        image: product.image,
+        transactionId: '', // Placeholder for now
+      },
+    });
+    orders.push(order);
+  }
+
+  const transactions = [
+    { customerId: customer1.id, createdBy: user1.id },
+    { customerId: customer2.id, createdBy: user2.id },
+    { customerId: customer3.id, createdBy: user3.id },
+    { customerId: customer4.id, createdBy: user2.id },
+    { customerId: customer1.id, createdBy: user3.id },
   ];
 
-  for (const user of users) {
-    await prisma.user.create({
-      data: user,
+  for (const [index, txn] of transactions.entries()) {
+    const transactionOrders = orders.slice(index * 4, (index + 1) * 4);
+    const transaction = await prisma.transaction.create({
+      data: {
+        customerId: txn.customerId,
+        totalPrice: transactionOrders.reduce((total, order) => total + order.price * order.quantity, 0),
+        orders: { connect: transactionOrders.map(order => ({ id: order.id })) },
+        createdBy: txn.createdBy,
+        boughtOn: new Date(),
+      },
     });
-  }
 
-  console.log('Seed data created successfully.');
+    // Update the orders with the transactionId
+    for (const order of transactionOrders) {
+      await prisma.order.update({
+        where: { id: order.id },
+        data: { transactionId: transaction.id },
+      });
+    }
+  }
 }
 
-seed()
-  .catch(e => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
+main()
+  .then(async () => {
     await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
   });

@@ -1,6 +1,5 @@
 import placeTransaction from "@/agent/order/order";
-import { IOrder } from "@/type";
-import { ICustomer } from "@/type/user/user";
+import { ICustomer, IOrder } from "@/type";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -9,11 +8,11 @@ export async function POST(request: Request) {
     console.log("Received orders:", orders);
     console.log("Received customer:", customer);
     
-    const products = await placeTransaction(orders, customer);
-    return NextResponse.json(products);
+    const transaction = await placeTransaction(orders, customer);
+    return NextResponse.json(transaction);
   } catch (error) {
-    console.error("Error handling add product request:", error);
-    return NextResponse.json({ error: "An error occurred while adding the product" }, { status: 500 });
+    console.error("Error adding transaction:", error);
+    return NextResponse.json({ error: "An error occurred while adding the transaction" }, { status: 500 });
   }
 }
 

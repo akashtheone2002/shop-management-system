@@ -1,6 +1,7 @@
 import { Base } from "../Base";
 
 export interface User extends Base{
+    id?: string;
     username?: string;
     name?: string;
     role?:string;
@@ -9,12 +10,4 @@ export interface User extends Base{
 export enum Role{
     ADMIN,
     EMPLOYEE
-}
-
-export interface ICustomer{
-    customerId?: string;
-    name?: string;
-    email?: string;
-    address?: string;
-    phone?: string;
 }
