@@ -16,17 +16,21 @@
   },
   "dependencies": {
     "@prisma/client": "^5.21.1",
+    "@tensorflow/tfjs": "^4.22.0",
     "i": "^0.3.7",
     "jose": "^5.9.6",
+    "json2csv": "^6.0.0-alpha.2",
     "next": "15.0.1",
     "npm": "^10.9.0",
+    "papaparse": "^5.4.1",
     "prisma": "^5.21.1",
     "react": "19.0.0-rc-69d4b800-20241021",
-    "react-dom": "19.0.0-rc-69d4b800-20241021",
-    "react-table": "^7.8.0"
+    "react-dom": "19.0.0-rc-69d4b800-20241021"
   },
   "devDependencies": {
+    "@types/json2csv": "^5.0.7",
     "@types/node": "^20.17.6",
+    "@types/papaparse": "^5.3.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
