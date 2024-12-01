@@ -24,5 +24,18 @@ export interface ICustomer {
     orders: IOrder[];
     modifiedBy?: string; // User ID who modified the transaction
     modifiedOn?: Date; // Date when the transaction was modified
+    [key: string]: unknown;
+  }
+  
+  export interface ITransactionCSV {
+    customerName?: string;
+    customerEmail?: string;
+    customerPhone?: string;
+    boughtOn?: string; 
+    productId?: string;
+    productName?: string;
+    quantity?: number;
+    price?: number;
+    [key: string]: unknown;
   }
   

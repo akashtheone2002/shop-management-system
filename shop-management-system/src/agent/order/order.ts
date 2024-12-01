@@ -1,6 +1,6 @@
 import { getSession } from "@/app/lib/session";
 import { IOrder, ICustomer, ITransaction, User } from "@/type";
-import { addTransaction, getTransactionById, getTransactionHistory } from "../../../prisma/orders";
+import { addTransaction, downloadTransactions, getTransactionById, getTransactionHistory, returnOrderById } from "../../../prisma/orders";
 import { Transaction, TransactionHistoryParams, TransactionHistoryResponse } from "@/type/transaction/transaction";
 
 export default async function placeTransaction(orders: IOrder[], customer: ICustomer) {
@@ -37,4 +37,16 @@ export async function fetchTransactionHistoryAgent(
 
 export async function fetchTransactionByIdAgent(id: string){
   return getTransactionById(id);
+}
+
+export async function returnOrder(orderId: string){
+    return returnOrderById(orderId);
+}
+
+export async function bulkUploadOrder(transactions: ITransaction){
+  return addTransaction(transactions);
+}
+
+export async function downloadHistory(){
+   return downloadTransactions();
 }

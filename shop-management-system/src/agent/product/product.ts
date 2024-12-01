@@ -40,3 +40,7 @@ export const productList = async () => {
 export const searchProduct = async (searchTerm: string) : Promise<Array<IProduct>>=> {
     return  await getProductsBySearchTerm(searchTerm);
 }
+
+export const bulkUploadProducts = async (product: IProduct[]) => {
+
+}

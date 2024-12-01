@@ -1,6 +1,7 @@
 import { ITransaction } from "@/type";
 import { PrismaClient } from "@prisma/client";
 import { TransactionHistoryParams, TransactionHistoryResponse } from "@/type/transaction/transaction";
+import { Parser } from 'json2csv';
 
 const prisma = new PrismaClient();
 
@@ -135,14 +136,15 @@ export async function getTransactionHistory(params: TransactionHistoryParams = {
 // Function to fetch a single transaction by transactionId
 export async function getTransactionById(transactionId: string) {
   try {
-    // Fetch the transaction by its ID
-    const transaction = await prisma.transaction.findUnique({
+    const transaction = await prisma.order.findMany({
       where: {
-        id: transactionId, // Match the transaction ID
+        transactionId: transactionId,
       },
-      include: {
-        customer: true, // Include customer data
-        orders: true, // Include orders data
+      select: {
+        productId: true,
+        quantity: true,
+        price: true,
+        product: true,
       },
     });
 
@@ -158,3 +160,97 @@ export async function getTransactionById(transactionId: string) {
   }
 }
 
+
+export async function returnOrderById(orderId: string) {
+  try {
+    // Find the order by its ID
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: {
+        transaction: {
+          include: {
+            orders: true, // Include all orders for this transaction to update the totalPrice
+          },
+        },
+      },
+    });
+
+    if (!order) {
+      throw new Error(`Order with ID ${orderId} not found.`);
+    }
+
+    // Calculate the new total price by subtracting the returned order's price from the totalPrice
+    const updatedOrders = order.transaction.orders.filter((o) => o.id !== orderId);
+    const newTotalPrice = updatedOrders.reduce((total, currentOrder) => total + currentOrder.price, 0);
+
+    // Start a transaction to ensure data consistency
+    const result = await prisma.$transaction(async (prisma) => {
+      // Delete the order from the database
+      await prisma.order.delete({
+        where: { id: orderId },
+      });
+
+      // Update the transaction's totalPrice after removing the order
+      await prisma.transaction.update({
+        where: { id: order.transactionId },
+        data: {
+          totalPrice: newTotalPrice,
+        },
+      });
+    });
+
+    console.log('Order returned and transaction updated successfully');
+    return result;
+  } catch (error) {
+    console.error('Error returning order:', error);
+    throw new Error(`Failed to return order: ${orderId}`);
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+export async function downloadTransactions(){
+   // Fetch transactions with related data
+   const transactions = await prisma.transaction.findMany({
+    include: {
+      customer: true,
+      orders: {
+        include: {
+          product: true,
+        },
+      },
+    },
+  });
+
+  // Flatten the transactions into a format suitable for CSV
+  const flattenedData = transactions.flatMap((transaction) =>
+    transaction.orders.map((order) => ({
+      transactionId: transaction.id,
+      boughtOn: transaction.boughtOn.toISOString(),
+      totalPrice: transaction.totalPrice,
+      customerName: transaction.customer.name,
+      customerEmail: transaction.customer.email,
+      customerNumber: transaction.customer.number,
+      productId: order.productId,
+      productName: order.product.name,
+      productPrice: order.price,
+      productQuantity: order.quantity,
+      productImage: order.image,
+    }))
+  );
+
+  
+  // Convert to CSV
+  const json2csvParser = new Parser();
+  const csv = json2csvParser.parse(flattenedData);
+
+  // Create a Blob from the CSV string and download it
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', 'transactions.csv');
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}

@@ -12,7 +12,7 @@ export async function createProduct(product: IProduct) {
         description: product.description||"",
         image: product.image||"",
         category: product.category||"",
-        createdAt: String(Date.now()),
+        modifiedOn: String(Date.now()),
       },
     });
     return products;
