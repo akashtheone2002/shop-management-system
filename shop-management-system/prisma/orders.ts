@@ -2,6 +2,7 @@ import { ITransaction } from "@/type";
 import { PrismaClient } from "@prisma/client";
 import { TransactionHistoryParams, TransactionHistoryResponse } from "@/type/transaction/transaction";
 import { Parser } from 'json2csv';
+import FPGrowth, { Itemset } from 'node-fpgrowth';
 
 const prisma = new PrismaClient();
 
@@ -254,3 +255,37 @@ export async function downloadTransactions(){
   link.click();
   link.remove();
 }
+
+
+async function fetchTransactions() {
+  const transactions = await prisma.transaction.findMany({
+    include: {
+      orders: {
+        include: {
+          product: true,
+        },
+      },
+    },
+  });
+
+  // Prepare data for FP-Growth
+  const baskets = transactions.map((transaction) =>
+    transaction.orders.map((order) => order.product.name)
+  );
+
+  return baskets;
+}
+
+async function runFPGrowth() {
+  const baskets = await fetchTransactions();
+
+  // FP-Growth algorithm options
+  const fpgrowth = new FPGrowth.FPGrowth<number | string>(0.2);
+
+  // Execute FPGrowth
+  fpgrowth.exec(baskets)
+    .then((itemsets) => {
+      
+    });
+}
+
