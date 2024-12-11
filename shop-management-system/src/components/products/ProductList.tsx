@@ -4,6 +4,9 @@ import { ProductCard } from './ProductCard';
 import { IProduct, IProductCsv } from '@/type/product/product';
 import Modal from '../common/Modal';
 import Uploader from '../common/Uploader';
+import { IProduct, IProductCsv } from '@/type/product/product';
+import Modal from '../common/Modal';
+import Uploader from '../common/Uploader';
 
 export const ProductList = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -61,6 +64,8 @@ export const ProductList = () => {
     ]
     );
     const [showAddModal, setShowAddModal] = useState(false); // State for add product modal
+    const [showBulkUploadModal, setShowBulkUploadModall] =
+    useState<boolean>(false);
     const [showBulkUploadModal, setShowBulkUploadModall] =
     useState<boolean>(false);
     const [newProduct, setNewProduct] = useState<IProduct>({
@@ -232,12 +237,63 @@ export const ProductList = () => {
         }
     }
 
+    const getParsedData = (data: IProductCsv[]): IProduct[] => {
+        const today = new Date().toISOString(); // Get current date in ISO format
+      
+        return data.map((item, index) => {
+          // Construct product object
+          const product: IProduct = {
+            id: generateUUID(), // Generate unique product id
+            name: item.name || 'Unknown Product', // Default name if missing
+            image: item.image || "", // Default image to null if not provided
+            price: item.price || 0, // Default price to 0 if not provided
+            stock: item.stock || 0, // Default stock to 0 if not provided
+            description: item.description || "", // Default description to null if not provided
+            category: item.category || "", // Default category to null if not provided
+            createdAt: today, // Set createdAt to the current date
+          };
+      
+          return product;
+        });
+    }
+    const bulkUploadOrders = async(data: IProductCsv[]) => {
+        const parsedData = getParsedData(data);
+
+        try {
+        const response = await fetch("/api/product/bulk", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(parsedData),
+        });
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        const result = await response.json();
+        setProducts(result);
+        setShowBulkUploadModall(false);
+        console.log("Bulk Upload successfully:", result);
+        } catch (error) {
+        console.error("Error placing order:", error);
+        }
+    }
+
     useEffect(() => {
         getStaticProps();
     }, []);
 
     return (
         <div className="container mx-auto py-8 px-8 bg-white">
+            {showBulkUploadModal && (
+            <Modal
+              show={showBulkUploadModal}
+              onClose={() => setShowBulkUploadModall(false)}
+            >
+              <Uploader<IProductCsv>
+                text="Upload Product Data"
+                handleUpload={bulkUploadOrders}
+              />
+            </Modal>
+          )}
             {showBulkUploadModal && (
             <Modal
               show={showBulkUploadModal}

@@ -9,7 +9,16 @@ import {
   ITransaction,
   ITransactionCSV,
 } from "@/type";
+import {
+  ICustomer,
+  IOrder,
+  IProduct,
+  ITransaction,
+  ITransactionCSV,
+} from "@/type";
 import Reccomendations from "./Reccomendation";
+import Modal from "../common/Modal";
+import Uploader from "../common/Uploader";
 import Modal from "../common/Modal";
 import Uploader from "../common/Uploader";
 const demoOrders: IOrder[] = [
@@ -22,6 +31,35 @@ const demoOrders: IOrder[] = [
   },
 ];
 const Cart = () => {
+  const [orders, setOrders] = useState<Array<IOrder>>([]);
+  const [showAddModal, setShowAddModal] = useState<boolean>(false);
+  const [showBulkUploadModal, setShowBulkUploadModall] =
+    useState<boolean>(false);
+  const [newCustomer, setNewCustomer] = useState<ICustomer>({
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const [csv, setCsv] = useState<File | null>();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewCustomer((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleCancel = () => {
+    // Reset the form if cancel is clicked
+    setShowAddModal(false);
+
+    setNewCustomer({
+      name: "",
+      email: "",
+      phone: "",
+    });
+  };
   const [orders, setOrders] = useState<Array<IOrder>>([]);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [showBulkUploadModal, setShowBulkUploadModall] =
@@ -96,10 +134,14 @@ const Cart = () => {
   const checkOut = async () => {
     console.log(orders);
     console.log(newCustomer);
+  const checkOut = async () => {
+    console.log(orders);
+    console.log(newCustomer);
     try {
       const response = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orders, newCustomer }),
         body: JSON.stringify({ orders, newCustomer }),
       });
       if (!response.ok) {
