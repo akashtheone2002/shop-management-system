@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { IProduct } from "@/type/product/product";
 
 interface SearchBarProps {
   onAddProduct: (product: IProduct) => void;
@@ -13,7 +12,20 @@ const SearchBar: React.FC<SearchBarProps> = ({ onAddProduct }) => {
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       if (searchTerm.length > 2) {
-        const response = await fetch(`api/product/search?searchterm=${searchTerm}`);
+        // Construct query parameters
+          const url = new URL('/api/product', window.location.origin);
+          const params = new URLSearchParams({
+            search: searchTerm,
+            sort: 'modifiedOn', // Adjust sorting if needed
+            order: 'desc', // You can change this based on your use case
+            page: '1', // Adjust the page if needed
+            pageSize: '10', // Adjust the page size if needed
+          });
+
+          url.search = params.toString(); // Add the query params to the URL
+
+          const response = await fetch(url.toString());
+          
         // const data: Array<IProduct> = await response.json();
         const data: IProduct[] = [
           {
@@ -67,7 +79,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onAddProduct }) => {
                 className="h-8 w-8 mr-2 inline-block"
               />
               <span>
-              {product.name} - ${product.price.toFixed(2)} - Stock: {product.stock}
+              {product.name} - ${product?.price?.toFixed(2)} - Stock: {product.stock}
               </span>
             </div>
           ))}

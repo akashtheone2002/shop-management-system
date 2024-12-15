@@ -1,28 +1,23 @@
 "use client";
-import {
-  Order,
-  TransactionEntry,
-  TransactionHistoryResponse,
-} from "@/type/transaction/transaction";
 import React, { useState, useEffect } from "react";
 import Alert from "../common/Alert";
 import Modal from "../common/Modal";
 
-const dummyData: TransactionHistoryResponse = {
+const dummyData: ITransactionList = {
   transactions: [
     {
-      transactionId: "txn12345",
-      boughtBy: "John Doe",
+      id: "txn12345",
+      customer: {name: "John Doe"},
       boughtOn: new Date("2024-11-18T10:30:00Z"),
     },
     {
-      transactionId: "txn12346",
-      boughtBy: "Jane Smith",
+      id: "txn12346",
+      customer: {name: "Jane Smith"},
       boughtOn: new Date("2024-11-17T14:20:00Z"),
     },
     {
-      transactionId: "txn12347",
-      boughtBy: "Tom Johnson",
+      id: "txn12347",
+      customer: {name: "Tom Johnson"},
       boughtOn: new Date("2024-11-16T09:15:00Z"),
     },
   ],
@@ -34,18 +29,16 @@ const dummyData: TransactionHistoryResponse = {
   },
 };
 
-const dummyOrders: Record<string, Order[]> = {
+const dummyOrders: Record<string, IOrder[]> = {
   txn12345: [
     {
       id: "order1",
-      productId: "prod1",
       quantity: 2,
-      price: 10.0,
+      price: 20.0,
       product: { id: "prod1", name: "Product A", price: 10.0 },
     },
     {
       id: "order2",
-      productId: "prod2",
       quantity: 1,
       price: 20.0,
       product: { id: "prod2", name: "Product B", price: 20.0 },
@@ -54,77 +47,66 @@ const dummyOrders: Record<string, Order[]> = {
   txn12346: [
     {
       id: "order3",
-      productId: "prod3",
       quantity: 5,
       price: 5.0,
       product: { id: "prod3", name: "Product C", price: 5.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
     },
     {
       id: "order4",
-      productId: "prod4",
       quantity: 3,
       price: 15.0,
       product: { id: "prod4", name: "Product D", price: 15.0 },
@@ -133,14 +115,12 @@ const dummyOrders: Record<string, Order[]> = {
   txn12347: [
     {
       id: "order5",
-      productId: "prod5",
       quantity: 1,
       price: 100.0,
       product: { id: "prod5", name: "Product E", price: 100.0 },
     },
     {
       id: "order6",
-      productId: "prod6",
       quantity: 2,
       price: 50.0,
       product: { id: "prod6", name: "Product F", price: 50.0 },
@@ -149,7 +129,7 @@ const dummyOrders: Record<string, Order[]> = {
 };
 
 const TransactionHistory: React.FC = () => {
-  const [transactions, setTransactions] = useState<TransactionEntry[]>([]);
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [search, setSearch] = useState<string>("");
@@ -157,7 +137,7 @@ const TransactionHistory: React.FC = () => {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [totalPages, setTotalPages] = useState<number>(1);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
-  const [orders, setOrders] = useState<Order[]>();
+  const [orders, setOrders] = useState<IOrder[]>();
 
   const [alertProps, setAlertProps] = useState<{
     success: boolean;
@@ -315,10 +295,8 @@ const TransactionHistory: React.FC = () => {
               <th
                 scope="col"
                 className="px-6 py-4 cursor-pointer"
-                onClick={() => handleSortChange("customerName")}
               >
                 Customer Name{" "}
-                {sortBy === "customerName" && (sortOrder === "asc" ? "↑" : "↓")}
               </th>
               <th scope="col" className="px-6 py-4">
                 Actions
@@ -328,21 +306,21 @@ const TransactionHistory: React.FC = () => {
           <tbody>
             {transactions.map((transaction) => (
               <tr
-                key={transaction.transactionId}
+                key={transaction.id}
                 className="border-b border-neutral-200 dark:border-white/10"
               >
                 <td className="whitespace-nowrap px-6 py-4 font-medium">
-                  {transaction.transactionId}
+                  {transaction.id}
                 </td>
                 <td className="whitespace-nowrap px-6 py-4">
-                  {new Date(transaction.boughtOn).toLocaleDateString()}
+                  {new Date(transaction.boughtOn || new Date()).toLocaleDateString()}
                 </td>
                 <td className="whitespace-nowrap px-6 py-4">
-                  {transaction.boughtBy}
+                  {transaction.customer?.name}
                 </td>
                 <td className="whitespace-nowrap px-6 py-4">
                   <button
-                    onClick={() => getTransaction(transaction.transactionId)}
+                    onClick={() => getTransaction(transaction.id || "")}
                   >
                     View
                   </button>
@@ -413,7 +391,7 @@ const TransactionHistory: React.FC = () => {
                   className="border-b border-neutral-200 dark:border-white/10"
                 >
                   <td className="whitespace-nowrap px-6 py-4 font-medium">
-                    {order.product.name}
+                    {order.product?.name}
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
                     {order.quantity}
@@ -422,7 +400,7 @@ const TransactionHistory: React.FC = () => {
                   <td className="whitespace-nowrap px-6 py-4">
                     <button
                       className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
-                      onClick={() => handleReturn(order.id)}
+                      onClick={() => handleReturn(order.id || "")}
                     >
                       Return
                     </button>

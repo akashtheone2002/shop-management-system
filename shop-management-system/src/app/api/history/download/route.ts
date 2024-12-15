@@ -1,9 +1,9 @@
-import { downloadHistory } from '@/agent/order/order';
 import { NextResponse } from 'next/server';
+import { downloadTransactions } from '../../../../../agents/oms';
 
 export async function GET() {
     try {
-        const success = await downloadHistory();
+        const success = await downloadTransactions();
         return NextResponse.json(success);
     } catch (error) {
         console.error("Error handling GET request:", error);

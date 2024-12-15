@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { IProduct } from '@/type/product/product';
+import Modal from '../common/Modal';
 
 interface ProductCardProps {
     product: IProduct;
@@ -20,7 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onEdit, onDel
     };
 
     const handleConfirmDelete = () => {
-        onDelete(product.id); // Call the delete function with product ID
+        onDelete(product.id || ""); // Call the delete function with product ID
         setShowDeleteModal(false); // Close the delete modal
     };
 
@@ -80,8 +80,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onEdit, onDel
 
             {/* Delete Confirmation Modal */}
             {showDeleteModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+                 <Modal show={showDeleteModal} onClose={() => { setShowDeleteModal(false)}}>
                         <h3 className="text-lg font-semibold mb-4 text-gray-800">Confirm Deletion</h3>
                         <p className="text-gray-600 mb-6">Are you sure you want to delete this product?</p>
                         <div className="flex justify-end space-x-4">
@@ -98,14 +97,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onEdit, onDel
                                 Delete
                             </button>
                         </div>
-                    </div>
-                </div>
+                   </Modal>
             )}
 
             {/* Edit Modal */}
             {showEditModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+                    <Modal show={showEditModal} onClose={() => { setShowEditModal(false)}}>
                         <h3 className="text-lg font-semibold mb-4 text-gray-800">Edit Product</h3>
                         <form onSubmit={handleEditSubmit} className="space-y-4">
                             <div>
@@ -175,8 +172,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onEdit, onDel
                                 </button>
                             </div>
                         </form>
-                    </div>
-                </div>
+                </Modal>
             )}
         </>
     );

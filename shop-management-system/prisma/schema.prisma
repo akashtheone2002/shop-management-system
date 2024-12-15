@@ -7,61 +7,33 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Product {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  image       String
-  price       Float
-  stock       Int
-  description String
-  category    String
-  modifiedOn   DateTime @default(now())
-  modifiedBy   String @db.ObjectId
-  orders      Order[]
-  user        User   @relation(fields: [modifiedBy], references: [id])
-}
-
-model User {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  email     String? @unique
-  password  String?
-  role      Roles @default(Employee)
-  transaction Transaction[] 
-  product Product[] 
-}
-
-model Customer{
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  email String? @unique
-  number String? @unique
-  transaction Transaction[]
-}
-
-model Order {
+model Entity {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  productId     String   @db.ObjectId
-  quantity      Int
-  price         Float
+  entityType    EntityType
+  name          String?
+  email         String?  @unique
+  number        String?  @unique
+  password      String?
+  role          Roles?
   image         String?
-  product       Product @relation(fields: [productId], references: [id])
-  transactionId String @db.ObjectId
-  transaction   Transaction @relation(fields: [transactionId], references: [id])
-}
-
-model Transaction {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  customerId String   @db.ObjectId
-  boughtOn   DateTime @default(now())
-  totalPrice Float
-  orders     Order[]
-  customer   Customer @relation(fields: [customerId], references: [id])
-  createdBy String @db.ObjectId
-  user User @relation(fields: [createdBy], references: [id])
+  price         Float?
+  quantity      Int?
+  description   String?
+  category      String?
+  jsonPayload   String?
+  modifiedOn    DateTime?
+  modifiedBy    String?  @db.ObjectId
 }
 
 enum Roles {
   ADMIN
   Employee
+}
+
+enum EntityType {
+  TRANSACTION
+  ORDER
+  CUSTOMER
+  USER
+  PRODUCT
 }

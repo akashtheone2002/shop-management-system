@@ -1,19 +1,23 @@
-import { fetchTransactionByIdAgent } from '@/agent/order/order';
 import { NextResponse } from 'next/server';
+import { fetchTransactionById } from '../../../../../agents/oms';
 
-export async function GET(req: Request) {
-   // Extract the ID from the request URL
-   // Extract query parameters from the request URL
-   const url = new URL(req.url);
-   const id = url.searchParams.get('transactionId') || '';
-    try {
-      console.log(id);
+interface Context {
+  params: {
+    id: string;
+  };
+}
+
+export async function GET(req: Request, context: Context) {
+  const { id } = context.params;
+   
+  try {
+    console.log(id);
     if (!id) {
       return NextResponse.json({ error: 'Invalid or missing transaction ID' }, { status: 400 });
     }
 
     // Fetch the transaction using the agent function
-    const transaction = await fetchTransactionByIdAgent(id);
+    const transaction = await fetchTransactionById(id);
 
     if (!transaction) {
       return NextResponse.json({ error: 'Transaction not found' }, { status: 404 });

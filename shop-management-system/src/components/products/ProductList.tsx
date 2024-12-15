@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { ProductCard } from './ProductCard';
-import { IProduct, IProductCsv } from '@/type/product/product';
 import Modal from '../common/Modal';
 import Uploader from '../common/Uploader';
 
@@ -16,7 +15,6 @@ export const ProductList = () => {
             "stock": 150,
             "description": "A high-precision wireless mouse with long battery life.",
             "category": "Electronics",
-            "createdAt": "2024-01-15T08:00:00Z"
         },
         {
             "id": "2",
@@ -26,7 +24,6 @@ export const ProductList = () => {
             "stock": 75,
             "description": "Noise-cancelling Bluetooth headphones with superior sound quality.",
             "category": "Audio",
-            "createdAt": "2024-01-20T12:00:00Z"
         },
         {
             "id": "3",
@@ -36,7 +33,6 @@ export const ProductList = () => {
             "stock": 200,
             "description": "Adjustable stand for smartphones and tablets.",
             "category": "Accessories",
-            "createdAt": "2024-02-05T10:30:00Z"
         },
         {
             "id": "4",
@@ -46,7 +42,6 @@ export const ProductList = () => {
             "stock": 100,
             "description": "Multi-port USB-C hub with HDMI, USB-A, and SD card slots.",
             "category": "Computer Peripherals",
-            "createdAt": "2024-02-10T09:15:00Z"
         },
         {
             "id": "5",
@@ -56,7 +51,6 @@ export const ProductList = () => {
             "stock": 180,
             "description": "Fast wireless charger compatible with all Qi-enabled devices.",
             "category": "Mobile Accessories",
-            "createdAt": "2024-02-15T14:45:00Z"
         }
     ]
     );
@@ -71,7 +65,6 @@ export const ProductList = () => {
         category: '',
         image: '',
         stock: 0,
-        createdAt: String(Date.now())
     }); // State for the new product details
 
     // const filteredProducts = products.filter((product: IProduct) =>
@@ -131,7 +124,6 @@ export const ProductList = () => {
     }
 ]
 
-
     // Fetch data from the API during build time
     async function getStaticProps() {
         const res = await fetch('api/product/list');
@@ -141,8 +133,8 @@ export const ProductList = () => {
 
     async function editProduct(product: IProduct) {
         try {
-            const res = await fetch('/api/product/edit', {
-                method: 'POST',
+            const res = await fetch('/api/product', {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -163,7 +155,9 @@ export const ProductList = () => {
 
     // Fetch data from the API during build time
     async function deletedProduct(id: string) {
-        const res = await fetch(`api/product/delete?id=` + id);
+        const res = await fetch(`api/product?id=` + id, {
+            method: 'DELETE',
+          });
         const products: IProduct[] = await res.json();
         setProducts(products);
     }
@@ -187,13 +181,13 @@ export const ProductList = () => {
             const updatedProducts: IProduct[] = await res.json();
             setProducts(updatedProducts);
             setShowAddModal(false); // Close the modal after adding
-            setNewProduct({ id: '', name: '', price: 0, description: '', category: '', image: '', stock: 0, createdAt: String(Date.now()) }); // Reset new product
+            setNewProduct({ id: '', name: '', price: 0, description: '', category: '', image: '', stock: 0 }); // Reset new product
         } catch (error) {
             console.error('Error adding product:', error);
         }
     };
 
-    const getParsedData = (data: IProductCsv[]): IProduct[] => {
+    const getParsedData = (data: IProductCSV[]): IProduct[] => {
         const today = new Date().toISOString(); // Get current date in ISO format
       
         return data.map((item, index) => {
@@ -206,14 +200,13 @@ export const ProductList = () => {
             stock: item.stock || 0, // Default stock to 0 if not provided
             description: item.description || "", // Default description to null if not provided
             category: item.category || "", // Default category to null if not provided
-            createdAt: today, // Set createdAt to the current date
           };
       
           return product;
         });
     }
-    const bulkUploadOrders = async(data: IProductCsv[]) => {
-        const parsedData = getParsedData(data);
+    const bulkUploadOrders = async(data: IProductCSV[]) => {
+        const parsedData : IProduct[]= getParsedData(data);
 
         try {
         const response = await fetch("/api/product/bulk", {
@@ -244,7 +237,7 @@ export const ProductList = () => {
               show={showBulkUploadModal}
               onClose={() => setShowBulkUploadModall(false)}
             >
-              <Uploader<IProductCsv>
+              <Uploader<IProductCSV>
                 text="Upload Product Data"
                 handleUpload={bulkUploadOrders}
               />
@@ -273,8 +266,7 @@ export const ProductList = () => {
 
             {/* Add Product Modal */}
             {showAddModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+                    <Modal show={showAddModal} onClose={() => { setShowAddModal(false)}}>
                         <h3 className="text-lg font-semibold mb-4 text-gray-800">Add Product</h3>
                         <form onSubmit={(e) => { e.preventDefault(); addProduct(newProduct); }} className="space-y-4">
                             <div>
@@ -344,8 +336,7 @@ export const ProductList = () => {
                                 </button>
                             </div>
                         </form>
-                    </div>
-                </div>
+                </Modal>
             )}
         </div>
     );

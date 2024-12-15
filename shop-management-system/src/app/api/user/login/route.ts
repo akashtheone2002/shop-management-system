@@ -1,6 +1,6 @@
-import { login } from '@/agent/user/user';
 import { createSession } from '@/app/lib/session';
 import { NextResponse } from 'next/server';
+import { login } from '../../../../../agents/user';
 
 export async function GET(request: Request) {
     try {
@@ -12,11 +12,6 @@ export async function GET(request: Request) {
         console.log(username, password);
 
         const user = await login(username || "", password || "");
-        if (user.hasError){
-          return NextResponse.json({ error: "Invalid login id or password." }, { status: 401 });
-        }else if (!user){
-          return NextResponse.json({ error: "An error occured." }, { status: 500 });
-        }
         await createSession(user);
         return NextResponse.json(true);
     } catch (error) {

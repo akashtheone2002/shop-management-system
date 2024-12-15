@@ -1,6 +1,6 @@
 import { deleteSession } from "@/app/lib/session";
 
-export async function GET(username: string, password: string) {
+export async function GET() {
     await deleteSession();
     return true;
 }

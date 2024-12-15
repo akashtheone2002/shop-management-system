@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { ProductList } from '../../components/products';
-import { seed } from '../../../prisma/seed';
 
 export default function Home({ products }: { products: any }) {
     return (
@@ -10,7 +9,6 @@ export default function Home({ products }: { products: any }) {
             <Head>
                 <title>My Store</title>
             </Head>
-            <Header />
             <main className="flex-grow">
                 <ProductList />
             </main>

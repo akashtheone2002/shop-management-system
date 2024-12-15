@@ -1,6 +1,5 @@
-import placeTransaction from "@/agent/order/order";
-import { ICustomer, IOrder } from "@/type";
 import { NextResponse } from "next/server";
+import placeTransaction from "../../../../agents/oms";
 
 export async function POST(request: Request) {
   try {

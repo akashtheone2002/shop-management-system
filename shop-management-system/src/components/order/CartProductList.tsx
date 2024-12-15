@@ -1,5 +1,4 @@
 "use client";
-import { IOrder } from '@/type/order/order';
 
 interface CartProductListProps {
   orders: IOrder[];
@@ -22,19 +21,19 @@ const CartProductList:React.FC<CartProductListProps> = ({ orders, onIncrease, on
           </tr>
         </thead>
         <tbody>
-          {orders && orders.map((product, index) => (
+          {orders && orders.map((order, index) => (
             <tr key={index}>
               <td className="py-4">
                 <div className="flex items-center">
                   <img
                     className="h-16 w-16 mr-4"
-                    src={product.image}
+                    src={order?.product?.image}
                     alt="Product image"
                   />
-                  <span className="font-semibold">{product.name}</span>
+                  <span className="font-semibold">{order?.product?.name}</span>
                 </div>
               </td>
-              <td className="py-4">${product.price.toFixed(2)}</td>
+              <td className="py-4">${order?.product?.price?.toFixed(2)}</td>
               <td className="py-4">
                 <div className="flex items-center">
                   <button
@@ -43,7 +42,7 @@ const CartProductList:React.FC<CartProductListProps> = ({ orders, onIncrease, on
                   >
                     -
                   </button>
-                  <span className="text-center w-8">{product.quantity}</span>
+                  <span className="text-center w-8">{order?.quantity}</span>
                   <button
                     className="border rounded-md py-2 px-4 ml-2"
                     onClick={() => onIncrease(index)}
@@ -53,7 +52,7 @@ const CartProductList:React.FC<CartProductListProps> = ({ orders, onIncrease, on
                 </div>
               </td>
               <td className="py-4">
-                ${(product.price * product.quantity).toFixed(2)}
+                ${((order?.product?.price || 1) * (order?.product?.stock || 1)).toFixed(2)}
               </td>
               <td className="py-4">
                 <button

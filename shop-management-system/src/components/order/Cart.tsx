@@ -2,23 +2,16 @@
 import React, { useState } from "react";
 import CartProductList from "./CartProductList";
 import SearchProduct from "./SearchProduct";
-import {
-  ICustomer,
-  IOrder,
-  IProduct,
-  ITransaction,
-  ITransactionCSV,
-} from "@/type";
 import Reccomendations from "./Reccomendation";
 import Modal from "../common/Modal";
 import Uploader from "../common/Uploader";
 const demoOrders: IOrder[] = [
   {
-    productId: "2",
-    name: "Product name",
+    product: {
+      name: "Hello"
+    },
     price: 19.99,
     quantity: 1,
-    image: "https://via.placeholder.com/150",
   },
 ];
 const Cart = () => {
@@ -29,9 +22,8 @@ const Cart = () => {
   const [newCustomer, setNewCustomer] = useState<ICustomer>({
     name: "",
     email: "",
-    phone: "",
+    number: "",
   });
-  const [csv, setCsv] = useState<File | null>();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -48,20 +40,22 @@ const Cart = () => {
     setNewCustomer({
       name: "",
       email: "",
-      phone: "",
+      number: "",
     });
   };
 
   const handleIncrease = (index: number) => {
     const newProducts = [...orders];
-    newProducts[index].quantity += 1;
+    newProducts[index].quantity = (newProducts[index].quantity || 0) + 1 ;
+    newProducts[index].price = (newProducts[index].quantity || 1) * (newProducts[index].price || 1);
     setOrders(newProducts);
   };
 
   const handleDecrease = (index: number) => {
     const newProducts = [...orders];
-    if (newProducts[index].quantity > 1) {
-      newProducts[index].quantity -= 1;
+    if ((newProducts[index].quantity || 0) > 1) {
+      newProducts[index].quantity = (newProducts[index].quantity || 0) - 1;
+      newProducts[index].price = (newProducts[index].quantity || 1) * (newProducts[index].price || 1);
       setOrders(newProducts);
     }
   };
@@ -73,21 +67,24 @@ const Cart = () => {
 
   const handleAddProduct = (product: IProduct) => {
     const existingProductIndex = orders.findIndex(
-      (p) => p.productId === product.id
+      (p) => p.product?.id === product.id
     );
     if (existingProductIndex > -1) {
       const newProducts = [...orders];
-      newProducts[existingProductIndex].quantity += 1;
+      newProducts[existingProductIndex].quantity =  (newProducts[existingProductIndex].quantity || 0) + 1;
       setOrders(newProducts);
     } else {
       setOrders([
         ...orders,
         {
-          productId: product.id,
-          name: product.name,
+          product: {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image || "",
+          },
           price: product.price,
           quantity: 1,
-          image: product.image || "",
         },
       ]);
     }
@@ -113,57 +110,52 @@ const Cart = () => {
   };
 
   const subtotal = orders.reduce(
-    (acc, product) => acc + product.price * product.quantity,
+    (acc, product) => acc + (product.product?.price || 1) * (product.quantity || 1),
     0
   );
 
   const taxes = subtotal * 0.1; // Assuming 10% tax rate
   const total = subtotal + taxes;
 
-  const parseData = (data: ITransactionCSV[]): ITransaction[] => {
+  const parseData = (data: ITransactionCSV[]): ITransaction => {
     const today = new Date();
-
-    return data.map((item, index) => {
-      // Calculate totalPrice from the sum of price * quantity
-      const totalPrice = item.price && item.quantity ? item.price * item.quantity : 0;
-
-      // Construct orders array
-      const orders: IOrder[] = [
-        {
-          productId: item.productId || "",
-          name: item.productName || "",
-          quantity: item.quantity || 0,
-          price: item.price || 0,
-          image: "", // Placeholder for image field
-        },
-      ];
-
-      // Construct customer data
-      const customer: ICustomer = {
-        name: item.customerName || "",
-        email: item.customerEmail || "",
-        phone: item.customerPhone || "",
-      };
-
-      // Construct the transaction
-      const transaction: ITransaction = {
-        customer,
-        boughtOn: new Date(item.boughtOn ?? today),
-        totalPrice: totalPrice,
-        orders,
-        modifiedBy: "", // Assuming no information provided for this
-        modifiedOn: today, // Set to today's date
-      };
-
-      return transaction;
-    });
+  
+    // Calculate total price by summing up the prices from the input data
+    const total = data.reduce((sum, transaction) => {
+      return sum + (transaction.totalPrice || 0);
+    }, 0);
+  
+    // Construct orders array
+    const orders: IOrder[] = data.map(item => ({
+      product: {
+        name: item.name,
+      },
+      quantity: item.quantity || 0,
+    }));
+  
+    // Construct customer data (assuming the customer is the same for all transactions in the dataset)
+    const customer: ICustomer = {
+      name: data[0]?.customerName || "",
+      email: data[0]?.email || "",
+      number: data[0]?.number || "",
+    };
+  
+    // Construct the transaction object
+    const transaction: ITransaction = {
+      customer,
+      boughtOn: new Date(data[0]?.boughtOn ?? today),
+      totalPrice: total,
+      orders,
+    };
+  
+    return transaction;
   };
 
   const bulkUploadOrders = async (data: ITransactionCSV[]) => {
-    const parsedData = parseData(data);
+    const parsedData : ITransaction = parseData(data);
 
     try {
-      const response = await fetch("/api/order/bulk", {
+      const response = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsedData),
@@ -177,6 +169,7 @@ const Cart = () => {
       console.error("Error placing order:", error);
     }
   };
+  
   return (
     <>
       <div className="bg-gray-100 h-screen py-8 text-gray-900">
@@ -292,7 +285,7 @@ const Cart = () => {
             <input
               type="text"
               name="phone"
-              value={newCustomer.phone || ""}
+              value={newCustomer.number || ""}
               onChange={handleInputChange}
               className="w-full p-2 border rounded text-gray-700"
             />

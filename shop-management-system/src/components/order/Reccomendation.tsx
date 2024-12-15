@@ -1,5 +1,4 @@
 "use client"
-import { IOrder, IProduct } from "@/type";
 import React, { useEffect, useState } from "react";
 
 interface ReccomendationsProp {
@@ -50,7 +49,7 @@ const Reccomendations: React.FC<ReccomendationsProp> = ({
                   className="h-8 w-8 mr-2 inline-block"
                 />
                 <span>
-                  {product.name} - ${product.price.toFixed(2)} - Stock: {product.stock}
+                  {product.name} - ${product?.price?.toFixed(2)} - Stock: {product.stock}
                 </span>
               </div>
             ))}

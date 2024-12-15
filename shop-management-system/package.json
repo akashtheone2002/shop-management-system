@@ -21,6 +21,7 @@
     "jose": "^5.9.6",
     "json2csv": "^6.0.0-alpha.2",
     "next": "15.0.1",
+    "node-fpgrowth": "^1.2.1",
     "npm": "^10.9.0",
     "papaparse": "^5.4.1",
     "prisma": "^5.21.1",

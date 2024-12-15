@@ -92,3 +92,9 @@ export async function getSession() {
   const session = await decrypt(cookie);
   return session;
 }
+
+export async function getSessionUserId() {
+  const session = await getSession();
+  const id = String(session?.id || "");
+  return id;
+}
