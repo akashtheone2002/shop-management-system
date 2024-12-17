@@ -1,5 +1,7 @@
 "use client"
-import React from "react";
+
+import { Roles } from "../../../type/entity/entity";
+
 interface IProps {
   role: string;
 }
@@ -62,31 +64,34 @@ const Navbar = ({ role }: IProps) => {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                    {(role == "ADMIN") &&
+                    {(role == Roles.ADMIN) &&
                      <a
-                     href="#"
+                     href="/home"
                      className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
                      aria-current="page"
                    >
                      Inventory
                    </a> 
                    }
-
+                  {((role == Roles.ADMIN) || (role == Roles.EMPLOYEE)) &&
                   <a
-                    href="#"
+                    href="/order"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Order
                   </a>
+                  }
+                   {((role == Roles.ADMIN) || (role == Roles.EMPLOYEE)) &&
                   <a
-                    href="#"
+                    href="/history"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     History
                   </a>
-                  {(role == "ADMIN") &&
+                  }
+                  {(role == Roles.ADMIN) &&
                   <a
-                    href="#"
+                    href="/refresh"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Refresh Model

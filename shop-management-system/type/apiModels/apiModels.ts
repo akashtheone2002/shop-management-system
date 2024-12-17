@@ -1,4 +1,6 @@
-interface IUser {
+import { Roles } from "../entity/entity";
+
+export interface IUser {
   id?: string;
   name?: string;
   email?: string;
@@ -6,7 +8,7 @@ interface IUser {
   role?: Roles;
 }
 
-interface IProduct {
+export interface IProduct {
   id?: string;
   name?: string;
   image?: string;
@@ -16,21 +18,21 @@ interface IProduct {
   category?: string;
 }
 
-interface ICustomer {
+export interface ICustomer {
   id?: string;
   name?: string;
   email?: string;
   number?: string;
 }
 
-interface IOrder {
+export interface IOrder {
   id?: string;
   quantity?: number;
   price?: number;
   product?: IProduct;
 }
 
-interface ITransaction {
+export interface ITransaction {
   id?: string;
   boughtOn?: Date;
   totalPrice?: number;
@@ -39,7 +41,7 @@ interface ITransaction {
   user?: IUser;
 }
 
-interface IProductCSV {
+export interface IProductCSV {
   id?: string;
   name?: string;
   image?: string;
@@ -50,7 +52,7 @@ interface IProductCSV {
   [key: string]: unknown;
 }
 
-interface ITransactionCSV {
+export interface ITransactionCSV {
   name?: string;
   quantity?: number;
   customerName?: string;
@@ -62,28 +64,24 @@ interface ITransactionCSV {
   [key: string]: unknown;
 }
 
-interface IMetaData {
+export interface IMetaData {
   currentPage: number;
   totalPages: number;
   totalRecords: number;
   limit: number;
 }
 
-interface IPaginationMetaData{
-
-}
-
-interface ITransactionList{
+export interface ITransactionList{
   transactions: ITransaction[];
   metadata: IMetaData;
 }
 
-interface ITransactionPayload {
+export interface ITransactionPayload {
   customer?: string;
   orders?: string[];
 }
 
-interface IFlatTransaction {
+export interface IFlatTransaction {
   id?: string;
   boughtOn?: Date;
   totalPrice?: number;
@@ -102,12 +100,12 @@ interface IFlatTransaction {
 }
 
 
-interface IFrequentItemset {
+export interface IFrequentItemset {
   itemset: string[];
   support: number;
 }
 
-interface IAssociationRule {
+export interface IAssociationRule {
   antecedent: string[];
   consequent: string[];
   confidence: number;

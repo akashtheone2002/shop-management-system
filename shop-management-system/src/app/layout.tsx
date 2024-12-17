@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
-import { role } from "./lib/session";
-import { useEffect, useState } from "react";
+import { getSessionUserRole } from "./lib/session";
+import { redirect } from "next/navigation";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,8 +24,9 @@ export const metadata: Metadata = {
 interface Props { role: string; children: React.ReactNode;}
 
 export async function getRole() { 
-  const userRole = await role(); 
-   return  userRole ?? "ADMIN"  
+  const userRole = await getSessionUserRole(); 
+  console.log("Role", userRole);
+   return  userRole; 
 }
 
 export default async function RootLayout({

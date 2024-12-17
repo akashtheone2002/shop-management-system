@@ -1,11 +1,11 @@
 type ObjectId = string;
 
-enum Roles {
+export enum Roles {
   ADMIN = 'ADMIN',
   EMPLOYEE = 'Employee',
 }
 
-enum EntityType {
+export enum EntityType {
   TRANSACTION = 'TRANSACTION',
   ORDER = 'ORDER',
   CUSTOMER = 'CUSTOMER',
@@ -13,7 +13,7 @@ enum EntityType {
   PRODUCT = 'PRODUCT',
 }
 
-interface IEntity {
+export interface IEntity {
   id: ObjectId;
   entityType: EntityType;
   name?: string;

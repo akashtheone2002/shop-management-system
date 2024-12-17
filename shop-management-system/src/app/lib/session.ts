@@ -1,100 +1,44 @@
-import { SignJWT, jwtVerify } from 'jose'
-import { cookies } from 'next/headers'
-import { cache } from 'react'
-import { redirect } from 'next/navigation'
-import { RequestCookie, ResponseCookie, ResponseCookies } from 'next/dist/compiled/@edge-runtime/cookies'
+import { IUser } from '@/typesapiModels/apiModels';
+import { getIronSession, SessionOptions } from 'iron-session';
+import { cookies } from 'next/headers';
 
-const secretKey = process.env.SESSION_SECRET
-const encodedKey = new TextEncoder().encode(secretKey)
- 
-export async function encrypt(payload: any) {
-  return new SignJWT(payload)
-    .setProtectedHeader({ alg: 'HS256' })
-    .setIssuedAt()
-    .setExpirationTime('7d')
-    .sign(encodedKey)
-}
- 
-export async function decrypt(session: string | undefined = '') {
-  try {
-    const { payload } = await jwtVerify(session, encodedKey, {
-      algorithms: ['HS256'],
-    })
-    return payload
-  } catch (error) {
-    console.log('Failed to verify session')
-  }
-}
+export const sessionOptions: SessionOptions = {
+  password: process.env.SESSION_SECRET as string,
+  cookieName: 'user-session',
+  cookieOptions: {
+    httponly:true,
+    secure: process.env.NODE_ENV === 'production',
+  },
+};
 
-export async function createSession(payload: any) {
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-  const session = await encrypt({ payload, expiresAt })
-  const cookieStore = (await cookies()).set(
-    'session',
-    session,
-    {
-      httpOnly: true,
-      secure: true,
-      expires: expiresAt,
-      sameSite: 'lax',
-      path: '/',
-    }
-  )
-}
-
-export async function updateSession() {
-  const session = (await cookies()).get('session')?.value
-  const payload = await decrypt(session)
- 
-  if (!session || !payload) {
-    return null
-  }
- 
-  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
- 
-  const cookieStore = (await cookies()).set('session', session, {
-    httpOnly: true,
-    secure: true,
-    expires: expires,
-    sameSite: 'lax',
-    path: '/',
-  });
-}
-
-export async function deleteSession() {
-  const cookieStore = (await cookies()).delete('session')
-}
-
-
-export const verifySession = cache(async () => {
-  const cookie = (await cookies()).get('session')?.value
-  const session = await decrypt(cookie)
- 
-  if (!session?.userId) {
-    redirect('/login');
-  }
- 
-  return session;
-});
-
-export const role = cache(async () => {
-    const cookie = (await cookies()).get('session')?.value
-    const session: any = await decrypt(cookie);
-     
-    if (!session?.userId) {
-      redirect('/login');
-    }
-    return session.role;
-});
-
-export async function getSession() {
-  const cookie = (await cookies()).get('session')?.value;
-  const session = await decrypt(cookie);
-  return session;
-}
-
-export async function getSessionUserId() {
+// Function to create a session
+export async function createSession(payload:IUser) {
   const session = await getSession();
-  const id = String(session?.id || "");
-  return id;
+  session.email = payload.email;
+  session.name = payload.name;
+  session.id = payload.id;
+  session.role = payload.role;
+  session.save();
+}
+
+// Function to get a session
+export async function getSession() {
+  const session = await getIronSession<IUser>((await cookies()), sessionOptions);
+  return session;
+}
+
+// Function to delete a session
+export async function deleteSession() {
+  const session = await getSession();
+  session.destroy();
+}
+
+export async function getSessionUserRole(){
+  const session = await getSession();
+  return session?.role?? "";
+}
+
+export async function getSessionUserId(){
+  const session = await getSession();
+  return session?.id?? "";
 }
