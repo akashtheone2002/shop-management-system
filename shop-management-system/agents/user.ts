@@ -1,3 +1,4 @@
+import { IUser } from "@/types/apiModels/apiModels";
 import { userLogin } from "../services/services";
 import { mapEntityToUser } from "../utils/mapper";
 

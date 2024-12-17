@@ -1,5 +1,7 @@
+import { IOrder, IProduct } from "@/types/apiModels/apiModels";
 import { bulkInsertEntity, deleteEntity, getEntities, getEntitiesByCondition, insertEntity, updateEntity } from "../services/services";
 import { mapEntityListToProductList, mapEntityToProduct, mapProductListToEntityList, mapProductToEntity } from "../utils/mapper";
+import { EntityType } from "@/types/entity/entity";
 
 export const updateProduct = async (product: IProduct) : Promise<IProduct[]> => {
     const entity = mapProductToEntity(product);

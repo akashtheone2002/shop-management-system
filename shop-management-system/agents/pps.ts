@@ -2,6 +2,7 @@ import { FPGrowth, Itemset } from 'node-fpgrowth';
 import fs from "fs";
 import { fetchTransactionHistory } from './oms';
 import { getProductsByProductIds } from './ims';
+import { IAssociationRule, IFrequentItemset, IOrder, IProduct, ITransaction, ITransactionList } from '@/types/apiModels/apiModels';
 
 // export default async function getReccomendations(products: IOrder[]): Promise<IProduct[]>{
 //     const data: IProduct[] = [{

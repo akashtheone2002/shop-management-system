@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import getReccomendations, { processTransactionsForAssociationRules } from '../../../../agents/pps';
+import { IOrder, IProduct } from '@/types/apiModels/apiModels';
 
 export async function POST(request: Request) {
     try {

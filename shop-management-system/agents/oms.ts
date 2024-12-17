@@ -19,6 +19,8 @@ import {
   mapTransactionToFlat,
 } from "../utils/mapper";
 import { updateProductsByOrders } from "./ims";
+import { ICustomer, IFlatTransaction, IOrder, ITransaction, ITransactionList, ITransactionPayload } from "@/types/apiModels/apiModels";
+import { EntityType, IEntity } from "@/types/entity/entity";
 
 async function addCustomer(customer: ICustomer) {
   const customerEntity = await getEntityByCondition({

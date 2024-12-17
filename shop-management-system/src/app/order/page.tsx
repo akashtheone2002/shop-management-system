@@ -1,4 +1,4 @@
-import Cart from '@/components/order/cart'
+import Cart from '@/components/order/Cart'
 import React from 'react'
 
 const OrderPage

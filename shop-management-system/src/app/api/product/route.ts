@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { addProduct, deleteProduct, productList, updateProduct } from '../../../../agents/ims';
+import { IProduct } from '@/types/apiModels/apiModels';
 
 export async function GET(request: Request) {
     try {

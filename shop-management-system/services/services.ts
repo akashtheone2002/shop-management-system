@@ -1,4 +1,6 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { IMetaData } from "@/types/apiModels/apiModels";
+import { IEntity } from "@/types/entity/entity";
+import { EntityType, Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 

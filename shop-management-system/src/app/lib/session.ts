@@ -1,4 +1,4 @@
-import { IUser } from '@/typesapiModels/apiModels';
+import { IUser } from '@/types/apiModels/apiModels';
 import { getIronSession, SessionOptions } from 'iron-session';
 import { cookies } from 'next/headers';
 

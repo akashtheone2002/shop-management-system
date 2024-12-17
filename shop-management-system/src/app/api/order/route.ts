@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import placeTransaction from "../../../../agents/oms";
+import { ICustomer, IOrder } from "@/types/apiModels/apiModels";
 
 export async function POST(request: Request) {
   try {
