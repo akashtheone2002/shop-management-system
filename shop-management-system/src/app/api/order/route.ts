@@ -4,11 +4,11 @@ import { ICustomer, IOrder } from "@/types/apiModels/apiModels";
 
 export async function POST(request: Request) {
   try {
-    const { orders, customer }: { orders: IOrder[], customer: ICustomer } = await request.json();
+    const { orders, customer, total }: { orders: IOrder[], customer: ICustomer, total: number } = await request.json();
     console.log("Received orders:", orders);
     console.log("Received customer:", customer);
     
-    const transaction = await placeTransaction(orders, customer);
+    const transaction = await placeTransaction(orders, customer, total);
     return NextResponse.json(transaction);
   } catch (error) {
     console.error("Error adding transaction:", error);

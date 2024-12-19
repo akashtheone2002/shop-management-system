@@ -5,29 +5,33 @@ import SearchProduct from "./SearchProduct";
 import Reccomendations from "./Reccomendation";
 import Modal from "../common/Modal";
 import Uploader from "../common/Uploader";
-const demoOrders: IOrder[] = [
-  {
-    product: {
-      name: "Hello"
-    },
-    price: 19.99,
-    quantity: 1,
-  },
-];
+import { ICustomer, IOrder, IProduct, ITransaction, ITransactionCSV } from "@/types/apiModels/apiModels";
+import { Receipt } from "./Receipt";
+const demoOrders: IOrder[] = [];
 const Cart = () => {
   const [orders, setOrders] = useState<Array<IOrder>>([]);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
-  const [showBulkUploadModal, setShowBulkUploadModall] =
-    useState<boolean>(false);
-  const [newCustomer, setNewCustomer] = useState<ICustomer>({
+  const [showBulkUploadModal, setShowBulkUploadModall] = useState<boolean>(false);
+  const [showReceiptModal, setShowReceiptModall] = useState<boolean>(false);
+  const [transaction, setTransaction] = useState<ITransaction>();
+  const [customer, setCustomer] = useState<ICustomer>({
     name: "",
     email: "",
     number: "",
   });
 
+  const subtotal = orders.reduce(
+    (acc, product) => acc + (product.product?.price || 1) * (product.quantity || 1),
+    0
+  );
+
+  const taxes = subtotal * 0.1; 
+  const total = subtotal + taxes;
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    debugger;
     const { name, value } = e.target;
-    setNewCustomer((prev) => ({
+    setCustomer((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -37,7 +41,7 @@ const Cart = () => {
     // Reset the form if cancel is clicked
     setShowAddModal(false);
 
-    setNewCustomer({
+    setCustomer({
       name: "",
       email: "",
       number: "",
@@ -92,30 +96,26 @@ const Cart = () => {
 
   const checkOut = async () => {
     console.log(orders);
-    console.log(newCustomer);
+    console.log(customer);
     try {
       const response = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orders, newCustomer }),
+        body: JSON.stringify({ orders, customer, total }),
       });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const result = await response.json();
+      const result: ITransaction = await response.json();
+      console.log("After placing order.",result);
+      setTransaction(result);
+      setShowAddModal(false);
+      setShowReceiptModall(true);
       console.log("Order placed successfully:", result);
     } catch (error) {
       console.error("Error placing order:", error);
     }
   };
-
-  const subtotal = orders.reduce(
-    (acc, product) => acc + (product.product?.price || 1) * (product.quantity || 1),
-    0
-  );
-
-  const taxes = subtotal * 0.1; // Assuming 10% tax rate
-  const total = subtotal + taxes;
 
   const parseData = (data: ITransactionCSV[]): ITransaction => {
     const today = new Date();
@@ -265,7 +265,7 @@ const Cart = () => {
             <input
               type="text"
               name="name"
-              value={newCustomer.name || ""}
+              value={customer.name || ""}
               onChange={handleInputChange}
               className="w-full p-2 border rounded text-gray-700"
             />
@@ -275,7 +275,7 @@ const Cart = () => {
             <input
               type="email"
               name="email"
-              value={newCustomer.email || ""}
+              value={customer.email || ""}
               onChange={handleInputChange}
               className="w-full p-2 border rounded text-gray-700"
             />
@@ -285,7 +285,7 @@ const Cart = () => {
             <input
               type="text"
               name="phone"
-              value={newCustomer.number || ""}
+              value={customer.number || ""}
               onChange={handleInputChange}
               className="w-full p-2 border rounded text-gray-700"
             />
@@ -306,6 +306,12 @@ const Cart = () => {
               CheckOut
             </button>
           </div>
+        </Modal>
+      )}
+
+      {showReceiptModal && transaction && (
+        <Modal show={showReceiptModal} onClose={() => setShowReceiptModall(false)}>
+            <Receipt transaction={transaction} taxRates={{Taxes:0.1,Shipping:0}}></Receipt>
         </Modal>
       )}
     </>

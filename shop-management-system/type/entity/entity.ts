@@ -1,3 +1,5 @@
+import { Entity } from "../../prisma/schema";
+
 type ObjectId = string;
 
 export enum Roles {
@@ -30,3 +32,5 @@ export interface IEntity {
   modifiedOn?: Date;
   modifiedBy?: ObjectId;
 }
+
+export type EntityInsert = typeof Entity.$inferInsert;

@@ -1,4 +1,5 @@
 "use client"
+import { IProduct } from "@/types/apiModels/apiModels";
 import React, { useState, useEffect } from "react";
 
 interface SearchBarProps {
@@ -26,21 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onAddProduct }) => {
 
           const response = await fetch(url.toString());
           
-        // const data: Array<IProduct> = await response.json();
-        const data: IProduct[] = [
-          {
-            id: "567",
-            name: "Bag",
-            price: 100,
-            stock: 8,
-          },
-          {
-            id: "569",
-            name: "Bottle",
-            price: 50,
-            stock: 90,
-          },
-        ];
+        const data: Array<IProduct> = await response.json();
         setResults(data);
       } else {
         setResults([]);

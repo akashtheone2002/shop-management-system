@@ -1,4 +1,5 @@
 "use client"
+import { IOrder, IProduct } from "@/types/apiModels/apiModels";
 import React, { useEffect, useState } from "react";
 
 interface ReccomendationsProp {
@@ -16,6 +17,9 @@ const Reccomendations: React.FC<ReccomendationsProp> = ({
 
   useEffect(() => {
     const fetchProducts = async (products: IOrder[]) => {
+      if(CartProducts.length > 0){
+        return;
+      }
       try {
         const response = await fetch("api/recommendation", {
           method: "POST",

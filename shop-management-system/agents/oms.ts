@@ -1,58 +1,44 @@
 import { getSession, getSessionUserId } from "@/app/lib/session";
-import {
-  bulkInsertEntity,
-  deleteEntity,
-  getEntities,
-  getEntitiesByCondition,
-  getEntity,
-  getEntityByCondition,
-  getPaginationMetaData,
-  insertEntity,
-} from "../services/services";
+import { v4 as uuid } from 'uuid';
 import {
   mapCustomerToEntity,
   mapEntityToCustomer,
   mapEntityToOrder,
   mapEntityToProduct,
+  mapEntityToTransaction,
   mapOrderToEntity,
   mapTransactionPayload,
   mapTransactionToFlat,
 } from "../utils/mapper";
-import { updateProductsByOrders } from "./ims";
 import { ICustomer, IFlatTransaction, IOrder, ITransaction, ITransactionList, ITransactionPayload } from "@/types/apiModels/apiModels";
 import { EntityType, IEntity } from "@/types/entity/entity";
+import { BulkInsertEntity, GetEntities, GetEntitiesByCondition, GetEntity, GetEntityByCondition, InsertEntity } from "../services/services";
+import { updateProductsByOrders } from "./ims";
 
 async function addCustomer(customer: ICustomer) {
-  const customerEntity = await getEntityByCondition({
-    OR: [
-      { email: customer.email },
-      { name: customer.name },
-      { number: customer.number },
-    ],
-  });
-
-  if (customerEntity) {
-    return customerEntity;
+  if(customer?.id){
+    const customerEntity = await GetEntityByCondition(` id = '${customer.id}'`);
+  
+    if (customerEntity) {
+      return customerEntity;
+    }
   }
+  const entity = mapCustomerToEntity(customer);
 
-  const entity: IEntity = mapCustomerToEntity(customer);
-
-  return await insertEntity(entity);
+  const result = await InsertEntity(entity);
+  return mapEntityToCustomer(result);
 }
 
 async function addOrders(orders: IOrder[]) {
   const orderEntities = orders.map((order) => mapOrderToEntity(order));
-  const insertResult = await bulkInsertEntity(orderEntities);
+  const insertResult = await BulkInsertEntity(orderEntities);
   if (!insertResult) {
     throw new Error("Failed to create order.");
   }
 
   await updateProductsByOrders(orders);
-
-  const insertedOrder = await getEntitiesByCondition({
-    entityType: EntityType.ORDER,
-    id: { in: orderEntities.map((order) => order.id) },
-  });
+  const whereCondtion = ` id in ('${orderEntities.map((order) => order.id).join(`','`)}')`;
+  const insertedOrder = await GetEntitiesByCondition(whereCondtion);
   return insertedOrder.map((order) => mapEntityToOrder(order));
 }
 
@@ -66,33 +52,31 @@ function getTransactionPayload(customerId: string, orderIds: string[]): string {
 
 export default async function placeTransaction(
   orders: IOrder[],
-  customer: ICustomer
+  customer: ICustomer,
+  total : number
 ) {
   const userId = await getSessionUserId();
 
-  const customerEntity = await addCustomer(customer);
-  const orderEntities = await addOrders(orders);
-
-  // Calculate total price
-  const totalPrice = orders.reduce(
-    (total, order) => total + (order.price || 1),
-    0
-  );
+  const customerDetails = await addCustomer(customer);
+  const orderList = await addOrders(orders);
 
   const transactionEntity: IEntity = {
-    id: "",
+    id: uuid(),
     entityType: EntityType.TRANSACTION,
-    price: totalPrice,
+    price: total,
     jsonPayload: getTransactionPayload(
-      customerEntity.id,
-      orderEntities.map((order) => order.id || "")
+      customerDetails.id || "",
+      orderList.map((order) => order.id || "")
     ),
     modifiedOn: new Date(),
     modifiedBy: userId,
   };
 
-  const result = await insertEntity(transactionEntity);
-  const transaction = fetchTransactionById(result.id);
+  const result = await InsertEntity(transactionEntity);
+  const transaction = mapEntityToTransaction(result);
+  transaction.orders = orderList;
+  transaction.orders.forEach(order => { order.product = orders.find(o => o?.product?.id === order?.product?.id)?.product});
+  transaction.customer = customerDetails;
   return transaction;
 }
 
@@ -104,9 +88,9 @@ export async function fetchTransactionHistory(
     pageSize?: number
 ) : Promise<ITransactionList> {
   try {
-    const transactionsEntities =  await getEntities(EntityType.TRANSACTION, search, sort, order, page, pageSize);
+    const transactionsEntities =  await GetEntities(EntityType.TRANSACTION, search, sort, order, page, pageSize);
     const transactions : ITransaction[] = await Promise.all(transactionsEntities.map(async (transaction) => await fetchTransactionById(transaction.id)));
-    const metaData = await getPaginationMetaData(EntityType.TRANSACTION, search, page, pageSize);
+    const metaData = await GetPaginationMetaData(EntityType.TRANSACTION, search, page, pageSize);
     return {
         transactions: transactions,
         metadata: metaData,
@@ -148,7 +132,7 @@ export async function returnOrder(orderId: string) {
 async function getOrdersFromPayload(orders: string[]){
     let result = [];
     for (const orderId of orders) {
-      const entity: IEntity = await getEntity(orderId);
+      const entity: IEntity = await GetEntity(orderId);
       if (!entity) {
         const order: IOrder = {
           id: "deletedEntity",
@@ -162,7 +146,7 @@ async function getOrdersFromPayload(orders: string[]){
         continue;
       }
       const order: IOrder = mapEntityToOrder(entity);
-      const product: IEntity = await getEntity(order.product?.id || "");
+      const product: IEntity = await GetEntity(order.product?.id || "");
       if (!product) {
       }
       order.product = mapEntityToProduct(product);

@@ -18,7 +18,7 @@ export async function createSession(payload:IUser) {
   session.name = payload.name;
   session.id = payload.id;
   session.role = payload.role;
-  session.save();
+  await session.save();
 }
 
 // Function to get a session
@@ -35,6 +35,7 @@ export async function deleteSession() {
 
 export async function getSessionUserRole(){
   const session = await getSession();
+  console.log(session);
   return session?.role?? "";
 }
 

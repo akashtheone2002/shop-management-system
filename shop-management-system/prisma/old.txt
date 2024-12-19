@@ -52,3 +52,5 @@ model Transaction {
   createdBy String @db.ObjectId
   user User @relation(fields: [createdBy], references: [id])
 }
+
+DATABASE_URL="mongodb+srv://surajbangade19:g099VdSMHsbJahS5@cluster0.6kwayyd.mongodb.net/shop-management-system?retryWrites=true&w=majority"

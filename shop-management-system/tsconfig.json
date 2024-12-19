@@ -23,6 +23,6 @@
       "@/types/*": ["./type/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "reccomendation.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "reccomendation.ts", "test.ts"],
   "exclude": ["node_modules"]
 }

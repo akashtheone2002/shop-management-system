@@ -23,7 +23,6 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
     try {
-        debugger;
         const product: IProduct = await request.json();
         console.log("Received product for add:", product);
 

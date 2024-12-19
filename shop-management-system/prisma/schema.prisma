@@ -1,6 +1,6 @@
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "sqlserver"
+  url      = "sqlserver://SURAJBANGADE;Database=shop-management-system;Integrated Security=true;"
 }
 
 generator client {
@@ -8,13 +8,13 @@ generator client {
 }
 
 model Entity {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  entityType    EntityType
+  id            String   @id @default(uuid()) @map("_id") @db.UniqueIdentifier
+  entityType    String
   name          String?
   email         String?  @unique
   number        String?  @unique
   password      String?
-  role          Roles?
+  role          String?
   image         String?
   price         Float?
   quantity      Int?
@@ -22,18 +22,5 @@ model Entity {
   category      String?
   jsonPayload   String?
   modifiedOn    DateTime?
-  modifiedBy    String?  @db.ObjectId
-}
-
-enum Roles {
-  ADMIN
-  Employee
-}
-
-enum EntityType {
-  TRANSACTION
-  ORDER
-  CUSTOMER
-  USER
-  PRODUCT
+  modifiedBy    String?  @db.UniqueIdentifier
 }

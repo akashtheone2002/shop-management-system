@@ -1,14 +1,18 @@
-export function mapEntityToUser(entity: IEntity): IUser{
+import { ICustomer, IFlatTransaction, IOrder, IProduct, ITransaction, ITransactionPayload, IUser } from "@/types/apiModels/apiModels";
+import { EntityInsert, EntityType, EntityInsert } from "@/types/entity/entity";
+import { v4 as uuid } from 'uuid';
+
+export function mapEntityToUser(entity: EntityInsert): IUser{
     return {
         id : entity.id,
-        name: entity.name,
-        email: entity.email,
-        password: entity.password,
-        role: entity.role
+        name: entity.name || "",
+        email: entity.email || "",
+        password: entity.password || "",
+        role: entity.role || "",
     }
 }
 
-export function mapEntityListToProductList(entityList: IEntity[]): IProduct[]{
+export function mapEntityListToProductList(entityList: EntityInsert[]): IProduct[]{
     return entityList.map((entity) => {
         return {
             id: entity.id,
@@ -22,9 +26,9 @@ export function mapEntityListToProductList(entityList: IEntity[]): IProduct[]{
     });
 }
 
-export function mapProductToEntity(product: IProduct): IEntity{
+export function mapProductToEntity(product: IProduct): EntityInsert{
     return {
-        id: product.id || "",
+        id: product.id || uuid(),
         entityType: EntityType.PRODUCT,
         name: product.name,
         image: product.image,
@@ -36,7 +40,7 @@ export function mapProductToEntity(product: IProduct): IEntity{
     }
 }
 
-export function mapProductListToEntityList(productList: IProduct[]): IEntity[]{
+export function mapProductListToEntityList(productList: IProduct[]): EntityInsert[]{
     return productList.map((product) => {
         return {
             id: product.id || "",
@@ -59,18 +63,18 @@ export function mapTransactionPayload(data:string): ITransactionPayload{
     return JSON.parse(data) as ITransactionPayload;
 }
 
-export function mapEntityToOrder(entity: IEntity): IOrder{
+export function mapEntityToOrder(entity: EntityInsert): IOrder{
     return {
         id: entity.id,
-        quantity: entity.quantity,
-        price: entity.price,
+        quantity: entity.quantity || 0,
+        price: Number(entity.price) || 0,
         product: {
-            id: entity.jsonPayload
+            id: entity.jsonPayload || ""
         }
     }
 }
 
-export function mapEntityToProduct(entity: IEntity): IProduct{
+export function mapEntityToProduct(entity: EntityInsert): IProduct{
     return {
         id: entity.id,
         name: entity.name,
@@ -82,9 +86,9 @@ export function mapEntityToProduct(entity: IEntity): IProduct{
     }
 }
 
-export function mapCustomerToEntity(customer: ICustomer): IEntity{
+export function mapCustomerToEntity(customer: ICustomer): EntityInsert{
     return {
-        id: customer.id || "",
+        id: customer.id || uuid(),
         entityType: EntityType.CUSTOMER,
         name: customer.name,
         email: customer.email,
@@ -92,9 +96,9 @@ export function mapCustomerToEntity(customer: ICustomer): IEntity{
     }
 }
 
-export function mapOrderToEntity(order: IOrder): IEntity{
+export function mapOrderToEntity(order: IOrder): EntityInsert{
     return {
-        id: order.id || "",
+        id: order.id || uuid(),
         entityType: EntityType.ORDER,
         quantity: order.quantity,
         price: order.price,
@@ -102,12 +106,12 @@ export function mapOrderToEntity(order: IOrder): IEntity{
     }
 }
 
-export function mapEntityToCustomer(entity: IEntity): ICustomer{
+export function mapEntityToCustomer(entity: EntityInsert): ICustomer{
     return {
         id: entity.id,
-        name: entity.name,
-        email: entity.email,
-        number: entity.number
+        name: entity.name || "",
+        email: entity.email || "",
+        number: entity.number || "",
     }
 }
 
@@ -136,3 +140,10 @@ export function mapTransactionToFlat(transaction: ITransaction): IFlatTransactio
     };
   }
   
+  export function mapEntityToTransaction(transaction: EntityInsert): ITransaction{
+    return {
+        id: transaction.id,
+        boughtOn: transaction.modifiedOn,
+        totalPrice: transaction.price,
+    }
+  }
