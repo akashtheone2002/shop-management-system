@@ -17,7 +17,7 @@ const Reccomendations: React.FC<ReccomendationsProp> = ({
 
   useEffect(() => {
     const fetchProducts = async (products: IOrder[]) => {
-      if(CartProducts.length > 0){
+      if(CartProducts.length <= 0){
         return;
       }
       try {

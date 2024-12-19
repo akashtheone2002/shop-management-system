@@ -26,15 +26,15 @@ export async function UpdateEntity(id: string, data: EntityInsert) {
 }
 
 export async function GetEntity(id: string) {
-  return await prisma.entity.findUnique({
-    where: { id },
-  }) as IEntity;
+  const query = `SELECT * FROM "Entity" WHERE id = '${id}'`;
+  const result =  await db.execute(query);
+  return result.rows[0] as EntityInsert;
 }
 
 export async function GetEntityByCondition(condition: string) {
   const query = `SELECT * FROM "Entity" WHERE ${condition}`;
   const result =  await db.execute(query);
-  return result as IEntity[];
+  return result.rows[0] as EntityInsert;
 }
 
 export async function GetEntitiesByCondition(condition: string) {
@@ -64,8 +64,13 @@ export async function GetEntities(
 
   const skip = (page - 1) * pageSize;
   const take = pageSize;
-  const searchCondition = or(ilike(Entity.name,LikeCondtionString(search)), ilike(Entity.email, LikeCondtionString(search)), ilike(Entity.number, LikeCondtionString(search)), ilike(Entity.category, LikeCondtionString(search)));
-  const whereCondition = and(eq(Entity.entityType, type), searchCondition)
+  let whereCondition;
+  let searchCondition;
+  if(search && search.length > 0){
+    searchCondition = or(ilike(Entity.name,LikeCondtionString(search)), ilike(Entity.email, LikeCondtionString(search)), ilike(Entity.number, LikeCondtionString(search)), ilike(Entity.category, LikeCondtionString(search)));
+    whereCondition = and(eq(Entity.entityType, type), searchCondition)
+  }
+  whereCondition = eq(Entity.entityType, type)
   const result = await db
     .select()
     .from(Entity)
@@ -88,19 +93,27 @@ export async function GetPaginationMetaData(
   pageSize = pageSize || 10;
   page = page || 1;
   search = search || "";
-  const searchCondition = or(ilike(Entity.name,LikeCondtionString(search)), ilike(Entity.email, LikeCondtionString(search)), ilike(Entity.number, LikeCondtionString(search)), ilike(Entity.category, LikeCondtionString(search)));
-  // Step 1: Get the total number of records matching the criteria
-  const totalRecords = await prisma.entity.count({
-    where: {
-      OR: [
-        { name: { contains: search, mode: "insensitive" } },
-        { email: { contains: search, mode: "insensitive" } },
-        { number: { contains: search, mode: "insensitive" } },
-        { category: { contains: search, mode: "insensitive" } },
-      ],
-      AND: [{ entityType: type }],
-    },
-  });
+// Define the condition for search
+const searchCondition = or(
+  ilike(Entity.name, `%${search}%`),
+  ilike(Entity.email, `%${search}%`),
+  ilike(Entity.number, `%${search}%`),
+  ilike(Entity.category, `%${search}%`)
+);
+
+// Define the where condition with entity type
+const whereCondition = and(
+  eq(Entity.entityType, type),
+  searchCondition
+);
+
+// Count the total number of records
+const totalRecords = await db
+  .select()
+  .from(Entity)
+  .where(whereCondition)
+  .execute()
+  .then((result) => result.length);
 
   // Step 2: Calculate totalPages
   const totalPages = Math.ceil(totalRecords / pageSize);

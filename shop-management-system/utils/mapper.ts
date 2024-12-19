@@ -43,7 +43,7 @@ export function mapProductToEntity(product: IProduct): EntityInsert{
 export function mapProductListToEntityList(productList: IProduct[]): EntityInsert[]{
     return productList.map((product) => {
         return {
-            id: product.id || "",
+            id: product.id || uuid(),
             entityType: EntityType.PRODUCT,
             name: product.name,
             image: product.image,
@@ -58,7 +58,10 @@ export function mapProductListToEntityList(productList: IProduct[]): EntityInser
 
 export function mapTransactionPayload(data:string): ITransactionPayload{
     if(!data){
-        throw new Error("No transaction payload.");
+        return {
+            customer: uuid(),
+            orders: []
+        }
     }
     return JSON.parse(data) as ITransactionPayload;
 }

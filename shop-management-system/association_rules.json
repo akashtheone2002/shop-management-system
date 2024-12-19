@@ -1,0 +1,2650 @@
+{
+  "frequentItemsets": [
+    {
+      "itemset": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5"
+      ],
+      "support": 3
+    },
+    {
+      "itemset": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5",
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5",
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "support": 3
+    },
+    {
+      "itemset": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 3
+    },
+    {
+      "itemset": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "support": 3
+    },
+    {
+      "itemset": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 3
+    },
+    {
+      "itemset": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "support": 5
+    },
+    {
+      "itemset": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "support": 3
+    },
+    {
+      "itemset": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 3
+    },
+    {
+      "itemset": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 3
+    },
+    {
+      "itemset": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "support": 6
+    },
+    {
+      "itemset": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 6
+    },
+    {
+      "itemset": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "support": 6
+    },
+    {
+      "itemset": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 4
+    },
+    {
+      "itemset": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 7
+    },
+    {
+      "itemset": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 7
+    },
+    {
+      "itemset": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    },
+    {
+      "itemset": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 5
+    },
+    {
+      "itemset": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "support": 2
+    }
+  ],
+  "associationRules": [
+    {
+      "antecedent": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "aae9e79f-28ef-4e0e-976d-7a64332f71f5"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 13.333333333333334
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 7.5
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 7.5
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 7.5
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 15
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 13.333333333333334
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "consequent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "91534e99-b6fc-4fb2-8bb9-945ab9ce0968",
+        "938cbc91-5248-4a2e-ae62-82303958ab18"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1ce572a5-7611-4904-816c-7f3dfa71aaf0",
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 7.5
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "1123c501-26c2-4e2b-a3d4-e84c239f4ed7"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 7.5
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 7.5
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 15
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 15
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 15
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 6
+    },
+    {
+      "antecedent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "b3a93c8a-44ed-43ac-9a7d-e3a13937fbde"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289",
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 15
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 12
+    },
+    {
+      "antecedent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 5
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "b17ee5ba-4f93-44a5-a8c3-41fec32d8289"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 13.333333333333334
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 8
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 20
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 6.666666666666667
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "8bddbbc8-3499-45bb-b27f-6a23f52c995d"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd",
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 10
+    },
+    {
+      "antecedent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "consequent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    },
+    {
+      "antecedent": [
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163",
+        "cf8c82dc-ce9f-4ffd-ab1e-85a6ae902163"
+      ],
+      "consequent": [
+        "ae692dfb-0457-42eb-85d3-cd79791939dd"
+      ],
+      "confidence": 4
+    }
+  ]
+}

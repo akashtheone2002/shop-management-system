@@ -12,7 +12,7 @@ import {
 } from "../utils/mapper";
 import { ICustomer, IFlatTransaction, IOrder, ITransaction, ITransactionList, ITransactionPayload } from "@/types/apiModels/apiModels";
 import { EntityType, IEntity } from "@/types/entity/entity";
-import { BulkInsertEntity, GetEntities, GetEntitiesByCondition, GetEntity, GetEntityByCondition, InsertEntity } from "../services/services";
+import { BulkInsertEntity, DeleteEntity, GetEntities, GetEntitiesByCondition, GetEntity, GetEntityByCondition, GetPaginationMetaData, InsertEntity } from "../services/services";
 import { updateProductsByOrders } from "./ims";
 
 async function addCustomer(customer: ICustomer) {
@@ -89,7 +89,7 @@ export async function fetchTransactionHistory(
 ) : Promise<ITransactionList> {
   try {
     const transactionsEntities =  await GetEntities(EntityType.TRANSACTION, search, sort, order, page, pageSize);
-    const transactions : ITransaction[] = await Promise.all(transactionsEntities.map(async (transaction) => await fetchTransactionById(transaction.id)));
+    const transactions = await Promise.all(transactionsEntities.map(async (transaction) => await fetchTransactionById(transaction.id)));
     const metaData = await GetPaginationMetaData(EntityType.TRANSACTION, search, page, pageSize);
     return {
         transactions: transactions,
@@ -102,14 +102,14 @@ export async function fetchTransactionHistory(
 }
 
 export async function fetchTransactionById(id: string): Promise<ITransaction> {
-  const transaction: IEntity = await getEntity(id);
+  const transaction: IEntity = await GetEntity(id);
   if (!transaction) {
     throw new Error("Transaction not found");
   }
   const payload = transaction.jsonPayload;
   const mappedTransactionPayload = mapTransactionPayload(payload || "");
   const orders: IOrder[] = await getOrdersFromPayload(mappedTransactionPayload.orders ?? []);
-  const customerEntity = await getEntity(mappedTransactionPayload.customer || "");
+  const customerEntity = await GetEntity(mappedTransactionPayload.customer || "");
   const customer: ICustomer = mapEntityToCustomer(customerEntity);
 
   return {
@@ -122,7 +122,7 @@ export async function fetchTransactionById(id: string): Promise<ITransaction> {
 }
 
 export async function returnOrder(orderId: string) {
-  const deleteResult = await deleteEntity(orderId);
+  const deleteResult = await DeleteEntity(orderId);
   if (!deleteResult) {
     throw new Error("Order not found");
   }

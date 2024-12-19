@@ -14,6 +14,7 @@ const Cart = () => {
   const [showBulkUploadModal, setShowBulkUploadModall] = useState<boolean>(false);
   const [showReceiptModal, setShowReceiptModall] = useState<boolean>(false);
   const [transaction, setTransaction] = useState<ITransaction>();
+  const [products, setProducts] = useState<IProduct[]>([]);
   const [customer, setCustomer] = useState<ICustomer>({
     name: "",
     email: "",
@@ -50,6 +51,13 @@ const Cart = () => {
 
   const handleIncrease = (index: number) => {
     const newProducts = [...orders];
+    const existingProductId = newProducts[index].product?.id;
+    const existingProduct = products.find((product) => product.id === existingProductId);
+
+    if (existingProduct && existingProduct?.stock <= newProducts[index]?.quantity) {
+      alert("Product is out of stock");
+      return;
+    }
     newProducts[index].quantity = (newProducts[index].quantity || 0) + 1 ;
     newProducts[index].price = (newProducts[index].quantity || 1) * (newProducts[index].price || 1);
     setOrders(newProducts);
@@ -75,9 +83,17 @@ const Cart = () => {
     );
     if (existingProductIndex > -1) {
       const newProducts = [...orders];
+      if(product.stock == newProducts[existingProductIndex].quantity) {
+        alert("Product is out of stock");
+        return;
+      }
       newProducts[existingProductIndex].quantity =  (newProducts[existingProductIndex].quantity || 0) + 1;
       setOrders(newProducts);
     } else {
+      if(product.stock == 0) {
+        alert("Product is out of stock");
+        return;
+      }
       setOrders([
         ...orders,
         {
@@ -92,6 +108,8 @@ const Cart = () => {
         },
       ]);
     }
+    const newProducts = [...products, product];
+    setProducts(newProducts)
   };
 
   const checkOut = async () => {

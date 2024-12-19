@@ -2,134 +2,11 @@
 import React, { useState, useEffect } from "react";
 import Alert from "../common/Alert";
 import Modal from "../common/Modal";
-
-const dummyData: ITransactionList = {
-  transactions: [
-    {
-      id: "txn12345",
-      customer: {name: "John Doe"},
-      boughtOn: new Date("2024-11-18T10:30:00Z"),
-    },
-    {
-      id: "txn12346",
-      customer: {name: "Jane Smith"},
-      boughtOn: new Date("2024-11-17T14:20:00Z"),
-    },
-    {
-      id: "txn12347",
-      customer: {name: "Tom Johnson"},
-      boughtOn: new Date("2024-11-16T09:15:00Z"),
-    },
-  ],
-  metadata: {
-    currentPage: 1,
-    totalPages: 3,
-    totalRecords: 9,
-    limit: 3,
-  },
-};
-
-const dummyOrders: Record<string, IOrder[]> = {
-  txn12345: [
-    {
-      id: "order1",
-      quantity: 2,
-      price: 20.0,
-      product: { id: "prod1", name: "Product A", price: 10.0 },
-    },
-    {
-      id: "order2",
-      quantity: 1,
-      price: 20.0,
-      product: { id: "prod2", name: "Product B", price: 20.0 },
-    },
-  ],
-  txn12346: [
-    {
-      id: "order3",
-      quantity: 5,
-      price: 5.0,
-      product: { id: "prod3", name: "Product C", price: 5.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-    {
-      id: "order4",
-      quantity: 3,
-      price: 15.0,
-      product: { id: "prod4", name: "Product D", price: 15.0 },
-    },
-  ],
-  txn12347: [
-    {
-      id: "order5",
-      quantity: 1,
-      price: 100.0,
-      product: { id: "prod5", name: "Product E", price: 100.0 },
-    },
-    {
-      id: "order6",
-      quantity: 2,
-      price: 50.0,
-      product: { id: "prod6", name: "Product F", price: 50.0 },
-    },
-  ],
-};
+import { IOrder, ITransaction } from "@/types/apiModels/apiModels";
 
 const TransactionHistory: React.FC = () => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [transaction, setTransaction] = useState<ITransaction>()
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [search, setSearch] = useState<string>("");
@@ -156,30 +33,26 @@ const TransactionHistory: React.FC = () => {
     fetchTransactions();
   }, [page, limit, search, sortBy, sortOrder]);
 
-  // const fetchTransactions = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `/api/history?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}&sortBy=${sortBy}&sortOrder=${sortOrder}`
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error(`Error fetching transactions: ${response.status}`);
-  //     }
-
-  //     const data = await response.json();
-
-  //     // Update transactions and pagination state
-  //     setTransactions(data.transactions);
-  //     setTotalPages(data.metadata.totalPages);
-  //   } catch (error) {
-  //     console.error("Error fetching transactions:", error);
-  //   }
-  // };
-
   const fetchTransactions = async () => {
-    setTransactions(dummyData.transactions);
-    setTotalPages(dummyData.metadata.totalPages);
+    try {
+      const response = await fetch(
+        `/api/history?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}&sortBy=${sortBy}&sortOrder=${sortOrder}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error fetching transactions: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Update transactions and pagination state
+      setTransactions(data.transactions);
+      setTotalPages(data.metadata.totalPages);
+    } catch (error) {
+      console.error("Error fetching transactions:", error);
+    }
   };
+
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -202,21 +75,18 @@ const TransactionHistory: React.FC = () => {
     try {
       console.log(`Fetching orders for transaction ID: ${transactionId}`);
 
-      // // Fetch orders for the given transaction ID
-      // const response = await fetch(`/api/getOrdersForTransaction?transactionId=${transactionId}`);
+      // Fetch orders for the given transaction ID
+      const response = await fetch(`/api/history/${transactionId}`);
 
-      // if (!response.ok) {
-      //   throw new Error(`Failed to fetch orders. Status: ${response.status}`);
-      // }
+      if (!response.ok) {
+        throw new Error(`Failed to fetch orders. Status: ${response.status}`);
+      }
 
-      // // Parse the JSON response
-      // const ordersResponse = (await response.json()) as Order[];
-
-      // Simulate fetching orders from dummy data
-      const ordersResponse = dummyOrders[transactionId] || [];
-
+      // Parse the JSON response
+      const ordersResponse = (await response.json()) as ITransaction;
+      setTransaction(ordersResponse);
       // Update state with fetched orders
-      setOrders(ordersResponse);
+      setOrders(ordersResponse.orders);
 
       // Toggle the modal visibility
       setShowAddModal(true);
@@ -385,7 +255,7 @@ const TransactionHistory: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {orders && orders.length > 0 && orders.map((order) => (
                 <tr
                   key={order.id}
                   className="border-b border-neutral-200 dark:border-white/10"

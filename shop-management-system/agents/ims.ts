@@ -74,10 +74,10 @@ export const bulkUploadProducts = async (products: IProduct[]) : Promise<Array<I
 
 export async function getProductsByProductIds(productIds: string[]): Promise<IProduct[]> {
 
-  const query = `EntityType = '${EntityType.PRODUCT}' AND _id IN (${productIds.map(id => `'${id}'`).join(', ')})`;
+  const query = ` "entityType" = '${EntityType.PRODUCT}' AND id IN (${productIds.map(id => `'${id}'`).join(`,`)})`;
 
   // Fetch available products based on product IDs
-  const availableProducts = await GetEntitiesByCondtion(query);
+  const availableProducts = await GetEntitiesByCondition(query);
 
   return availableProducts.map((product) => mapEntityToProduct(product));
 }

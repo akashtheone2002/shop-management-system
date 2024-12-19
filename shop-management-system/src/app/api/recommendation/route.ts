@@ -16,13 +16,3 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "An error occurred" }, { status: 500 });
     }
 }
-
-export async function GET() {
-    try {
-        await processTransactionsForAssociationRules();
-        return NextResponse.json(true);
-    } catch (error) {
-        console.error("Error handling GET request:", error);
-        return NextResponse.json({ error: "An error occurred" }, { status: 500 });
-    }
-}
