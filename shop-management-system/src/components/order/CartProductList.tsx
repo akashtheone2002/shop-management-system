@@ -1,4 +1,5 @@
 "use client";
+import { X } from "lucide-react";
 
 interface CartProductListProps {
   orders: IOrder[];
@@ -7,7 +8,7 @@ interface CartProductListProps {
   onRemove: (index: number) => void;
 }
 
-const CartProductList:React.FC<CartProductListProps> = ({ orders, onIncrease, onDecrease, onRemove }) => {
+const CartProductList: React.FC<CartProductListProps> = ({ orders, onIncrease, onDecrease, onRemove }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-4">
       <table className="w-full">
@@ -59,7 +60,7 @@ const CartProductList:React.FC<CartProductListProps> = ({ orders, onIncrease, on
                   className="border rounded-md py-2 px-4"
                   onClick={() => onRemove(index)}
                 >
-                  X
+                  <X size={24} />
                 </button>
               </td>
             </tr>

@@ -1,19 +1,10 @@
 import { NextResponse } from 'next/server';
-import { addProduct, deleteProduct, productList, updateProduct } from '../../../../agents/ims';
+import { addProduct, deleteProduct, getAllProducts, updateProduct } from '../../../../agents/ims';
 import { IProduct } from '@/types/apiModels/apiModels';
 
-export async function GET(request: Request) {
+export async function GET() {
     try {
-        // Extract search parameters from the request URL
-        const { searchParams } = new URL(request.url);
-        const search = searchParams.get('search') || '';
-        const sort =  searchParams.get('sort') || 'modifiedOn';
-        const order =  searchParams.get('order');
-        const orderParam = order === "desc" || order === "asc" ? order : "desc";
-        const page = Number(searchParams.get('page')) || 1;
-        const pageSize= Number(searchParams.get('pageSize')) || 10;
-        const response = await productList(search, sort, orderParam, page, pageSize);
-        
+        const response = await getAllProducts();
         return NextResponse.json(response);
     } catch (error) {
         console.error("Error handling GET request:", error);

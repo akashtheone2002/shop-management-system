@@ -1,133 +1,51 @@
-"use client"
+"use client";
 
+import { usePathname } from "next/navigation";
 import { Roles } from "../../../type/entity/entity";
+import Image from "next/image";
 
 interface IProps {
   role: string;
 }
+
 const Navbar = ({ role }: IProps) => {
+  const pathname = usePathname(); // Get the current route
+
+  const navLinks = [
+    { href: "/home", label: "Inventory", roles: [Roles.ADMIN] },
+    { href: "/order", label: "Order", roles: [Roles.ADMIN, Roles.EMPLOYEE] },
+    { href: "/history", label: "History", roles: [Roles.ADMIN, Roles.EMPLOYEE] },
+    { href: "/api/recommendation/refresh", label: "Refresh Model", roles: [Roles.ADMIN] },
+  ];
+
   return (
-    <>
-      <nav className="bg-gray-800">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="relative flex h-16 items-center justify-between">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              <button
-                type="button"
-                className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-              >
-                <span className="absolute -inset-0.5"></span>
-                <span className="sr-only">Open main menu</span>
+    <nav className="bg-gray-300 shadow-md">
+      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Image src="/logoOnlineShopping.png" alt="" width={"170"} height={"100"}></Image>
+          </div>
 
-                <svg
-                  className="block size-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-
-                <svg
-                  className="hidden size-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18 18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex shrink-0 items-center">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                  alt="Your Company"
-                />
-              </div>
-              <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4">
-                    {(role == Roles.ADMIN) &&
-                     <a
-                     href="/home"
-                     className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-                     aria-current="page"
-                   >
-                     Inventory
-                   </a> 
-                   }
-                  {((role == Roles.ADMIN) || (role == Roles.EMPLOYEE)) &&
-                  <a
-                    href="/order"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Order
-                  </a>
-                  }
-                   {((role == Roles.ADMIN) || (role == Roles.EMPLOYEE)) &&
-                  <a
-                    href="/history"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    History
-                  </a>
-                  }
-                  {(role == Roles.ADMIN) &&
-                  <a
-                    href="/api/recommendation/refresh"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Refresh Model
-                  </a>
-                  }
-                </div>
-              </div>
-            </div>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button
-                type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+          {/* Navigation Links */}
+          <div className="hidden sm:flex space-x-4">
+            {navLinks.map(({ href, label, roles }) =>
+            // roles.includes(role as Roles) ? 
+            (
+              <a
+                key={href}
+                href={href}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${pathname === href ? "bg-gray-900 text-white" : "text-gray-800 hover:bg-gray-700 hover:text-white"
+                  }`}
               >
-                <span className="absolute -inset-1.5"></span>
-                <span className="sr-only">View notifications</span>
-                <svg
-                  className="size-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                  />
-                </svg>
-              </button>
-            </div>
+                {label}
+              </a>
+            )
+            )}
           </div>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 

@@ -5,21 +5,21 @@ import { Entity } from "../prisma/schema";
 import { and, asc, desc, eq, ilike, isNotNull, or } from 'drizzle-orm';
 
 export async function InsertEntity(data: EntityInsert) {
-  const result =  await db.insert(Entity).values(data).returning({
+  const result = await db.insert(Entity).values(data).returning({
     id: Entity.id, entityType: Entity.entityType, name: Entity.name, email: Entity.email, number: Entity.number, password: Entity.password, role: Entity.role, image: Entity.image, price: Entity.price, quantity: Entity.quantity, description: Entity.description, category: Entity.category, jsonPayload: Entity.jsonPayload, modifiedOn: Entity.modifiedOn, modifiedBy: Entity.modifiedBy
   }).execute();
   return result[0];
 }
 
-export async function BulkInsertEntity(data: EntityInsert[]){
-    const result = await db.insert(Entity).values(data).returning({
-      id: Entity.id, entityType: Entity.entityType, name: Entity.name, email: Entity.email, number: Entity.number, password: Entity.password, role: Entity.role, image: Entity.image, price: Entity.price, quantity: Entity.quantity, description: Entity.description, category: Entity.category, jsonPayload: Entity.jsonPayload, modifiedOn: Entity.modifiedOn, modifiedBy: Entity.modifiedBy
-    }).execute()
-    return result;
+export async function BulkInsertEntity(data: EntityInsert[]) {
+  const result = await db.insert(Entity).values(data).returning({
+    id: Entity.id, entityType: Entity.entityType, name: Entity.name, email: Entity.email, number: Entity.number, password: Entity.password, role: Entity.role, image: Entity.image, price: Entity.price, quantity: Entity.quantity, description: Entity.description, category: Entity.category, jsonPayload: Entity.jsonPayload, modifiedOn: Entity.modifiedOn, modifiedBy: Entity.modifiedBy
+  }).execute()
+  return result;
 }
 
 export async function UpdateEntity(id: string, data: EntityInsert) {
-  const result =  await db.update(Entity).set(data).where(eq(Entity.id, id)).returning({
+  const result = await db.update(Entity).set(data).where(eq(Entity.id, id)).returning({
     id: Entity.id, entityType: Entity.entityType, name: Entity.name, email: Entity.email, number: Entity.number, password: Entity.password, role: Entity.role, image: Entity.image, price: Entity.price, quantity: Entity.quantity, description: Entity.description, category: Entity.category, jsonPayload: Entity.jsonPayload, modifiedOn: Entity.modifiedOn, modifiedBy: Entity.modifiedBy
   }).execute();
   return result[0];
@@ -27,25 +27,42 @@ export async function UpdateEntity(id: string, data: EntityInsert) {
 
 export async function GetEntity(id: string) {
   const query = `SELECT * FROM "Entity" WHERE id = '${id}'`;
-  const result =  await db.execute(query);
+  const result = await db.execute(query);
   return result.rows[0] as EntityInsert;
 }
 
+export async function GetAllEntityByType(type: string): Promise<EntityInsert[]> {
+  const query = `SELECT * FROM "Entity" WHERE "entityType" = '${type}'`;
+  try {
+    const result = await db.execute(query);
+
+    if (!result.rows || result.rows.length === 0) {
+      throw new Error("No products found");
+    }
+
+    return result.rows as EntityInsert[]; // Return all products properly typed
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw new Error("Failed to fetch products");
+  }
+}
+
+
 export async function GetEntityByCondition(condition: string) {
   const query = `SELECT * FROM "Entity" WHERE ${condition}`;
-  const result =  await db.execute(query);
+  const result = await db.execute(query);
   return result.rows[0] as EntityInsert;
 }
 
 export async function GetEntitiesByCondition(condition: string) {
   const query = `SELECT * FROM "Entity" WHERE ${condition}`;
-  const result =  await db.execute(query);
+  const result = await db.execute(query);
   return result.rows as IEntity[];
 }
 
 export async function DeleteEntity(id: string) {
-    const result =  await db.delete(Entity).where(eq(Entity.id, id));
-    return result;
+  const result = await db.delete(Entity).where(eq(Entity.id, id));
+  return result;
 }
 
 export async function GetEntities(
@@ -66,8 +83,8 @@ export async function GetEntities(
   const take = pageSize;
   let whereCondition;
   let searchCondition;
-  if(search && search.length > 0){
-    searchCondition = or(ilike(Entity.name,LikeCondtionString(search)), ilike(Entity.email, LikeCondtionString(search)), ilike(Entity.number, LikeCondtionString(search)), ilike(Entity.category, LikeCondtionString(search)));
+  if (search && search.length > 0) {
+    searchCondition = or(ilike(Entity.name, LikeCondtionString(search)), ilike(Entity.email, LikeCondtionString(search)), ilike(Entity.number, LikeCondtionString(search)), ilike(Entity.category, LikeCondtionString(search)));
     whereCondition = and(eq(Entity.entityType, type), searchCondition)
   }
   whereCondition = eq(Entity.entityType, type)
@@ -93,27 +110,27 @@ export async function GetPaginationMetaData(
   pageSize = pageSize || 10;
   page = page || 1;
   search = search || "";
-// Define the condition for search
-const searchCondition = or(
-  ilike(Entity.name, `%${search}%`),
-  ilike(Entity.email, `%${search}%`),
-  ilike(Entity.number, `%${search}%`),
-  ilike(Entity.category, `%${search}%`)
-);
+  // Define the condition for search
+  const searchCondition = or(
+    ilike(Entity.name, `%${search}%`),
+    ilike(Entity.email, `%${search}%`),
+    ilike(Entity.number, `%${search}%`),
+    ilike(Entity.category, `%${search}%`)
+  );
 
-// Define the where condition with entity type
-const whereCondition = and(
-  eq(Entity.entityType, type),
-  searchCondition
-);
+  // Define the where condition with entity type
+  const whereCondition = and(
+    eq(Entity.entityType, type),
+    searchCondition
+  );
 
-// Count the total number of records
-const totalRecords = await db
-  .select()
-  .from(Entity)
-  .where(whereCondition)
-  .execute()
-  .then((result) => result.length);
+  // Count the total number of records
+  const totalRecords = await db
+    .select()
+    .from(Entity)
+    .where(whereCondition)
+    .execute()
+    .then((result) => result.length);
 
   // Step 2: Calculate totalPages
   const totalPages = Math.ceil(totalRecords / pageSize);
@@ -130,14 +147,15 @@ const totalRecords = await db
 }
 
 
-export async function UserLogin(userName: string, password: string){
+export async function UserLogin(userName: string, password: string) {
+  debugger;
   const result = await db.select().from(Entity).where(and(eq(Entity.email, userName), eq(Entity.password, password)));
   if (!result) {
     throw new Error('User not found or invalid credentials');
-    }
-    return result[0];
+  }
+  return result[0];
 }
 
-function LikeCondtionString(param:string) : string {
+function LikeCondtionString(param: string): string {
   return `%${param}%`;
 }

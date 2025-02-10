@@ -26,7 +26,7 @@ const Cart = () => {
     0
   );
 
-  const taxes = subtotal * 0.1; 
+  const taxes = subtotal * 0.1;
   const total = subtotal + taxes;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +58,7 @@ const Cart = () => {
       alert("Product is out of stock");
       return;
     }
-    newProducts[index].quantity = (newProducts[index].quantity || 0) + 1 ;
+    newProducts[index].quantity = (newProducts[index].quantity || 0) + 1;
     newProducts[index].price = (newProducts[index].quantity || 1) * (newProducts[index].price || 1);
     setOrders(newProducts);
   };
@@ -83,14 +83,14 @@ const Cart = () => {
     );
     if (existingProductIndex > -1) {
       const newProducts = [...orders];
-      if(product.stock == newProducts[existingProductIndex].quantity) {
+      if (product.stock == newProducts[existingProductIndex].quantity) {
         alert("Product is out of stock");
         return;
       }
-      newProducts[existingProductIndex].quantity =  (newProducts[existingProductIndex].quantity || 0) + 1;
+      newProducts[existingProductIndex].quantity = (newProducts[existingProductIndex].quantity || 0) + 1;
       setOrders(newProducts);
     } else {
-      if(product.stock == 0) {
+      if (product.stock == 0) {
         alert("Product is out of stock");
         return;
       }
@@ -125,7 +125,7 @@ const Cart = () => {
         throw new Error("Network response was not ok");
       }
       const result: ITransaction = await response.json();
-      console.log("After placing order.",result);
+      console.log("After placing order.", result);
       setTransaction(result);
       setShowAddModal(false);
       setShowReceiptModall(true);
@@ -137,12 +137,12 @@ const Cart = () => {
 
   const parseData = (data: ITransactionCSV[]): ITransaction => {
     const today = new Date();
-  
+
     // Calculate total price by summing up the prices from the input data
     const total = data.reduce((sum, transaction) => {
       return sum + (transaction.totalPrice || 0);
     }, 0);
-  
+
     // Construct orders array
     const orders: IOrder[] = data.map(item => ({
       product: {
@@ -150,14 +150,14 @@ const Cart = () => {
       },
       quantity: item.quantity || 0,
     }));
-  
+
     // Construct customer data (assuming the customer is the same for all transactions in the dataset)
     const customer: ICustomer = {
       name: data[0]?.customerName || "",
       email: data[0]?.email || "",
       number: data[0]?.number || "",
     };
-  
+
     // Construct the transaction object
     const transaction: ITransaction = {
       customer,
@@ -165,12 +165,12 @@ const Cart = () => {
       totalPrice: total,
       orders,
     };
-  
+
     return transaction;
   };
 
   const bulkUploadOrders = async (data: ITransactionCSV[]) => {
-    const parsedData : ITransaction = parseData(data);
+    const parsedData: ITransaction = parseData(data);
 
     try {
       const response = await fetch("/api/order", {
@@ -187,17 +187,16 @@ const Cart = () => {
       console.error("Error placing order:", error);
     }
   };
-  
+
   return (
     <>
       <div className="bg-gray-100 h-screen py-8 text-gray-900">
         <div className="container mx-auto px-4">
-          <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
           <div className="flex items-center gap-2">
             <div className="w-3/4">
               <SearchProduct onAddProduct={handleAddProduct} />
             </div>
-            <div className="w-1/8">
+            <div className="w-1/4">
               <button
                 className="btn bg-blue-500 text-white font-bold py-2 px-4 rounded w-full"
                 onClick={() => {
@@ -301,7 +300,7 @@ const Cart = () => {
           <div>
             <label className="block text-gray-700">Phone</label>
             <input
-              type="text"
+              type="number"
               name="phone"
               value={customer.number || ""}
               onChange={handleInputChange}
@@ -329,7 +328,7 @@ const Cart = () => {
 
       {showReceiptModal && transaction && (
         <Modal show={showReceiptModal} onClose={() => setShowReceiptModall(false)}>
-            <Receipt transaction={transaction} taxRates={{Taxes:0.1,Shipping:0}}></Receipt>
+          <Receipt transaction={transaction} taxRates={{ Taxes: 0.1, Shipping: 0 }}></Receipt>
         </Modal>
       )}
     </>
@@ -337,3 +336,4 @@ const Cart = () => {
 };
 
 export default Cart;
+

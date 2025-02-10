@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import getReccomendations, { processTransactionsForAssociationRules } from '../../../../agents/pps';
+import getReccomendations from '../../../../agents/pps';
 import { IOrder, IProduct } from '@/types/apiModels/apiModels';
 
 export async function POST(request: Request) {
     try {
         const cartItems: IOrder[] = await request.json();
         let list: Array<IProduct> = await getReccomendations(cartItems);
-        if(!list || list.length <1){
+        if (!list || list.length < 1) {
             console.log("Error occured");
             list = [];
         }

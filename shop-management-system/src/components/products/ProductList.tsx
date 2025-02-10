@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
 import { ProductCard } from './ProductCard';
 import Modal from '../common/Modal';
@@ -19,18 +19,20 @@ export const ProductList = () => {
         image: '',
         stock: 0,
     }); // State for the new product details
+    const [isLoading, setIsLoading] = useState<boolean>(false); // Loading state
 
     const filteredProducts = products?.filter((product: IProduct) =>
         product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.category?.toLowerCase().includes(searchTerm.toLowerCase())
-    )?? [];
-   
+    ) ?? [];
 
     // Fetch data from the API during build time
     async function getStaticProps() {
+        setIsLoading(true); // Set loading to true before fetching
         const res = await fetch('api/product');
         const products: IProduct[] = await res.json();
         setProducts(products);
+        setIsLoading(false); // Set loading to false after fetching
     }
 
     async function editProduct(product: IProduct) {
@@ -55,11 +57,10 @@ export const ProductList = () => {
         }
     }
 
-    // Fetch data from the API during build time
     async function deletedProduct(id: string) {
         const res = await fetch(`api/product?id=` + id, {
             method: 'DELETE',
-          });
+        });
         const products: IProduct[] = await res.json();
         setProducts(products);
     }
@@ -91,169 +92,187 @@ export const ProductList = () => {
 
     const getParsedData = (data: IProductCSV[]): IProduct[] => {
         const today = new Date().toISOString(); // Get current date in ISO format
-      
+
         return data.map((item, index) => {
-          // Construct product object
-          const product: IProduct = {
-            id: generateUUID(), // Generate unique product id
-            name: item.name || 'Unknown Product', // Default name if missing
-            image: item.image || "", // Default image to null if not provided
-            price: item.price || 0, // Default price to 0 if not provided
-            stock: item.stock || 0, // Default stock to 0 if not provided
-            description: item.description || "", // Default description to null if not provided
-            category: item.category || "", // Default category to null if not provided
-          };
-      
-          return product;
+            const product: IProduct = {
+                id: generateUUID(), // Generate unique product id
+                name: item.name || 'Unknown Product',
+                image: item.image || "",
+                price: item.price || 0,
+                stock: item.stock || 0,
+                description: item.description || "",
+                category: item.category || "",
+            };
+
+            return product;
         });
     }
-    const bulkUploadOrders = async(data: IProductCSV[]) => {
-        const parsedData : IProduct[]= getParsedData(data);
+
+    const bulkUploadOrders = async (data: IProductCSV[]) => {
+        const parsedData: IProduct[] = getParsedData(data);
 
         try {
-        const response = await fetch("/api/product/bulk", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(parsedData),
-        });
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-        setProducts(result);
-        setShowBulkUploadModall(false);
-        console.log("Bulk Upload successfully:", result);
+            const response = await fetch("/api/product/bulk", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(parsedData),
+            });
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const result = await response.json();
+            setProducts(result);
+            setShowBulkUploadModall(false);
+            console.log("Bulk Upload successfully:", result);
         } catch (error) {
-        console.error("Error placing order:", error);
+            console.error("Error placing order:", error);
         }
     }
+
     const downloadInventory = async () => {
         const res = await fetch('api/product/download');
         const result = await res.json();
         console.log(result);
     };
+
     useEffect(() => {
         getStaticProps();
     }, []);
 
     return (
-        <div className="container mx-auto py-8 px-8 bg-white">
+        <div className="container mx-auto py-8 px-8 bg-white text-black">
             {showBulkUploadModal && (
-            <Modal
-              show={showBulkUploadModal}
-              onClose={() => setShowBulkUploadModall(false)}
-            >
-              <Uploader<IProductCSV>
-                text="Upload Product Data"
-                handleUpload={bulkUploadOrders}
-              />
-            </Modal>
-          )}
-            <div className="flex justify-between items-center mb-6">
-                <input
-                    type="text"
-                    placeholder="Search products..."
-                    className="w-full p-2 border rounded text-black"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                <Modal
+                    show={showBulkUploadModal}
+                    onClose={() => setShowBulkUploadModall(false)}
+                >
+                    <Uploader<IProductCSV>
+                        text="Upload Product Data"
+                        handleUpload={bulkUploadOrders}
+                    />
+                </Modal>
+            )}
+            <div className="flex flex-wrap items-center gap-4 mb-6">
+                {/* Search Bar */}
+                <div className="flex-grow">
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        className="w-full p-2 border rounded-md text-black h-10"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+
+                {/* Buttons */}
                 <button
-                    className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200 ml-4"
-                    onClick={() => setShowAddModal(true)} // Open add product modal
+                    className="bg-green-500 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
+                    onClick={() => setShowAddModal(true)}
                 >
                     Add
                 </button>
+
                 <button
-                    className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200 ml-4"
-                    onClick={() => setShowBulkUploadModall(true)} // Open add product modal
+                    className="bg-blue-800 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
+                    onClick={() => setShowBulkUploadModall(true)}
                 >
                     Bulk Upload
                 </button>
+
                 <button
-                    className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200 ml-4"
-                    onClick={() => downloadInventory()} // Open add product modal
+                    className="bg-green-800 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
+                    onClick={() => downloadInventory()}
                 >
                     Download Inventory
                 </button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {filteredProducts.map(product => (
-                    <ProductCard key={product.id} product={product} onEdit={editProduct} onDelete={deletedProduct} />
-                ))}
+
+            {/* Fixed Height for Grid */}
+            <div className="grid-container relative w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6" style={{ minHeight: '400px' }}>
+                {/* Loader Spinner */}
+                {isLoading ? (
+                    <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-200 opacity-75">
+                        <div className="animate-spin h-10 w-10 border-t-4 border-blue-500 rounded-full"></div>
+                    </div>
+                ) : (
+                    filteredProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} onEdit={editProduct} onDelete={deletedProduct} />
+                    ))
+                )}
             </div>
 
             {/* Add Product Modal */}
             {showAddModal && (
-                    <Modal show={showAddModal} onClose={() => { setShowAddModal(false)}}>
-                        <h3 className="text-lg font-semibold mb-4 text-gray-800">Add Product</h3>
-                        <form onSubmit={(e) => { e.preventDefault(); addProduct(newProduct); }} className="space-y-4">
-                            <div>
-                                <label className="block text-gray-700">Product Name</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={newProduct.name}
-                                    onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                                    className="w-full p-2 border rounded text-gray-700"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700">Category</label>
-                                <input
-                                    type="text"
-                                    name="category"
-                                    value={newProduct.category}
-                                    onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
-                                    className="w-full p-2 border rounded text-gray-700"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700">Price</label>
-                                <input
-                                    type="number"
-                                    name="price"
-                                    value={newProduct.price}
-                                    onChange={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })}
-                                    className="w-full p-2 border rounded text-gray-700"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700">Image URL</label>
-                                <input
-                                    type="text"
-                                    name="image"
-                                    value={newProduct.image}
-                                    onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-                                    className="w-full p-2 border rounded text-gray-700"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700">Stock</label>
-                                <input
-                                    type="number"
-                                    name="stock"
-                                    value={newProduct.stock}
-                                    onChange={(e) => setNewProduct({ ...newProduct, stock: Number(e.target.value) })}
-                                    className="w-full p-2 border rounded text-gray-700"
-                                />
-                            </div>
+                <Modal show={showAddModal} onClose={() => { setShowAddModal(false) }}>
+                    <h3 className="text-lg font-semibold mb-4 text-gray-800">Add Product</h3>
+                    <form onSubmit={(e) => { e.preventDefault(); addProduct(newProduct); }} className="space-y-4">
+                        <div>
+                            <label className="block text-gray-700">Product Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={newProduct.name}
+                                onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+                                className="w-full p-2 border rounded text-gray-700"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700">Category</label>
+                            <input
+                                type="text"
+                                name="category"
+                                value={newProduct.category}
+                                onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
+                                className="w-full p-2 border rounded text-gray-700"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700">Price</label>
+                            <input
+                                type="number"
+                                name="price"
+                                value={newProduct.price}
+                                onChange={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })}
+                                className="w-full p-2 border rounded text-gray-700"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700">Image URL</label>
+                            <input
+                                type="text"
+                                name="image"
+                                value={newProduct.image}
+                                onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
+                                className="w-full p-2 border rounded text-gray-700"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700">Stock</label>
+                            <input
+                                type="number"
+                                name="stock"
+                                value={newProduct.stock}
+                                onChange={(e) => setNewProduct({ ...newProduct, stock: Number(e.target.value) })}
+                                className="w-full p-2 border rounded text-gray-700"
+                            />
+                        </div>
 
-                            <div className="flex justify-end space-x-4">
-                                <button
-                                    type="button"
-                                    className="bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300"
-                                    onClick={() => setShowAddModal(false)} // Close modal without adding
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                                >
-                                    Add
-                                </button>
-                            </div>
-                        </form>
+                        <div className="flex justify-end space-x-4">
+                            <button
+                                type="button"
+                                className="bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300"
+                                onClick={() => setShowAddModal(false)} // Close modal without adding
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                            >
+                                Add
+                            </button>
+                        </div>
+                    </form>
                 </Modal>
             )}
         </div>

@@ -6,40 +6,53 @@ export const sessionOptions: SessionOptions = {
   password: process.env.SESSION_SECRET as string,
   cookieName: 'user-session',
   cookieOptions: {
-    httponly:true,
+    httponly: true,
     secure: process.env.NODE_ENV === 'production',
   },
 };
 
 // Function to create a session
-export async function createSession(payload:IUser) {
+export async function createSession(payload: IUser) {
   const session = await getSession();
-  session.email = payload.email;
-  session.name = payload.name;
-  session.id = payload.id;
-  session.role = payload.role;
-  await session.save();
+  if (session) {
+    session.email = payload.email;
+    session.name = payload.name;
+    session.id = payload.id;
+    session.role = payload.role;
+    await session.save();
+  }
 }
 
 // Function to get a session
 export async function getSession() {
-  const session = await getIronSession<IUser>((await cookies()), sessionOptions);
-  return session;
+  try {
+    const cookieStore = await cookies();
+
+    // Ensure cookies are valid before passing to `getIronSession`
+    const session = await getIronSession<IUser>(cookieStore || {}, sessionOptions);
+
+    return session;
+  } catch (error) {
+    console.error("Error getting session:", error);
+    return null; // Return null or an empty session object if needed
+  }
 }
 
 // Function to delete a session
 export async function deleteSession() {
   const session = await getSession();
-  session.destroy();
+  if (session) {
+    session.destroy();
+  }
 }
 
-export async function getSessionUserRole(){
+export async function getSessionUserRole() {
   const session = await getSession();
   console.log(session);
-  return session?.role?? "";
+  return session?.role ?? "";
 }
 
-export async function getSessionUserId(){
+export async function getSessionUserId() {
   const session = await getSession();
-  return session?.id?? "";
+  return session?.id ?? "";
 }

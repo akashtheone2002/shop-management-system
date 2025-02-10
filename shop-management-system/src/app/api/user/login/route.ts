@@ -4,6 +4,7 @@ import { login } from '../../../../../agents/user';
 
 export async function GET(request: Request) {
     try {
+        debugger;
         // Extract search parameters from the request URL
         const { searchParams } = new URL(request.url);
         const username = searchParams.get('username');
@@ -12,6 +13,7 @@ export async function GET(request: Request) {
         console.log(username, password);
 
         const user = await login(username || "", password || "");
+        debugger;
         await createSession(user);
         return NextResponse.json(true);
     } catch (error) {

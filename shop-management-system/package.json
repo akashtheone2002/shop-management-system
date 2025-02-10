@@ -25,6 +25,7 @@
     "iron-session": "^8.0.4",
     "jose": "^5.9.6",
     "json2csv": "^6.0.0-alpha.2",
+    "lucide-react": "^0.475.0",
     "mongoose": "^8.9.1",
     "msnodesqlv8": "^4.4.0",
     "mssql": "^11.0.1",

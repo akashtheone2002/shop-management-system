@@ -6,7 +6,7 @@ import { IOrder, ITransaction } from "@/types/apiModels/apiModels";
 
 const TransactionHistory: React.FC = () => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
-  const [transaction, setTransaction] = useState<ITransaction>()
+  const [transaction, setTransaction] = useState<ITransaction>();
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [search, setSearch] = useState<string>("");
@@ -21,12 +21,7 @@ const TransactionHistory: React.FC = () => {
     text: string;
     duration: number;
     setVisible: (visible: boolean) => void;
-  } | null>({
-    success: true,
-    text: "",
-    duration: 5,
-    setVisible: () => {},
-  });
+  } | null>(null);
   const [alertVisible, setAlertVisible] = useState(false);
 
   useEffect(() => {
@@ -38,21 +33,14 @@ const TransactionHistory: React.FC = () => {
       const response = await fetch(
         `/api/history?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}&sortBy=${sortBy}&sortOrder=${sortOrder}`
       );
-
-      if (!response.ok) {
-        throw new Error(`Error fetching transactions: ${response.status}`);
-      }
-
+      if (!response.ok) throw new Error(`Error fetching transactions: ${response.status}`);
       const data = await response.json();
-
-      // Update transactions and pagination state
       setTransactions(data.transactions);
       setTotalPages(data.metadata.totalPages);
     } catch (error) {
       console.error("Error fetching transactions:", error);
     }
   };
-
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -73,26 +61,14 @@ const TransactionHistory: React.FC = () => {
 
   const getTransaction = async (transactionId: string) => {
     try {
-      console.log(`Fetching orders for transaction ID: ${transactionId}`);
-
-      // Fetch orders for the given transaction ID
       const response = await fetch(`/api/history/${transactionId}`);
-
-      if (!response.ok) {
-        throw new Error(`Failed to fetch orders. Status: ${response.status}`);
-      }
-
-      // Parse the JSON response
+      if (!response.ok) throw new Error(`Failed to fetch orders. Status: ${response.status}`);
       const ordersResponse = (await response.json()) as ITransaction;
       setTransaction(ordersResponse);
-      // Update state with fetched orders
       setOrders(ordersResponse.orders);
-
-      // Toggle the modal visibility
       setShowAddModal(true);
     } catch (error) {
       console.error("Error fetching transaction orders:", error);
-      // Optionally, display an error message to the user
     }
   };
 
@@ -104,170 +80,124 @@ const TransactionHistory: React.FC = () => {
       duration: 5,
       setVisible: setAlertVisible,
     });
-    // const response = await fetch(`/api/order/return?orderId=${orderId}`);
-
-    // if (!response.ok) {
-    //   throw new Error(`Failed to fetch orders. Status: ${response.status}`);
-    // }
-
-    // // Parse the JSON response
-    // const success = (await response.json());
-    // setShowAddModal(false);
-    // if(success) {
-    //   console.log("Order returned successfully");
-    //   // Refresh the transaction history page
-    //   getTransaction(orderId);
-    //   setAlertVisible(true);
-    //   setAlertProps({
-    //     success: true,
-    //     text: "Order returned successfully!",
-    //     duration: 5,
-    //   });
-    // }
-    // setAlertVisible(true);
-    // setAlertProps({
-    //   success: false,
-    //   text: "Failed to return the order. Please try again.",
-    //   duration: 5,
-    // });
   };
 
-  const donwloadCSV = () => {};
+  const donwloadCSV = () => {
+    // Download CSV logic here
+  };
 
   return (
     <>
       {alertVisible && alertProps && <Alert {...alertProps} />}
-      <button onClick={()=>{donwloadCSV}}>Download csv</button>
-      <div>
-        <h1>Transaction History</h1>
-        <div>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={handleSearchChange}
-          />
-        </div>
-        <table className="min-w-full text-left text-sm font-light text-surface dark:text-white">
-          <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
-            <tr>
-              <th scope="col" className="px-6 py-4">
-                Transaction Id
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-4 cursor-pointer"
-                onClick={() => handleSortChange("boughtOn")}
-              >
-                Bought On{" "}
-                {sortBy === "boughtOn" && (sortOrder === "asc" ? "↑" : "↓")}
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-4 cursor-pointer"
-              >
-                Customer Name{" "}
-              </th>
-              <th scope="col" className="px-6 py-4">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((transaction) => (
-              <tr
-                key={transaction.id}
-                className="border-b border-neutral-200 dark:border-white/10"
-              >
-                <td className="whitespace-nowrap px-6 py-4 font-medium">
-                  {transaction.id}
-                </td>
-                <td className="whitespace-nowrap px-6 py-4">
-                  {new Date(transaction.boughtOn || new Date()).toLocaleDateString()}
-                </td>
-                <td className="whitespace-nowrap px-6 py-4">
-                  {transaction.customer?.name}
-                </td>
-                <td className="whitespace-nowrap px-6 py-4">
-                  <button
-                    onClick={() => getTransaction(transaction.id || "")}
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div>
-          <button
-            onClick={() => handlePageChange(page - 1)}
-            disabled={page === 1}
-          >
-            Previous
-          </button>
-          <span>
-            Page {page} of {totalPages}
-          </span>
-          <button
-            onClick={() => handlePageChange(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
-        </div>
-        <div>
-          <label>
-            Items per page:
-            <select
-              value={limit}
-              onChange={(e) => setLimit(Number(e.target.value))}
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="container mx-auto p-6 flex-1">
+          <div className="flex justify-between items-center mb-4">
+            <h1 className="text-3xl font-semibold text-gray-800">Transaction History</h1>
+            <button
+              onClick={donwloadCSV}
+              className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
             >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={20}>20</option>
-            </select>
-          </label>
+              Download CSV
+            </button>
+          </div>
+
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Search transactions..."
+              value={search}
+              onChange={handleSearchChange}
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+            />
+          </div>
+
+          <table className="min-w-full text-left text-sm font-light bg-white shadow-md rounded-lg overflow-hidden">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="px-6 py-4 text-gray-600">Transaction Id</th>
+                <th
+                  className="px-6 py-4 text-gray-600 cursor-pointer"
+                  onClick={() => handleSortChange("boughtOn")}
+                >
+                  Bought On {sortBy === "boughtOn" && (sortOrder === "asc" ? "↑" : "↓")}
+                </th>
+                <th className="px-6 py-4 text-gray-600">Customer Name</th>
+                <th className="px-6 py-4 text-gray-600">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((transaction) => (
+                <tr key={transaction.id} className="border-t">
+                  <td className="px-6 py-4">{transaction.id}</td>
+                  <td className="px-6 py-4">{new Date(transaction.boughtOn || new Date()).toLocaleDateString()}</td>
+                  <td className="px-6 py-4">{transaction.customer?.name}</td>
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => getTransaction(transaction.id || "")}
+                      className="text-blue-600 hover:text-blue-700 transition"
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="flex justify-between items-center mt-4">
+            <div className="flex items-center">
+              <button
+                onClick={() => handlePageChange(page - 1)}
+                disabled={page === 1}
+                className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg disabled:opacity-50"
+              >
+                Previous
+              </button>
+              <span className="mx-4 text-gray-700">Page {page} of {totalPages}</span>
+              <button
+                onClick={() => handlePageChange(page + 1)}
+                disabled={page === totalPages}
+                className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
+            <div>
+              <label htmlFor="limit" className="text-gray-700">Items per page:</label>
+              <select
+                id="limit"
+                value={limit}
+                onChange={(e) => setLimit(Number(e.target.value))}
+                className="ml-2 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none"
+              >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
 
       {showAddModal && orders && (
         <Modal show={showAddModal} onClose={() => setShowAddModal(false)}>
-          <h3 className="text-lg font-semibold mb-4 text-gray-800">
-            Order List
-          </h3>
-          <table className="min-w-full text-left text-sm font-light text-surface dark:text-white">
-            <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800">Order List</h3>
+          <table className="min-w-full text-left text-sm font-light bg-white shadow-md rounded-lg overflow-hidden">
+            <thead className="bg-gray-200">
               <tr>
-                <th scope="col" className="px-6 py-4">
-                  Product Name
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Quantity
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Price
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Actions
-                </th>
+                <th className="px-6 py-4 text-gray-600">Product Name</th>
+                <th className="px-6 py-4 text-gray-600">Quantity</th>
+                <th className="px-6 py-4 text-gray-600">Price</th>
+                <th className="px-6 py-4 text-gray-600">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {orders && orders.length > 0 && orders.map((order) => (
-                <tr
-                  key={order.id}
-                  className="border-b border-neutral-200 dark:border-white/10"
-                >
-                  <td className="whitespace-nowrap px-6 py-4 font-medium">
-                    {order.product?.name}
-                  </td>
-                  <td className="whitespace-nowrap px-6 py-4">
-                    {order.quantity}
-                  </td>
-                  <td className="whitespace-nowrap px-6 py-4">{order.price}</td>
-                  <td className="whitespace-nowrap px-6 py-4">
+              {orders.map((order) => (
+                <tr key={order.id} className="border-t">
+                  <td className="px-6 py-4">{order.product?.name}</td>
+                  <td className="px-6 py-4">{order.quantity}</td>
+                  <td className="px-6 py-4">{order.price}</td>
+                  <td className="px-6 py-4">
                     <button
                       className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
                       onClick={() => handleReturn(order.id || "")}
