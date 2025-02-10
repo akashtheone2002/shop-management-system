@@ -1,8 +1,9 @@
-"use client";
+"use client"
 
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { Roles } from "../../../type/entity/entity";
 import Image from "next/image";
+import { LogOut } from 'lucide-react';
 
 interface IProps {
   role: string;
@@ -42,6 +43,7 @@ const Navbar = ({ role }: IProps) => {
               </a>
             )
             )}
+            <button className="text-black" title="logout" onClick={() => redirect("/login")}><LogOut height={20}/></button>
           </div>
         </div>
       </div>

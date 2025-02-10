@@ -130,9 +130,22 @@ export const ProductList = () => {
     }
 
     const downloadInventory = async () => {
-        const res = await fetch('api/product/download');
-        const result = await res.json();
-        console.log(result);
+        const csvHeader = "ID,Name,Category,Price,Image,Stock,Description\n"; // CSV headers
+        const csvRows = products.map((product) => {
+            return `${product.id},${product.name},${product.category},${product.price},${product.image},${product.stock},${product.description}`;
+        });
+
+        // Combine header and rows into one string
+        const csvData = csvHeader + csvRows.join("\n");
+
+        // Create a Blob with CSV data
+        const blob = new Blob([csvData], { type: 'text/csv' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'inventory.csv'; // File name for download
+
+        // Programmatically click the link to trigger the download
+        link.click();
     };
 
     useEffect(() => {
