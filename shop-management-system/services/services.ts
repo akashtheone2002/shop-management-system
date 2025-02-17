@@ -85,9 +85,10 @@ export async function GetEntities(
   let searchCondition;
   if (search && search.length > 0) {
     searchCondition = or(ilike(Entity.name, LikeCondtionString(search)), ilike(Entity.email, LikeCondtionString(search)), ilike(Entity.number, LikeCondtionString(search)), ilike(Entity.category, LikeCondtionString(search)));
-    whereCondition = and(eq(Entity.entityType, type), searchCondition)
+    whereCondition = and(eq(Entity.entityType, type), searchCondition);
+  }else{
+    whereCondition = eq(Entity.entityType, type);
   }
-  whereCondition = eq(Entity.entityType, type)
   const result = await db
     .select()
     .from(Entity)

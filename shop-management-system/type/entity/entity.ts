@@ -4,7 +4,7 @@ type ObjectId = string;
 
 export enum Roles {
   ADMIN = 'ADMIN',
-  EMPLOYEE = 'Employee',
+  EMPLOYEE = 'EMPLOYEE',
 }
 
 export enum EntityType {

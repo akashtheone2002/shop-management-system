@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server';
-import { addProduct, deleteProduct, getAllProducts, updateProduct } from '../../../../agents/ims';
+import { addProduct, deleteProduct, getAllProducts, searchProduct, updateProduct } from '../../../../agents/ims';
 import { IProduct } from '@/types/apiModels/apiModels';
 
-export async function GET() {
+export async function GET(request: Request) {
     try {
-        const response = await getAllProducts();
+        // Extract search parameters from the request URL
+        const { searchParams } = new URL(request.url);
+        const searchTerm = searchParams.get('search');
+        const response = await searchProduct(searchTerm || "");
         return NextResponse.json(response);
     } catch (error) {
         console.error("Error handling GET request:", error);
