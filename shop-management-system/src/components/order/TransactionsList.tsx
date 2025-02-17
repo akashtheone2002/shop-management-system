@@ -73,13 +73,28 @@ const TransactionHistory: React.FC = () => {
   };
 
   const handleReturn = async (orderId: string) => {
+    const response = await fetch(
+      `/api/order/return?orderId=${orderId}`
+    );
     setAlertVisible(true);
-    setAlertProps({
-      success: true,
-      text: "Order returned successfully!",
-      duration: 5,
-      setVisible: setAlertVisible,
-    });
+    if (!response.ok) throw new Error(`Error fetching transactions: ${response.status}`);
+    const status = await response.json();
+    setShowAddModal(false);
+    if(status){
+      setAlertProps({
+        success: true,
+        text: "Order returned successfully!",
+        duration: 5,
+        setVisible: setAlertVisible,
+      });
+    }else{
+      setAlertProps({
+        success: false,
+        text: "An error occured when returning the order!",
+        duration: 5,
+        setVisible: setAlertVisible,
+      });
+    }
   };
 
   const donwloadCSV = () => {

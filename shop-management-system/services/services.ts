@@ -84,8 +84,13 @@ export async function GetEntities(
   let whereCondition;
   let searchCondition;
   if (search && search.length > 0) {
-    searchCondition = or(ilike(Entity.name, LikeCondtionString(search)), ilike(Entity.email, LikeCondtionString(search)), ilike(Entity.number, LikeCondtionString(search)), ilike(Entity.category, LikeCondtionString(search)));
-    whereCondition = and(eq(Entity.entityType, type), searchCondition);
+    if(type == EntityType.TRANSACTION){
+      searchCondition = eq(Entity.id, search);
+      whereCondition = and(eq(Entity.entityType, type), searchCondition);
+    }else{
+      searchCondition = or( ilike(Entity.name, LikeCondtionString(search)), ilike(Entity.email, LikeCondtionString(search)), ilike(Entity.number, LikeCondtionString(search)), ilike(Entity.category, LikeCondtionString(search)));
+      whereCondition = and(eq(Entity.entityType, type), searchCondition);
+    }
   }else{
     whereCondition = eq(Entity.entityType, type);
   }
@@ -112,18 +117,34 @@ export async function GetPaginationMetaData(
   page = page || 1;
   search = search || "";
   // Define the condition for search
-  const searchCondition = or(
-    ilike(Entity.name, `%${search}%`),
-    ilike(Entity.email, `%${search}%`),
-    ilike(Entity.number, `%${search}%`),
-    ilike(Entity.category, `%${search}%`)
-  );
-
-  // Define the where condition with entity type
-  const whereCondition = and(
-    eq(Entity.entityType, type),
-    searchCondition
-  );
+  var searchCondition;
+  var whereCondition;
+  if(type == EntityType.TRANSACTION){
+    if(search.length == 0){
+      whereCondition = and(
+        eq(Entity.entityType, type),
+      );
+    }else{
+      searchCondition = or(
+        eq(Entity.id,search)
+      );
+      whereCondition = and(
+        eq(Entity.entityType, type),
+        searchCondition
+      );
+    }
+  }else{
+    searchCondition = or(
+      ilike(Entity.name, `%${search}%`),
+      ilike(Entity.email, `%${search}%`),
+      ilike(Entity.number, `%${search}%`),
+      ilike(Entity.category, `%${search}%`)
+    );
+    whereCondition = and(
+      eq(Entity.entityType, type),
+      searchCondition
+    );
+  }
 
   // Count the total number of records
   const totalRecords = await db

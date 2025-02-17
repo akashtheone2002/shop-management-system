@@ -81,6 +81,12 @@ export interface ITransactionPayload {
   orders?: string[];
 }
 
+export interface IOrderPayload{
+  product?: string;
+  price?: number;
+  quantity?: number;
+}
+
 export interface IFlatTransaction {
   id?: string;
   boughtOn?: Date;

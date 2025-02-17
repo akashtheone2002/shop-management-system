@@ -132,6 +132,7 @@ export async function returnOrder(orderId: string) {
 async function getOrdersFromPayload(orders: string[]){
     let result = [];
     for (const orderId of orders) {
+      try{
       const entity: IEntity = await GetEntity(orderId);
       if (!entity) {
         const order: IOrder = {
@@ -139,18 +140,29 @@ async function getOrdersFromPayload(orders: string[]){
           quantity: 0,
           product: {
             id: "deletedEntity",
-            name: "Deleted Product",
+            name: "Deleted Product / Returned order",
           },
         };
         result.push(order);
         continue;
       }
       const order: IOrder = mapEntityToOrder(entity);
-      const product: IEntity = await GetEntity(order.product?.id || "");
+      var product: IEntity = await GetEntity(order.product?.id || "");
       if (!product) {
+        product = {
+          id: "notFound",
+          name: "Not Found",
+          image: "",
+          price: 0,
+          description: "Not Found",
+          category: "Not Found"
+      }
       }
       order.product = mapEntityToProduct(product);
       result.push(order);
+    }catch{
+      continue;
+    }
     }
     return result;
 }

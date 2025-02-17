@@ -3,6 +3,8 @@ import fs from "fs";
 import { fetchTransactionHistory } from './oms';
 import { getProductsByProductIds } from './ims';
 import { IAssociationRule, IFrequentItemset, IOrder, IProduct, ITransaction, ITransactionList } from '@/types/apiModels/apiModels';
+import { EntityType } from '@/types/entity/entity';
+import { GetEntities } from '../services/services';
 
 // export default async function getReccomendations(products: IOrder[]): Promise<IProduct[]>{
 //     const data: IProduct[] = [{
@@ -57,7 +59,9 @@ export default async function getReccomendations(products: IOrder[]): Promise<IP
         });
       }
     });
-  
+    if(recommendedProductIds.size == 0){
+      return await GetEntities(EntityType.PRODUCT);
+    }
     const recommendedProducts: IProduct[] = await getProductsByProductIds([...recommendedProductIds]);
   
     return recommendedProducts;

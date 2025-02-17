@@ -1,4 +1,4 @@
-import { ICustomer, IFlatTransaction, IOrder, IProduct, ITransaction, ITransactionPayload, IUser } from "@/types/apiModels/apiModels";
+import { ICustomer, IFlatTransaction, IOrder, IOrderPayload, IProduct, ITransaction, ITransactionPayload, IUser } from "@/types/apiModels/apiModels";
 import { EntityInsert, EntityType, EntityInsert } from "@/types/entity/entity";
 import { v4 as uuid } from 'uuid';
 
@@ -72,9 +72,27 @@ export function mapEntityToOrder(entity: EntityInsert): IOrder{
         quantity: entity.quantity || 0,
         price: Number(entity.price) || 0,
         product: {
-            id: entity.jsonPayload || ""
+            id: entity?.jsonPayload || ""
         }
     }
+}
+
+export function mapOrderPayload(payload: string): IOrderPayload{
+    try{
+        if(!payload){
+            return {
+                product : "",
+                price: 0,
+                quantity: 0
+            }
+        }
+        return JSON.parse(payload) as IOrderPayload;
+    }catch{
+        return {
+            product: payload,
+        }
+    }
+    
 }
 
 export function mapEntityToProduct(entity: EntityInsert): IProduct{

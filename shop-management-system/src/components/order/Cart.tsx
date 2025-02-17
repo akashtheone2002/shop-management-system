@@ -30,7 +30,6 @@ const Cart = () => {
   const total = subtotal + taxes;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    debugger;
     const { name, value } = e.target;
     setCustomer((prev) => ({
       ...prev,
@@ -300,8 +299,8 @@ const Cart = () => {
           <div>
             <label className="block text-gray-700">Phone</label>
             <input
-              type="number"
-              name="phone"
+              type="text"
+              name="number"
               value={customer.number || ""}
               onChange={handleInputChange}
               className="w-full p-2 border rounded text-gray-700"
