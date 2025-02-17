@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Alert from "../common/Alert";
 import Modal from "../common/Modal";
-import { IOrder, ITransaction } from "@/types/apiModels/apiModels";
+import { IFlatTransaction, IOrder, ITransaction } from "@/types/apiModels/apiModels";
 
 const TransactionHistory: React.FC = () => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
@@ -97,10 +97,48 @@ const TransactionHistory: React.FC = () => {
     }
   };
 
-  const donwloadCSV = () => {
-    // Download CSV logic here
-  };
+  const donwloadCSV = async () => {
+    const response = await fetch(
+      `/api/history/download`
+    );
+    if (!response.ok) throw new Error(`Error fetching transactions: ${response.status}`);
+    debugger
+    const transactions : IFlatTransaction[] = await response.json();
+    if(!transactions){
+      setAlertProps({
+        success: false,
+        text: "No orders found!",
+        duration: 5,
+        setVisible: setAlertVisible,
+      });
+      return;
+    }
+    const csvHeader = "ID,Bought On,Total Price,Customer Name,Customer Email,Customer Number,User Name,Order Quantity,Order Price,Product Name,Product Price\n"; // CSV headers
+    const csvRows = transactions.map((transaction) => {
+      debugger
+      return `${transaction.id || ''},${transaction.boughtOn ||''},${transaction.totalPrice || ''},${transaction.customerName || ''},${transaction.customerEmail || ''},${transaction.customerNumber || ''},${transaction.userName || ''},${transaction.orderQuantity || ''},${transaction.orderPrice || ''},${transaction.productName || ''},${transaction.productPrice || ''}`;
+    });
+   console.log(csvRows);
+    // Combine header and rows into one string
+    const csvData = csvHeader + csvRows.join("\n");
+  
+    // Create a Blob with CSV data
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'transactions.csv'; // File name for download
+  
+    // Programmatically click the link to trigger the download
+    link.click();
 
+    setAlertProps({
+      success: true,
+      text: "Donwload started!",
+      duration: 5,
+      setVisible: setAlertVisible,
+    });
+  };
+  
   return (
     <>
       {alertVisible && alertProps && <Alert {...alertProps} />}

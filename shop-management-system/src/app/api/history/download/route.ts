@@ -3,8 +3,8 @@ import { downloadTransactions } from '../../../../../agents/oms';
 
 export async function GET() {
     try {
-        const success = await downloadTransactions();
-        return NextResponse.json(success);
+        const flatTransactions = await downloadTransactions();
+        return NextResponse.json(flatTransactions);
     } catch (error) {
         console.error("Error handling GET request:", error);
         return NextResponse.json({ error: "An error occurred" }, { status: 500 });

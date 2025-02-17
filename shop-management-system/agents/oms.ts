@@ -170,7 +170,5 @@ async function getOrdersFromPayload(orders: string[]){
 export async function downloadTransactions(){
     const transactions : ITransactionList = await fetchTransactionHistory("", "modifiedBy","desc", 1, 10000);
     const flatTransactions : IFlatTransaction[] = transactions.transactions.map((transaction) => mapTransactionToFlat(transaction));
-    const csvData = convertToCSV(flatTransactions);
-    const name = "Transaction_" + String(new Date()) + ".csv";
-    downloadCSVFile(csvData, "transactions.csv");
+    return flatTransactions;
 }
