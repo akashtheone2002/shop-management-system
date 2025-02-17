@@ -4,11 +4,11 @@ import { v4 as uuid } from 'uuid';
 
 export function mapEntityToUser(entity: EntityInsert): IUser{
     return {
-        id : entity.id,
-        name: entity.name || "",
-        email: entity.email || "",
-        password: entity.password || "",
-        role: entity.role || "",
+        id : entity?.id?? "",
+        name: entity?.name || "",
+        email: entity?.email || "",
+        password: entity?.password || "",
+        role: entity?.role || "",
     }
 }
 

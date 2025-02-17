@@ -148,7 +148,6 @@ export async function GetPaginationMetaData(
 
 
 export async function UserLogin(userName: string, password: string) {
-  debugger;
   const result = await db.select().from(Entity).where(and(eq(Entity.email, userName), eq(Entity.password, password)));
   if (!result) {
     throw new Error('User not found or invalid credentials');
