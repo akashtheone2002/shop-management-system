@@ -72,7 +72,7 @@ BEGIN
             INSERT INTO "Entity" ("id", "entityType", "price", "quantity", "jsonPayload", "modifiedOn", "modifiedBy")
             VALUES (
                 gen_random_uuid(), 'ORDER', order_price, random_quantity,
-                jsonb_build_object('product', random_product_id, 'quantity', random_quantity, 'price', order_price), NOW(), random_customer_id
+                random_product_id, NOW(), random_customer_id
             )
             RETURNING "id" INTO order_id;
 
