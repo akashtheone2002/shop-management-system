@@ -1,0 +1,11 @@
+id,name,image,price,stock,description,category
+"P001","Apple1","apple.jpg",1.5,100,"Fresh red apples","Fruits"
+"P002","Banana1","banana.jpg",0.5,150,"Ripe yellow bananas","Fruits"
+"P003","Orange1","orange.jpg",0.8,120,"Juicy and tangy oranges","Fruits"
+"P004","Milk1","milk.jpg",2,80,"Fresh whole milk","Dairy"
+"P005","Eggs1","eggs.jpg",3,200,"Free-range eggs","Dairy"
+"P006","Rice1","rice.jpg",0.6,50,"White rice, 1kg pack","Grains"
+"P007","Chicken1","chicken.jpg",5,70,"Boneless chicken breast","Meat"
+"P008","Tomatoes1","tomato.jpg",2,110,"Organic tomatoes","Vegetables"
+"P009","Carrot1","carrot.jpg",1,130,"Fresh carrots","Vegetables"
+"P010","Potato1","potato.jpg",0.3,300,"Fresh potatoes, 1kg pack","Vegetables"

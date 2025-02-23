@@ -7,7 +7,7 @@ export async function GET(request: Request) {
         // Extract search parameters from the request URL
         const { searchParams } = new URL(request.url);
         const searchTerm = searchParams.get('search');
-        const response = await searchProduct(searchTerm || "");
+        const response = await getAllProducts();
         return NextResponse.json(response);
     } catch (error) {
         console.error("Error handling GET request:", error);

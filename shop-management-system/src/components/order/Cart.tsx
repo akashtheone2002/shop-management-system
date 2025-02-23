@@ -7,6 +7,7 @@ import Modal from "../common/Modal";
 import Uploader from "../common/Uploader";
 import { ICustomer, IOrder, IProduct, ITransaction, ITransactionCSV } from "@/types/apiModels/apiModels";
 import { Receipt } from "./Receipt";
+import { Console } from "console";
 const demoOrders: IOrder[] = [];
 const Cart = () => {
   const [orders, setOrders] = useState<Array<IOrder>>([]);
@@ -20,6 +21,13 @@ const Cart = () => {
     email: "",
     number: "",
   });
+  const [alertProps, setAlertProps] = useState<{
+    success: boolean;
+    text: string;
+    duration: number;
+    setVisible: (visible: boolean) => void;
+  } | null>(null);
+  const [alertVisible, setAlertVisible] = useState(false);
 
   const subtotal = orders.reduce(
     (acc, product) => acc + (product.product?.price || 1) * (product.quantity || 1),
@@ -135,20 +143,26 @@ const Cart = () => {
   };
 
   const parseData = (data: ITransactionCSV[]): ITransaction => {
+    debugger;
     const today = new Date();
-
-    // Calculate total price by summing up the prices from the input data
-    const total = data.reduce((sum, transaction) => {
-      return sum + (transaction.totalPrice || 0);
-    }, 0);
+    console.table(data);
 
     // Construct orders array
     const orders: IOrder[] = data.map(item => ({
       product: {
-        name: item.name,
+        id: item.name,
       },
       quantity: item.quantity || 0,
+      price: item.totalPrice || 0
     }));
+    console.table(orders);
+
+    // Calculate total price by summing up the prices from the input data
+    const total = orders.reduce((sum, transaction) => {
+      return sum + (Number(transaction.price) || 0);
+    }, 0);
+
+    console.log("Total" + total);
 
     // Construct customer data (assuming the customer is the same for all transactions in the dataset)
     const customer: ICustomer = {
@@ -177,10 +191,23 @@ const Cart = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsedData),
       });
+      setShowBulkUploadModall(false);
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        setAlertProps({
+          success: false,
+          text: "Bulk upload failed!",
+          duration: 5,
+          setVisible: setAlertVisible,
+        });
+        return;
       }
       const result = await response.json();
+      setAlertProps({
+        success: true,
+        text: "Bulk upload successfull!",
+        duration: 5,
+        setVisible: setAlertVisible,
+      });
       console.log("Bulk Upload successfully:", result);
     } catch (error) {
       console.error("Error placing order:", error);

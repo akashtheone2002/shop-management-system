@@ -72,10 +72,10 @@ export const searchProduct = async (searchTerm: string): Promise<Array<IProduct>
 export const bulkUploadProducts = async (products: IProduct[]): Promise<Array<IProduct>> => {
     const entities = mapProductListToEntityList(products);
     const output = await BulkInsertEntity(entities);
-    if (output) {
+    if (!output) {
         throw new Error("Error occured.");
     }
-    const availableProducts = await GetEntities(EntityType.PRODUCT);
+    const availableProducts = await getAllProducts();
     const results = mapEntityListToProductList(availableProducts);
     return results;
 }

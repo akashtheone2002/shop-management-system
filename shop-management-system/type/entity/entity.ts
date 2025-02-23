@@ -1,4 +1,4 @@
-import { Entity } from "../../prisma/schema";
+import { Entity } from "../../schema/schema";
 
 type ObjectId = string;
 

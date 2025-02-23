@@ -1,7 +1,7 @@
 import { IUser } from '@/types/apiModels/apiModels';
 import { getIronSession, SessionOptions } from 'iron-session';
 import { cookies } from 'next/headers';
-
+import { useRouter } from 'next/navigation';
 export const sessionOptions: SessionOptions = {
   password: process.env.SESSION_SECRET as string,
   cookieName: 'user-session',
@@ -30,7 +30,7 @@ export async function getSession() {
 
     // Ensure cookies are valid before passing to `getIronSession`
     const session = await getIronSession<IUser>(cookieStore || {}, sessionOptions);
-
+    
     return session;
   } catch (error) {
     console.error("Error getting session:", error);
@@ -48,7 +48,6 @@ export async function deleteSession() {
 
 export async function getSessionUserRole() {
   const session = await getSession();
-  console.log(session);
   return session?.role ?? "";
 }
 

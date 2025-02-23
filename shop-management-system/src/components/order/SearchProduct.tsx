@@ -13,7 +13,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onAddProduct }) => {
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       if (searchTerm.length > 2) {
-        const url = new URL("/api/product", window.location.origin);
+        const url = new URL("/api/product/search", window.location.origin);
         const params = new URLSearchParams({
           search: searchTerm,
           sort: "modifiedOn",

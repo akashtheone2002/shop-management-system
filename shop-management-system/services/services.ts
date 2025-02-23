@@ -1,7 +1,7 @@
 import { IMetaData } from "@/types/apiModels/apiModels";
 import { EntityInsert, EntityType, IEntity } from "@/types/entity/entity";
 import { db } from "./dbContext";
-import { Entity } from "../prisma/schema";
+import { Entity } from "../schema/schema";
 import { and, asc, desc, eq, ilike, isNotNull, or } from 'drizzle-orm';
 
 export async function InsertEntity(data: EntityInsert) {

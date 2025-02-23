@@ -4,6 +4,8 @@ import { ProductCard } from './ProductCard';
 import Modal from '../common/Modal';
 import Uploader from '../common/Uploader';
 import { IProduct, IProductCSV } from '@/types/apiModels/apiModels';
+import { generateUUID } from '../../../utils/common';
+import Alert from '../common/Alert';
 
 export const ProductList = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -20,7 +22,13 @@ export const ProductList = () => {
         stock: 0,
     }); // State for the new product details
     const [isLoading, setIsLoading] = useState<boolean>(false); // Loading state
-
+    const [alertProps, setAlertProps] = useState<{
+        success: boolean;
+        text: string;
+        duration: number;
+        setVisible: (visible: boolean) => void;
+      } | null>(null);
+      const [alertVisible, setAlertVisible] = useState(false);
     const filteredProducts = products?.filter((product: IProduct) =>
         product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.category?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -109,6 +117,7 @@ export const ProductList = () => {
     }
 
     const bulkUploadOrders = async (data: IProductCSV[]) => {
+        debugger;
         const parsedData: IProduct[] = getParsedData(data);
 
         try {
@@ -117,12 +126,25 @@ export const ProductList = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(parsedData),
             });
+            setShowBulkUploadModall(false);
             if (!response.ok) {
-                throw new Error("Network response was not ok");
+                setAlertProps({
+                    success: false,
+                    text: "Bulk upload failed!",
+                    duration: 5,
+                    setVisible: setAlertVisible,
+                  });
+                return;
             }
             const result = await response.json();
             setProducts(result);
             setShowBulkUploadModall(false);
+            setAlertProps({
+                success: true,
+                text: "Bulk upload successfull!",
+                duration: 5,
+                setVisible: setAlertVisible,
+              });
             console.log("Bulk Upload successfully:", result);
         } catch (error) {
             console.error("Error placing order:", error);
@@ -153,6 +175,8 @@ export const ProductList = () => {
     }, []);
 
     return (
+        <>
+        {alertVisible && alertProps && <Alert {...alertProps} />}
         <div className="container mx-auto py-8 px-8 bg-white text-black">
             {showBulkUploadModal && (
                 <Modal
@@ -289,5 +313,6 @@ export const ProductList = () => {
                 </Modal>
             )}
         </div>
+        </>
     );
 };
