@@ -2,26 +2,26 @@
 import { ITransaction } from "@/types/apiModels/apiModels";
 
 interface ReceiptProps {
-    transaction: ITransaction;
-    taxRates: { Taxes: number; Shipping: number };
-  }
+  transaction: ITransaction;
+  taxRates: { Taxes: number; Shipping: number };
+}
 export const Receipt: React.FC<ReceiptProps> = ({ transaction, taxRates }) => {
-    // Derive Subtotal and Taxes from the Total Price
-    const total = transaction.totalPrice || 0;
-    const taxMultiplier = 1 + taxRates.Taxes + taxRates.Shipping;
-    const subtotal = total / taxMultiplier;
-    const Taxes = subtotal * taxRates.Taxes;
-    const Shipping = subtotal * taxRates.Shipping;
+  // Derive Subtotal and Taxes from the Total Price
+  const total = transaction.totalPrice || 0;
+  const taxMultiplier = 1 + taxRates.Taxes + taxRates.Shipping;
+  const subtotal = total / taxMultiplier;
+  const Taxes = subtotal * taxRates.Taxes;
+  const Shipping = subtotal * taxRates.Shipping;
 
-    const printBill = () => {
-        // Open a new window for the print
-        const printWindow = window.open('', '_blank');
-        const receiptElement = document.getElementById('receipt');
+  const printBill = () => {
+    // Open a new window for the print
+    const printWindow = window.open('', '_blank');
+    const receiptElement = document.getElementById('receipt');
 
-        if (printWindow) {
-            const receiptHTML = receiptElement?.outerHTML;
-          // Copy the receipt content to the new window
-          printWindow.document.write(`
+    if (printWindow) {
+      const receiptHTML = receiptElement?.outerHTML;
+      // Copy the receipt content to the new window
+      printWindow.document.write(`
             <html>
               <head>
                 <title>Receipt</title>
@@ -31,15 +31,15 @@ export const Receipt: React.FC<ReceiptProps> = ({ transaction, taxRates }) => {
               </body>
             </html>
           `);
-          printWindow.document.close();
-          // Print the new window content
-          printWindow.print();
-        }
-      };
-      
-    return (
-        <>
-      <div id="receipt">
+      printWindow.document.close();
+      // Print the new window content
+      printWindow.print();
+    }
+  };
+
+  return (
+    <>
+      <div id="receipt" className="text-gray-800">
         <style>
           {`
             body {
@@ -90,6 +90,7 @@ export const Receipt: React.FC<ReceiptProps> = ({ transaction, taxRates }) => {
                 font-size: 12px;
             }
             .receipt {
+                color: black;
                 font-size: medium;
             }
             .items .heading {
@@ -156,8 +157,8 @@ export const Receipt: React.FC<ReceiptProps> = ({ transaction, taxRates }) => {
           `}
         </style>
         <header>
-          <div id="logo">
-            <img src={process.env.SHOP_ICON} alt="Logo" />
+          <div id="logo" className="wrap">
+            <img src="./logoOnlineShopping.png" alt="Logo" style={{ width: "160px", height: "120px", marginLeft: "100px" }} />
           </div>
         </header>
         <p>GST Number : 4910487129047124</p>
@@ -165,11 +166,11 @@ export const Receipt: React.FC<ReceiptProps> = ({ transaction, taxRates }) => {
           <tbody>
             <tr>
               <td>Date : {new Date(transaction.boughtOn || '').toLocaleDateString()}</td>
-              <td>Time : {new Date(transaction.boughtOn || '').toLocaleTimeString()}</td>
+              <td style={{ textAlign: "right" }}>Time : {new Date(transaction.boughtOn || '').toLocaleTimeString()}</td>
             </tr>
             <tr>
               <td>Customer: {transaction.customer?.name}</td>
-              <td>Placed By: {transaction.user?.name}</td>
+              <td style={{ textAlign: "right" }}>Placed By: {transaction.user?.name}</td>
             </tr>
             <tr>
               <th className="center-align" colSpan={2}>
@@ -183,8 +184,8 @@ export const Receipt: React.FC<ReceiptProps> = ({ transaction, taxRates }) => {
             <tr>
               <th className="heading name">Item</th>
               <th className="heading qty">Qty</th>
-              <th className="heading rate">Rate</th>
-              <th className="heading amount">Amount</th>
+              <th className="heading rate text-right">Rate</th>
+              <th className="heading amount text-right">Amount</th>
             </tr>
           </thead>
           <tbody>
@@ -234,6 +235,6 @@ export const Receipt: React.FC<ReceiptProps> = ({ transaction, taxRates }) => {
         </footer>
       </div>
       <button onClick={printBill}>Print Bill</button>
-      </>
-    );
-  };
+    </>
+  );
+};

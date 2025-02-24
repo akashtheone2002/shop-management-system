@@ -2,11 +2,13 @@
 import { redirect } from "next/navigation";
 import { FormEvent, useState } from "react";
 import Image from "next/image";
+import { useAlert } from "@/context/AlertContext";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ email: '', password: '' });
+  const { showAlert } = useAlert();
 
   // Email validation function
   const validateEmail = (email: string) => {
@@ -34,8 +36,10 @@ const Login = () => {
       const response = await fetch(`/api/user/login?username=${email}&password=${password}`);
       if (response.ok) {
         console.log("Successfully logged in");
+        showAlert("Successfully logged in", "success");
         redirect('/home');
       } else {
+        showAlert("Failed to login", "error");
         console.log('An error occurred');
       }
     }

@@ -334,7 +334,7 @@ const Cart = () => {
             />
           </div>
 
-          <div className="flex justify-end space-x-4">
+          <div className="flex justify-end space-x-4 mt-2">
             <button
               type="button"
               className="bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300"

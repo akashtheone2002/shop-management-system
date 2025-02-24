@@ -3,9 +3,9 @@ import { processTransactionsForAssociationRules } from '../../../../../agents/pp
 export async function GET(request: Request) {
     try {
         processTransactionsForAssociationRules();
-        return NextResponse.json(true);
+        return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Error handling GET request:", error);
-        return NextResponse.json({ error: "An error occurred" }, { status: 500 });
+        return NextResponse.json({ success: false });
     }
 }

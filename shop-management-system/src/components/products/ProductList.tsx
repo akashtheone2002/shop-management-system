@@ -6,8 +6,10 @@ import Uploader from '../common/Uploader';
 import { IProduct, IProductCSV } from '@/types/apiModels/apiModels';
 import { generateUUID } from '../../../utils/common';
 import Alert from '../common/Alert';
+import { useAlert } from '@/context/AlertContext';
 
 export const ProductList = () => {
+    const { showAlert } = useAlert();
     const [searchTerm, setSearchTerm] = useState('');
     const [products, setProducts] = useState<IProduct[]>([]);
     const [showAddModal, setShowAddModal] = useState(false); // State for add product modal
@@ -27,8 +29,8 @@ export const ProductList = () => {
         text: string;
         duration: number;
         setVisible: (visible: boolean) => void;
-      } | null>(null);
-      const [alertVisible, setAlertVisible] = useState(false);
+    } | null>(null);
+    const [alertVisible, setAlertVisible] = useState(false);
     const filteredProducts = products?.filter((product: IProduct) =>
         product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.category?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -57,7 +59,7 @@ export const ProductList = () => {
                 const errorResponse = await res.json(); // Capture error response
                 throw new Error(errorResponse.error || 'Failed to update product');
             }
-
+            showAlert("Product updated ", "success");
             const updatedProducts: IProduct[] = await res.json();
             setProducts(updatedProducts);
         } catch (error) {
@@ -69,6 +71,7 @@ export const ProductList = () => {
         const res = await fetch(`api/product?id=` + id, {
             method: 'DELETE',
         });
+        showAlert('Product deleted', "success");
         const products: IProduct[] = await res.json();
         setProducts(products);
     }
@@ -88,7 +91,7 @@ export const ProductList = () => {
                 const errorResponse = await res.json(); // Capture error response
                 throw new Error(errorResponse.error || 'Failed to add product');
             }
-
+            showAlert("Successfully products loaded", "success");
             const updatedProducts: IProduct[] = await res.json();
             setProducts(updatedProducts);
             setShowAddModal(false); // Close the modal after adding
@@ -133,7 +136,7 @@ export const ProductList = () => {
                     text: "Bulk upload failed!",
                     duration: 5,
                     setVisible: setAlertVisible,
-                  });
+                });
                 return;
             }
             const result = await response.json();
@@ -144,7 +147,7 @@ export const ProductList = () => {
                 text: "Bulk upload successfull!",
                 duration: 5,
                 setVisible: setAlertVisible,
-              });
+            });
             console.log("Bulk Upload successfully:", result);
         } catch (error) {
             console.error("Error placing order:", error);
@@ -176,143 +179,143 @@ export const ProductList = () => {
 
     return (
         <>
-        {alertVisible && alertProps && <Alert {...alertProps} />}
-        <div className="container mx-auto py-8 px-8 bg-white text-black">
-            {showBulkUploadModal && (
-                <Modal
-                    show={showBulkUploadModal}
-                    onClose={() => setShowBulkUploadModall(false)}
-                >
-                    <Uploader<IProductCSV>
-                        text="Upload Product Data"
-                        handleUpload={bulkUploadOrders}
-                    />
-                </Modal>
-            )}
-            <div className="flex flex-wrap items-center gap-4 mb-6">
-                {/* Search Bar */}
-                <div className="flex-grow">
-                    <input
-                        type="text"
-                        placeholder="Search products..."
-                        className="w-full p-2 border rounded-md text-black h-10"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+            {alertVisible && alertProps && <Alert {...alertProps} />}
+            <div className="container mx-auto py-8 px-8 bg-white text-black">
+                {showBulkUploadModal && (
+                    <Modal
+                        show={showBulkUploadModal}
+                        onClose={() => setShowBulkUploadModall(false)}
+                    >
+                        <Uploader<IProductCSV>
+                            text="Upload Product Data"
+                            handleUpload={bulkUploadOrders}
+                        />
+                    </Modal>
+                )}
+                <div className="flex flex-wrap items-center gap-4 mb-6">
+                    {/* Search Bar */}
+                    <div className="flex-grow border-black">
+                        <input
+                            type="text"
+                            placeholder="Search products..."
+                            className="w-full p-2 border rounded-md text-black h-10"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
+
+                    {/* Buttons */}
+                    <button
+                        className="bg-green-500 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
+                        onClick={() => setShowAddModal(true)}
+                    >
+                        Add
+                    </button>
+
+                    <button
+                        className="bg-blue-800 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
+                        onClick={() => setShowBulkUploadModall(true)}
+                    >
+                        Bulk Upload
+                    </button>
+
+                    <button
+                        className="bg-green-800 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
+                        onClick={() => downloadInventory()}
+                    >
+                        Download Inventory
+                    </button>
                 </div>
 
-                {/* Buttons */}
-                <button
-                    className="bg-green-500 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
-                    onClick={() => setShowAddModal(true)}
-                >
-                    Add
-                </button>
+                {/* Fixed Height for Grid */}
+                <div className="grid-container relative w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6" style={{ minHeight: '400px' }}>
+                    {/* Loader Spinner */}
+                    {isLoading ? (
+                        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-200 opacity-75">
+                            <div className="animate-spin h-10 w-10 border-t-4 border-blue-500 rounded-full"></div>
+                        </div>
+                    ) : (
+                        filteredProducts.map((product) => (
+                            <ProductCard key={product.id} product={product} onEdit={editProduct} onDelete={deletedProduct} />
+                        ))
+                    )}
+                </div>
 
-                <button
-                    className="bg-blue-800 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
-                    onClick={() => setShowBulkUploadModall(true)}
-                >
-                    Bulk Upload
-                </button>
+                {/* Add Product Modal */}
+                {showAddModal && (
+                    <Modal show={showAddModal} onClose={() => { setShowAddModal(false) }}>
+                        <h3 className="text-lg font-semibold mb-4 text-gray-800">Add Product</h3>
+                        <form onSubmit={(e) => { e.preventDefault(); addProduct(newProduct); }} className="space-y-4">
+                            <div>
+                                <label className="block text-gray-700">Product Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={newProduct.name}
+                                    onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+                                    className="w-full p-2 border rounded text-gray-700"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700">Category</label>
+                                <input
+                                    type="text"
+                                    name="category"
+                                    value={newProduct.category}
+                                    onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
+                                    className="w-full p-2 border rounded text-gray-700"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700">Price</label>
+                                <input
+                                    type="number"
+                                    name="price"
+                                    value={newProduct.price}
+                                    onChange={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })}
+                                    className="w-full p-2 border rounded text-gray-700"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700">Image URL</label>
+                                <input
+                                    type="text"
+                                    name="image"
+                                    value={newProduct.image}
+                                    onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
+                                    className="w-full p-2 border rounded text-gray-700"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700">Stock</label>
+                                <input
+                                    type="number"
+                                    name="stock"
+                                    value={newProduct.stock}
+                                    onChange={(e) => setNewProduct({ ...newProduct, stock: Number(e.target.value) })}
+                                    className="w-full p-2 border rounded text-gray-700"
+                                />
+                            </div>
 
-                <button
-                    className="bg-green-800 text-white h-10 px-5 rounded-md hover:bg-green-600 transition duration-200"
-                    onClick={() => downloadInventory()}
-                >
-                    Download Inventory
-                </button>
-            </div>
-
-            {/* Fixed Height for Grid */}
-            <div className="grid-container relative w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6" style={{ minHeight: '400px' }}>
-                {/* Loader Spinner */}
-                {isLoading ? (
-                    <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-200 opacity-75">
-                        <div className="animate-spin h-10 w-10 border-t-4 border-blue-500 rounded-full"></div>
-                    </div>
-                ) : (
-                    filteredProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} onEdit={editProduct} onDelete={deletedProduct} />
-                    ))
+                            <div className="flex justify-end space-x-4">
+                                <button
+                                    type="button"
+                                    className="bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300"
+                                    onClick={() => setShowAddModal(false)} // Close modal without adding
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                                >
+                                    Add
+                                </button>
+                            </div>
+                        </form>
+                    </Modal>
                 )}
             </div>
-
-            {/* Add Product Modal */}
-            {showAddModal && (
-                <Modal show={showAddModal} onClose={() => { setShowAddModal(false) }}>
-                    <h3 className="text-lg font-semibold mb-4 text-gray-800">Add Product</h3>
-                    <form onSubmit={(e) => { e.preventDefault(); addProduct(newProduct); }} className="space-y-4">
-                        <div>
-                            <label className="block text-gray-700">Product Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={newProduct.name}
-                                onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                                className="w-full p-2 border rounded text-gray-700"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700">Category</label>
-                            <input
-                                type="text"
-                                name="category"
-                                value={newProduct.category}
-                                onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
-                                className="w-full p-2 border rounded text-gray-700"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700">Price</label>
-                            <input
-                                type="number"
-                                name="price"
-                                value={newProduct.price}
-                                onChange={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })}
-                                className="w-full p-2 border rounded text-gray-700"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700">Image URL</label>
-                            <input
-                                type="text"
-                                name="image"
-                                value={newProduct.image}
-                                onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-                                className="w-full p-2 border rounded text-gray-700"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700">Stock</label>
-                            <input
-                                type="number"
-                                name="stock"
-                                value={newProduct.stock}
-                                onChange={(e) => setNewProduct({ ...newProduct, stock: Number(e.target.value) })}
-                                className="w-full p-2 border rounded text-gray-700"
-                            />
-                        </div>
-
-                        <div className="flex justify-end space-x-4">
-                            <button
-                                type="button"
-                                className="bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300"
-                                onClick={() => setShowAddModal(false)} // Close modal without adding
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
-                                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                            >
-                                Add
-                            </button>
-                        </div>
-                    </form>
-                </Modal>
-            )}
-        </div>
         </>
     );
 };

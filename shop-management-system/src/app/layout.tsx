@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import { getSessionUserRole } from "./lib/session";
 import { headers } from 'next/headers';
+import { AlertProvider } from "@/context/AlertContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,14 +27,16 @@ interface Props { role: string; children: React.ReactNode; }
 export default async function RootLayout({
   children
 }: Props) {
-const role = (await headers()).get('x-user-role') || '';
+  const role = (await headers()).get('x-user-role') || '';
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {role && <Navbar role={role} />}
-        {children}
+        <AlertProvider>
+          {role && <Navbar role={role} />}
+          {children}
+        </AlertProvider>
       </body>
     </html>
   );

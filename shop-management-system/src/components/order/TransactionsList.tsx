@@ -80,14 +80,14 @@ const TransactionHistory: React.FC = () => {
     if (!response.ok) throw new Error(`Error fetching transactions: ${response.status}`);
     const status = await response.json();
     setShowAddModal(false);
-    if(status){
+    if (status) {
       setAlertProps({
         success: true,
         text: "Order returned successfully!",
         duration: 5,
         setVisible: setAlertVisible,
       });
-    }else{
+    } else {
       setAlertProps({
         success: false,
         text: "An error occured when returning the order!",
@@ -103,8 +103,8 @@ const TransactionHistory: React.FC = () => {
     );
     if (!response.ok) throw new Error(`Error fetching transactions: ${response.status}`);
     debugger
-    const transactions : IFlatTransaction[] = await response.json();
-    if(!transactions){
+    const transactions: IFlatTransaction[] = await response.json();
+    if (!transactions) {
       setAlertProps({
         success: false,
         text: "No orders found!",
@@ -116,18 +116,18 @@ const TransactionHistory: React.FC = () => {
     const csvHeader = "ID,Bought On,Total Price,Customer Name,Customer Email,Customer Number,User Name,Order Quantity,Order Price,Product Name,Product Price\n"; // CSV headers
     const csvRows = transactions.map((transaction) => {
       debugger
-      return `${transaction.id || ''},${transaction.boughtOn ||''},${transaction.totalPrice || ''},${transaction.customerName || ''},${transaction.customerEmail || ''},${transaction.customerNumber || ''},${transaction.userName || ''},${transaction.orderQuantity || ''},${transaction.orderPrice || ''},${transaction.productName || ''},${transaction.productPrice || ''}`;
+      return `${transaction.id || ''},${transaction.boughtOn || ''},${transaction.totalPrice || ''},${transaction.customerName || ''},${transaction.customerEmail || ''},${transaction.customerNumber || ''},${transaction.userName || ''},${transaction.orderQuantity || ''},${transaction.orderPrice || ''},${transaction.productName || ''},${transaction.productPrice || ''}`;
     });
-   console.log(csvRows);
+    console.log(csvRows);
     // Combine header and rows into one string
     const csvData = csvHeader + csvRows.join("\n");
-  
+
     // Create a Blob with CSV data
     const blob = new Blob([csvData], { type: 'text/csv' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = 'transactions.csv'; // File name for download
-  
+
     // Programmatically click the link to trigger the download
     link.click();
 
@@ -138,11 +138,11 @@ const TransactionHistory: React.FC = () => {
       setVisible: setAlertVisible,
     });
   };
-  
+
   return (
     <>
       {alertVisible && alertProps && <Alert {...alertProps} />}
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-gray-50 flex flex-col  text-gray-800">
         <div className="container mx-auto p-6 flex-1">
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-3xl font-semibold text-gray-800">Transaction History</h1>
@@ -244,7 +244,7 @@ const TransactionHistory: React.FC = () => {
                 <th className="px-6 py-4 text-gray-600">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className=" text-gray-600">
               {orders.map((order) => (
                 <tr key={order.id} className="border-t">
                   <td className="px-6 py-4">{order.product?.name}</td>
