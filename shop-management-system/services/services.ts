@@ -94,14 +94,27 @@ export async function GetEntities(
   }else{
     whereCondition = eq(Entity.entityType, type);
   }
-  const result = await db
+  let result;
+  
+  if(order == "desc"){ 
+    result = await db
     .select()
     .from(Entity)
     .where(whereCondition)
-    .orderBy(desc(Entity.modifiedBy))
+    .orderBy(desc(Entity.modifiedOn))
     .limit(take)
     .offset(skip)
     .execute();
+  }else{
+    result = await db
+    .select()
+    .from(Entity)
+    .where(whereCondition)
+    .orderBy(asc(Entity.modifiedOn))
+    .limit(take)
+    .offset(skip)
+    .execute();
+  }
 
   return result as IEntity[];
 }

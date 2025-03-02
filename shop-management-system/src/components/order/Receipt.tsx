@@ -226,15 +226,15 @@ export const Receipt: React.FC<ReceiptProps> = ({ transaction, taxRates }) => {
           </tbody>
         </table>
         <section>
-          <p>Paid by : <span>CASH</span></p>
+          <p>Paid with : <span>CASH</span></p>
           <p style={{ textAlign: 'center' }}>Thank you for your visit!</p>
         </section>
         <footer style={{ textAlign: 'center' }}>
           <p>{process.env.SHOP_NAME}</p>
-          <p>www.{process.env.SHOP_NAME}.in</p>
+          <p>www.ShopManagementSystem.in</p>
         </footer>
       </div>
-      <button onClick={printBill}>Print Bill</button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={printBill}>Print Bill</button>
     </>
   );
 };

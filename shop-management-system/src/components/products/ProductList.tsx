@@ -24,13 +24,6 @@ export const ProductList = () => {
         stock: 0,
     }); // State for the new product details
     const [isLoading, setIsLoading] = useState<boolean>(false); // Loading state
-    const [alertProps, setAlertProps] = useState<{
-        success: boolean;
-        text: string;
-        duration: number;
-        setVisible: (visible: boolean) => void;
-    } | null>(null);
-    const [alertVisible, setAlertVisible] = useState(false);
     const filteredProducts = products?.filter((product: IProduct) =>
         product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.category?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -131,23 +124,13 @@ export const ProductList = () => {
             });
             setShowBulkUploadModall(false);
             if (!response.ok) {
-                setAlertProps({
-                    success: false,
-                    text: "Bulk upload failed!",
-                    duration: 5,
-                    setVisible: setAlertVisible,
-                });
+                showAlert("Bulk upload failed!", "error");
                 return;
             }
             const result = await response.json();
             setProducts(result);
             setShowBulkUploadModall(false);
-            setAlertProps({
-                success: true,
-                text: "Bulk upload successfull!",
-                duration: 5,
-                setVisible: setAlertVisible,
-            });
+            showAlert("Bulk upload successfull!", "success");
             console.log("Bulk Upload successfully:", result);
         } catch (error) {
             console.error("Error placing order:", error);
@@ -179,7 +162,6 @@ export const ProductList = () => {
 
     return (
         <>
-            {alertVisible && alertProps && <Alert {...alertProps} />}
             <div className="container mx-auto py-8 px-8 bg-white text-black">
                 {showBulkUploadModal && (
                     <Modal

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import { Roles } from "../../../type/entity/entity";
 import Image from "next/image";
 import { UserCircle } from "lucide-react";
@@ -14,7 +14,6 @@ interface IProps {
 
 const Navbar = ({ role }: IProps) => {
   const router = useRouter();
-  role = "ADMIN";
   const pathname = usePathname(); // Get the current route
 
   // If the current page is /login, don't render the navbar
@@ -47,6 +46,7 @@ const Navbar = ({ role }: IProps) => {
   const handleLogout = async () => {
     await fetch("/api/user/logout", { method: "GET" });
     showAlert("Successfully logged out", "success");
+    redirect("/login");
   };
 
   // Close profile card when clicking outside

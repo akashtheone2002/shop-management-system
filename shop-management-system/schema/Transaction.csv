@@ -1,11 +1,11 @@
 name,quantity,customerName,number,email,boughtOn,pricePerUnit,totalPrice
-"cdc2f17a-7a0f-4fee-b633-0ebf5e118386",5,"John Doe","1234567890","john.doe@example.com","2025-02-01",799.99,3999.95
-"1dcd1967-bb88-42f0-bb77-f229618ab2b7",3,"Jane Smith","0987654321","jane.smith@example.com","2025-02-02",99.99,299.97
-"274c8fe9-b0f7-430e-8f09-f84b14fa0c5f",10,"Samuel Adams","1122334455","samuel.adams@example.com","2025-02-03",199.99,1999.90
-"f3315013-e220-4e42-8008-1b548a0db82e",2,"Emily Brown","6677889900","emily.brown@example.com","2025-02-04",499.99,999.98
-"dc3d709b-5eb3-4e04-adb2-b79bf7bbebec",1,"George White","2233445566","george.white@example.com","2025-02-05",89.99,89.99
-"a2b3aabf-994c-4d0e-b52f-5b0cacbc02e9",2,"Sarah Wilson","9988776655","sarah.wilson@example.com","2025-02-06",999.99,1999.98
-"565a68d4-ea6e-4583-9f8c-991fa2952924",4,"Robert Black","3344556677","robert.black@example.com","2025-02-07",49.99,199.96
-"cdc2f17a-7a0f-4fee-b633-0ebf5e118386",1,"David Green","7766554433","david.green@example.com","2025-02-08",29.99,29.99
-"1dcd1967-bb88-42f0-bb77-f229618ab2b7",3,"Laura Blue","4455667788","laura.blue@example.com","2025-02-09",199.99,599.97
-"274c8fe9-b0f7-430e-8f09-f84b14fa0c5f",6,"James Pink","5566778899","james.pink@example.com","2025-02-10",19.99,119.94
+"cdc2f17a-7a0f-4fee-b633-0ebf5e118386",5,"Bulk Upload Customer","1234567890","bulk.upload@example.com","2025-02-01",799.99,3999.95
+"1dcd1967-bb88-42f0-bb77-f229618ab2b7",3,"Bulk Upload Customer","0987654321","jane.smith@example.com","2025-02-02",99.99,299.97
+"274c8fe9-b0f7-430e-8f09-f84b14fa0c5f",10,"Bulk Upload Customer","1122334455","samuel.adams@example.com","2025-02-03",199.99,1999.90
+"f3315013-e220-4e42-8008-1b548a0db82e",2,"Bulk Upload Customer","6677889900","emily.brown@example.com","2025-02-04",499.99,999.98
+"dc3d709b-5eb3-4e04-adb2-b79bf7bbebec",1,"Bulk Upload Customer","2233445566","george.white@example.com","2025-02-05",89.99,89.99
+"a2b3aabf-994c-4d0e-b52f-5b0cacbc02e9",2,"Bulk Upload Customer","9988776655","sarah.wilson@example.com","2025-02-06",999.99,1999.98
+"565a68d4-ea6e-4583-9f8c-991fa2952924",4,"Bulk Upload Customer","3344556677","robert.black@example.com","2025-02-07",49.99,199.96
+"cdc2f17a-7a0f-4fee-b633-0ebf5e118386",1,"Bulk Upload Customer","7766554433","david.green@example.com","2025-02-08",29.99,29.99
+"1dcd1967-bb88-42f0-bb77-f229618ab2b7",3,"Bulk Upload Customer","4455667788","laura.blue@example.com","2025-02-09",199.99,599.97
+"274c8fe9-b0f7-430e-8f09-f84b14fa0c5f",6,"Bulk Upload Customer","5566778899","james.pink@example.com","2025-02-10",19.99,119.94

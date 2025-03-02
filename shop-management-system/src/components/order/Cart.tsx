@@ -8,6 +8,7 @@ import Uploader from "../common/Uploader";
 import { ICustomer, IOrder, IProduct, ITransaction, ITransactionCSV } from "@/types/apiModels/apiModels";
 import { Receipt } from "./Receipt";
 import { Console } from "console";
+import { useAlert } from "@/context/AlertContext";
 const demoOrders: IOrder[] = [];
 const Cart = () => {
   const [orders, setOrders] = useState<Array<IOrder>>([]);
@@ -21,13 +22,7 @@ const Cart = () => {
     email: "",
     number: "",
   });
-  const [alertProps, setAlertProps] = useState<{
-    success: boolean;
-    text: string;
-    duration: number;
-    setVisible: (visible: boolean) => void;
-  } | null>(null);
-  const [alertVisible, setAlertVisible] = useState(false);
+  const { showAlert } = useAlert();
 
   const subtotal = orders.reduce(
     (acc, product) => acc + (product.product?.price || 1) * (product.quantity || 1),
@@ -62,7 +57,7 @@ const Cart = () => {
     const existingProduct = products.find((product) => product.id === existingProductId);
 
     if (existingProduct && existingProduct?.stock <= newProducts[index]?.quantity) {
-      alert("Product is out of stock");
+      showAlert("Product is out of stock","error");
       return;
     }
     newProducts[index].quantity = (newProducts[index].quantity || 0) + 1;
@@ -91,14 +86,14 @@ const Cart = () => {
     if (existingProductIndex > -1) {
       const newProducts = [...orders];
       if (product.stock == newProducts[existingProductIndex].quantity) {
-        alert("Product is out of stock");
+        showAlert("Product is out of stock","error");
         return;
       }
       newProducts[existingProductIndex].quantity = (newProducts[existingProductIndex].quantity || 0) + 1;
       setOrders(newProducts);
     } else {
       if (product.stock == 0) {
-        alert("Product is out of stock");
+        showAlert("Product is out of stock","error");
         return;
       }
       setOrders([
@@ -122,11 +117,12 @@ const Cart = () => {
   const checkOut = async () => {
     console.log(orders);
     console.log(customer);
+    console.log(total);
     try {
       const response = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orders, customer, total }),
+        body: JSON.stringify({ orders, customer, totalPrice: total }),
       });
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -193,21 +189,11 @@ const Cart = () => {
       });
       setShowBulkUploadModall(false);
       if (!response.ok) {
-        setAlertProps({
-          success: false,
-          text: "Bulk upload failed!",
-          duration: 5,
-          setVisible: setAlertVisible,
-        });
+        showAlert("Bulk upload failed!", "error");
         return;
       }
       const result = await response.json();
-      setAlertProps({
-        success: true,
-        text: "Bulk upload successfull!",
-        duration: 5,
-        setVisible: setAlertVisible,
-      });
+      showAlert("Bulk upload successfull!", "success");
       console.log("Bulk Upload successfully:", result);
     } catch (error) {
       console.error("Error placing order:", error);

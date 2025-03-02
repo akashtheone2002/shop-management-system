@@ -33,7 +33,7 @@ export async function middleware(request: NextRequest) {
 
   // Check if the user is trying to access a restricted route
   for (const route in rolePermissions) {
-    if (url.includes(route)) {
+    if (urlObj.pathname == route) {
       // If the user doesn't have the required role
       if (!session || !session.role || !rolePermissions[route].includes(session.role)) {
         if(urlObj.pathname == "/home" && session?.role == Roles.EMPLOYEE){

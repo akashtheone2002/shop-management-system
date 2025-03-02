@@ -5,6 +5,7 @@ import { getProductsByProductIds } from './ims';
 import { IAssociationRule, IFrequentItemset, IOrder, IProduct, ITransaction, ITransactionList } from '@/types/apiModels/apiModels';
 import { EntityType } from '@/types/entity/entity';
 import { GetEntities } from '../services/services';
+import { mapEntityListToProductList } from '../utils/mapper';
 
 // export default async function getReccomendations(products: IOrder[]): Promise<IProduct[]>{
 //     const data: IProduct[] = [{
@@ -60,7 +61,11 @@ export default async function getReccomendations(products: IOrder[]): Promise<IP
       }
     });
     if(recommendedProductIds.size == 0){
-      return await GetEntities(EntityType.PRODUCT);
+      const productEntities = await GetEntities(EntityType.PRODUCT);
+      return mapEntityListToProductList(productEntities);
+    }
+    if(recommendedProductIds.has("notFound")){
+      recommendedProductIds.delete("notFound");
     }
     const recommendedProducts: IProduct[] = await getProductsByProductIds([...recommendedProductIds]);
   

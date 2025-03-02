@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Alert from "../common/Alert";
 import Modal from "../common/Modal";
 import { IFlatTransaction, IOrder, ITransaction } from "@/types/apiModels/apiModels";
+import { useAlert } from "@/context/AlertContext";
 
 const TransactionHistory: React.FC = () => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
@@ -11,18 +12,12 @@ const TransactionHistory: React.FC = () => {
   const [limit, setLimit] = useState<number>(10);
   const [search, setSearch] = useState<string>("");
   const [sortBy, setSortBy] = useState<"boughtOn" | "customerName">("boughtOn");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [totalPages, setTotalPages] = useState<number>(1);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [orders, setOrders] = useState<IOrder[]>();
 
-  const [alertProps, setAlertProps] = useState<{
-    success: boolean;
-    text: string;
-    duration: number;
-    setVisible: (visible: boolean) => void;
-  } | null>(null);
-  const [alertVisible, setAlertVisible] = useState(false);
+  const { showAlert } = useAlert();
 
   useEffect(() => {
     fetchTransactions();
@@ -76,24 +71,13 @@ const TransactionHistory: React.FC = () => {
     const response = await fetch(
       `/api/order/return?orderId=${orderId}`
     );
-    setAlertVisible(true);
     if (!response.ok) throw new Error(`Error fetching transactions: ${response.status}`);
     const status = await response.json();
     setShowAddModal(false);
     if (status) {
-      setAlertProps({
-        success: true,
-        text: "Order returned successfully!",
-        duration: 5,
-        setVisible: setAlertVisible,
-      });
+      showAlert("Order returned successfully!", "success");
     } else {
-      setAlertProps({
-        success: false,
-        text: "An error occured when returning the order!",
-        duration: 5,
-        setVisible: setAlertVisible,
-      });
+      showAlert("An error occured when returning the order!", "error");
     }
   };
 
@@ -105,12 +89,7 @@ const TransactionHistory: React.FC = () => {
     debugger
     const transactions: IFlatTransaction[] = await response.json();
     if (!transactions) {
-      setAlertProps({
-        success: false,
-        text: "No orders found!",
-        duration: 5,
-        setVisible: setAlertVisible,
-      });
+      showAlert("No orders found!", "error");
       return;
     }
     const csvHeader = "ID,Bought On,Total Price,Customer Name,Customer Email,Customer Number,User Name,Order Quantity,Order Price,Product Name,Product Price\n"; // CSV headers
@@ -130,18 +109,11 @@ const TransactionHistory: React.FC = () => {
 
     // Programmatically click the link to trigger the download
     link.click();
-
-    setAlertProps({
-      success: true,
-      text: "Donwload started!",
-      duration: 5,
-      setVisible: setAlertVisible,
-    });
+    showAlert("Donwload started!", "success");
   };
 
   return (
     <>
-      {alertVisible && alertProps && <Alert {...alertProps} />}
       <div className="min-h-screen bg-gray-50 flex flex-col  text-gray-800">
         <div className="container mx-auto p-6 flex-1">
           <div className="flex justify-between items-center mb-4">

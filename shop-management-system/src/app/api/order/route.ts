@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import placeTransaction from "../../../../agents/oms";
-import { ICustomer, IOrder } from "@/types/apiModels/apiModels";
+import { ICustomer, IOrder, ITransaction } from "@/types/apiModels/apiModels";
+import { getSessionUserName } from "@/app/lib/session";
 
 export async function POST(request: Request) {
   try {
@@ -8,7 +9,8 @@ export async function POST(request: Request) {
     console.log("Received orders0:", orders);
     console.log("Received customer:", customer);
     
-    const transaction = await placeTransaction(orders, customer, totalPrice);
+    const transaction: ITransaction = await placeTransaction(orders, customer, totalPrice);
+    transaction.user = { name: await getSessionUserName()};
     return NextResponse.json(transaction);
   } catch (error) {
     console.error("Error adding transaction:", error);

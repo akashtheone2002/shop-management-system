@@ -55,3 +55,8 @@ export async function getSessionUserId() {
   const session = await getSession();
   return session?.id ?? "";
 }
+
+export async function getSessionUserName() {
+  const session = await getSession();
+  return session?.name ?? "";
+}
